@@ -1,0 +1,94 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+.title {
+    color: #fff;
+    background: #6c6c6c;
+    padding-bottom: .5rem;
+
+    h1, h2, h3, h4 { color: #fff; }
+}
+
+.breadcrumbs {
+    padding: .5rem 0;
+    background: #555;
+    margin-bottom: 30px;
+}
+.breadcrumb {
+    background: none;
+    padding: 0;
+    margin: 0;
+    font-size: 90%;
+
+    .breadcrumb-item {
+        color: #aaa;
+    }
+    .breadcrumb-item a {
+        color: #fff;
+    }
+}
+
+.table th {
+    border-top: none;
+    font-size: 80%;
+    text-transform: uppercase;
+    color: #777;
+}
+.table td, .table th {
+    vertical-align: middle;
+}
+.table-actions {
+    border-left: #ddd 1px solid;
+    text-align: center;
+}
+.btn-table-actions {
+    padding: .1rem .5rem;
+}
+
+.dropdown-menu {
+    font-size: 90%;
+}
+
+label {
+    margin-bottom: 3px;
+    font-weight: 500;
+}
+
+.form-text {
+    color: #aaa;
+    font-size: 88%;
+}
+
+.attribute {
+
+    strong {
+        font-size: 80%;
+        color: #555;
+        text-transform: uppercase;
+        font-weight: 700 !important;
+    }
+
+    padding: 7px 15px;
+    margin: 10px 0;
+    border-radius: $border-radius;
+    box-sizing: border-box;
+    background: #eee;
+}
+
+.flash-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: 520px;
+    box-sizing: border-box;
+    padding: 15px;
+    z-index: 500;
+}

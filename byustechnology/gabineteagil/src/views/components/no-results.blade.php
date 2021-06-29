@@ -1,0 +1,1 @@
+<div class="alert alert-info my-4"><i class="fas fa-info-circle fa-fw mr-1"></i> <strong>Nenhum registro encontrado</strong></div>
