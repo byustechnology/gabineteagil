@@ -11,6 +11,17 @@ use ByusTechnology\Gabinete\Http\Requests\OcorrenciaRequest;
 class OcorrenciaController extends Controller
 {
     /**
+     * Método construtor da classe
+     * 
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(\ByusTechnology\Gabinete\Http\Middlewares\SomenteOcorrenciasNaoCanceladas::class)->only(['update', 'destroy']);
+        $this->middleware(\ByusTechnology\Gabinete\Http\Middlewares\SomenteOcorrenciasNaoConcluidas::class)->only(['update', 'destroy']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @param  \ByusTechnology\Gabinete\Filters\OcorrenciaFilters  $filters
@@ -57,7 +68,9 @@ class OcorrenciaController extends Controller
      */
     public function show(Ocorrencia $ocorrencia)
     {
-        return view('gabinete::ocorrencia.show', compact('ocorrencia'));
+        $ultimasMensagens = $ocorrencia->mensagens()->orderBy('id', 'desc')->limit(3)->get();
+        $arquivos = $ocorrencia->arquivos()->ordenado()->get();
+        return view('gabinete::ocorrencia.show', compact('ocorrencia', 'ultimasMensagens', 'arquivos'));
     }
 
     /**

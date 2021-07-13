@@ -4,11 +4,12 @@ namespace ByusTechnology\Gabinete\Models;
 
 use ByusTechnology\Gabinete\Traits\HasFactory;
 use ByusTechnology\Gabinete\Traits\HasFilters;
+use ByusTechnology\Gabinete\Traits\HasStatus;
 use Illuminate\Database\Eloquent\Model;
 
 class Ocorrencia extends Model
 {
-    use HasFactory, HasFilters;
+    use HasFactory, HasFilters, HasStatus;
 
     /**
      * Definindo que nenhum campo 
@@ -18,6 +19,28 @@ class Ocorrencia extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Define os campos que devem ser 
+     * tratados como data.
+     * 
+     * @var array
+     */
+    protected $dates = [
+        'finalizada_em'
+    ];
+
+    /**
+     * Define quais modelos devem 
+     * ser carregados juntos 
+     * com a ocorrência.
+     * 
+     * @var array
+     */
+    protected $with = [
+        'etapa', 
+        'pessoa', 
+    ];
 
     /**
      * Define as contagens que precisam 
@@ -90,7 +113,7 @@ class Ocorrencia extends Model
      * Definindo o relacionamento entre 
      * as mensagens e a ocorrência.
      * 
-     * @return \ByusTechnology\Gabinete\Models\OcorrenciaMensagem
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function mensagens()
     {
@@ -101,11 +124,31 @@ class Ocorrencia extends Model
      * Definindo o relacionamento entre 
      * os arquivos e a ocorrência.
      * 
-     * @return \ByusTechnology\Gabinete\Models\OcorrenciaArquivo
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function arquivos()
     {
         return $this->hasMany(OcorrenciaArquivo::class);
+    }
+
+    /**
+     * Retorna se a ocorrência está concluida
+     * 
+     * @return boolean
+     */
+    public function concluida()
+    {
+        return ! empty($this->concluida_em);
+    }
+
+    /**
+     * Retorna se a ocorrência está cancelada
+     * 
+     * @return boolean
+     */
+    public function cancelada()
+    {
+        return ! empty($this->cancelada_em);
     }
 
     /**

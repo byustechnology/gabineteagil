@@ -1,5 +1,5 @@
 <footer class="mt-5 d-block">
-    <div class="container my-5">
+    <div class="container-fluid my-5">
         <div class="row">
             <div class="col-lg-3 my-3">
                 <img class="d-block mb-3" src="{{ asset('assets/images/logotipo.png') }}" alt="Logotipo {{ config('app.name') }}" width="100">

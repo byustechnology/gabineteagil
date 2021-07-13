@@ -93,6 +93,10 @@ class PessoaController extends Controller
      */
     public function destroy(Pessoa $pessoa)
     {
+        if ($pessoa->ocorrencias->count()) {
+            return back()->withErrors(['Desculpe, mas a pessoa ' . $pessoa->titulo . ' já está sendo utilizado em uma ocorrência. Não é possível remover a pessoa pois a ocorrência irá perder a associação com ela.']);
+        }
+
         $pessoa->delete();
         session()->flash('flash_danger', 'Pessoa ' . $pessoa->titulo . ' removido com sucesso!');
         return back();

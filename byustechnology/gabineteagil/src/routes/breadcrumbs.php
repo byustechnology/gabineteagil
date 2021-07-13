@@ -95,7 +95,7 @@ Breadcrumbs::for('g-pessoa-contato-edit', function ($trail, $pessoa, $contato) {
     $trail->push('Editar', route('pessoa.edit', ['pessoa' => $pessoa, 'contato' => $contato]));
 });
 
-// Pessoas
+// Ocorrências
 Breadcrumbs::for('g-ocorrencia', function ($trail) {
     $trail->parent('g-dashboard');
     $trail->push('Ocorrências', route('ocorrencia.index'));
@@ -111,4 +111,40 @@ Breadcrumbs::for('g-ocorrencia-show', function ($trail, $ocorrencia) {
 Breadcrumbs::for('g-ocorrencia-edit', function ($trail, $ocorrencia) {
     $trail->parent('g-ocorrencia-show', $ocorrencia);
     $trail->push('Editar', route('ocorrencia.edit', ['ocorrencia' => $ocorrencia]));
+});
+
+// Ocorrências, mensagem
+Breadcrumbs::for('g-ocorrencia-mensagem', function ($trail, $ocorrencia) {
+    $trail->parent('g-ocorrencia-show', $ocorrencia);
+    $trail->push('Mensagens', route('ocorrencia.mensagem.index', ['ocorrencia' => $ocorrencia]));
+});
+Breadcrumbs::for('g-ocorrencia-mensagem-create', function ($trail, $ocorrencia) {
+    $trail->parent('g-ocorrencia-show', $ocorrencia);
+    $trail->push('Adicionar', route('ocorrencia.mensagem.create', ['ocorrencia' => $ocorrencia]));
+});
+Breadcrumbs::for('g-ocorrencia-mensagem-show', function ($trail, $ocorrencia, $mensagem) {
+    $trail->parent('g-ocorrencia-show', $ocorrencia);
+    $trail->push($mensagem->id, route('ocorrencia.mensagem.show', ['ocorrencia' => $ocorrencia, 'mensagem' => $mensagem]));
+});
+Breadcrumbs::for('g-ocorrencia-mensagem-edit', function ($trail, $ocorrencia, $mensagem) {
+    $trail->parent('g-ocorrencia-mensagem-show', $ocorrencia, $mensagem);
+    $trail->push('Editar', route('ocorrencia.edit', ['ocorrencia' => $ocorrencia, 'mensagem' => $mensagem]));
+});
+
+// Ocorrências, arquivo
+Breadcrumbs::for('g-ocorrencia-arquivo', function ($trail, $ocorrencia) {
+    $trail->parent('g-ocorrencia-show', $ocorrencia);
+    $trail->push('Arquivos', route('ocorrencia.arquivo.index', ['ocorrencia' => $ocorrencia]));
+});
+Breadcrumbs::for('g-ocorrencia-arquivo-create', function ($trail, $ocorrencia) {
+    $trail->parent('g-ocorrencia-show', $ocorrencia);
+    $trail->push('Adicionar', route('ocorrencia.arquivo.create', ['ocorrencia' => $ocorrencia]));
+});
+Breadcrumbs::for('g-ocorrencia-arquivo-show', function ($trail, $ocorrencia, $arquivo) {
+    $trail->parent('g-ocorrencia-show', $ocorrencia);
+    $trail->push($arquivo->id, route('ocorrencia.arquivo.show', ['ocorrencia' => $ocorrencia, 'arquivo' => $arquivo]));
+});
+Breadcrumbs::for('g-ocorrencia-arquivo-edit', function ($trail, $ocorrencia, $arquivo) {
+    $trail->parent('g-ocorrencia-arquivo-show', $ocorrencia, $arquivo);
+    $trail->push('Editar', route('ocorrencia.edit', ['ocorrencia' => $ocorrencia, 'arquivo' => $arquivo]));
 });

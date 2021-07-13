@@ -26,6 +26,7 @@
                     <tr>
                         <th>Título</th>
                         <th>Cor</th>
+                        <th class="text-right">Nº Ocorrências</th>
                         <th class="table-actions">Ações</th>
                     </tr>
                 </thead>
@@ -37,6 +38,7 @@
                                 <small class="text-muted">{{ Str::limit($orgao->descricao, 100) }}</small>
                             </td>
                             <td><i data-toggle="tooltip" title="{{ $orgao->cor }}" class="fas fa-square fa-fw mr-1 shadow-sm" style="color: {{ $orgao->cor }}"></i></td>
+                            <td class="text-right">{{ $orgao->ocorrencias_count }}</td>
                             <td class="table-actions">
                                 {!! Form::open(['url' => route('orgao.destroy', ['orgao' => $orgao->id]), 'method' => 'delete']) !!}
                                     <a data-toggle="tooltip" title="Editar" href="{{ route('orgao.edit', ['orgao' => $orgao]) }}" class="btn btn-table-actions btn-link"><i class="far fa-edit fa-fw"></i></a>

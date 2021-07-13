@@ -3,12 +3,25 @@
 namespace ByusTechnology\Gabinete\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use ByusTechnology\Gabinete\Actions\StoreOcorrenciaArquivo;
 use ByusTechnology\Gabinete\Models\Ocorrencia;
 use ByusTechnology\Gabinete\Models\OcorrenciaMensagem;
 use ByusTechnology\Gabinete\Http\Requests\OcorrenciaMensagemRequest;
 
 class OcorrenciaMensagemController extends Controller
 {
+
+        /**
+     * Método construtor da classe
+     * 
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(\ByusTechnology\Gabinete\Http\Middlewares\SomenteOcorrenciasNaoCanceladas::class);
+        $this->middleware(\ByusTechnology\Gabinete\Http\Middlewares\SomenteOcorrenciasNaoConcluidas::class);
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -41,10 +54,15 @@ class OcorrenciaMensagemController extends Controller
      */
     public function store(OcorrenciaMensagemRequest $request, Ocorrencia $ocorrencia)
     {
-        $mensagem = (new OcorrenciaMensagem)->fill($request->all());
-        $ocorrencia->mensagens()->save($mensagem);
+        $mensagem = (new OcorrenciaMensagem)->fill($request->except('arquivo'));
+        $mensagem->user_id = auth()->user()->id;
+        $mensagem = $ocorrencia->mensagens()->save($mensagem);
 
-        session()->flash('flash_success', 'Contato ' . $mensagem->titulo . ' adicionada com sucesso!');
+        if ($request->has('arquivo')) {
+            (new StoreOcorrenciaArquivo($ocorrencia, $request->arquivo, $mensagem))->handle();
+        }
+
+        session()->flash('flash_success', 'Mensagem adicionada com sucesso!');
         return back();
     }
 

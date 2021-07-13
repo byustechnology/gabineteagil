@@ -15,6 +15,8 @@ class OcorrenciaFilters extends Filters
         'codigo',
         'titulo',
         'pessoa',
+        'pessoa_id', 
+        'orgao_id', 
         'assunto_id',
     ];
 
@@ -47,6 +49,16 @@ class OcorrenciaFilters extends Filters
         return $this->builder->whereHas('pessoa', function ($query) use ($pessoa) {
             $query->where('titulo', 'like', '%' . $pessoa . '%');
         });
+    }
+
+    protected function pessoa_id($pessoa)
+    {
+        return $this->builder->where('pessoa_id', $pessoa);
+    }
+
+    protected function orgao_id($orgao)
+    {
+        return $this->builder->where('orgao_responsavel_id', $orgao);
     }
 
     protected function assunto_id($assunto)

@@ -2,6 +2,7 @@
 
 namespace ByusTechnology\Gabinete\Models;
 
+use App\Models\User;
 use ByusTechnology\Gabinete\Traits\HasFactory;
 use ByusTechnology\Gabinete\Traits\HasFilters;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +29,18 @@ class OcorrenciaMensagem extends Model
     protected $guarded = [];
 
     /**
+     * Define quais recursos devem 
+     * ser carregados juntos com 
+     * a mensagem.
+     * 
+     * @var array
+     */
+    protected $with = [
+        'user', 
+        'arquivos', 
+    ];
+
+    /**
      * Uma mensagem pertence a uma 
      * determinada ocorrência.
      * 
@@ -47,6 +60,17 @@ class OcorrenciaMensagem extends Model
     public function arquivos()
     {
         return $this->hasMany(OcorrenciaArquivo::class);
+    }
+
+    /**
+     * Uma mensagem poder pertencer a um 
+     * determinado usuário.
+     * 
+     * @return \ByusTechnology\Gabinete\Models\OcorrenciaArquivo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**

@@ -15,8 +15,10 @@ class CreateOcorrenciaMensagensTable extends Migration
     {
         Schema::create('ocorrencia_mensagens', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('ocorrencia_id')->constrained()->onDelete('cascade');
             $table->longText('mensagem');
+            $table->string('tipo')->default('user');
             $table->timestamps();
         });
     }

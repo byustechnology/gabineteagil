@@ -25,6 +25,13 @@
                     <span class="form-text">Informe em qual campo você deseja fazer a sua busca.</span>
                 </div>
                 <div class="form-group">
+                    {!! Form::label('orgao_id', 'Orgão responsável') !!}
+                    {!! Form::select('orgao_id', [
+                    '' => 'Não filtrar por orgão responsável...',
+                    ] + \ByusTechnology\Gabinete\Models\OrgaoResponsavel::ordenado()->pluck('titulo', 'id')->toArray(), null, ['class' => 'form-control']) !!}
+                    <span class="form-text">Selecione o campo acima caso deseje filtrar as ocorrências por um determinado orgão responsável.</span>
+                </div>
+                <div class="form-group">
                     {!! Form::label('assunto_id', 'Assuntos') !!}
                     {!! Form::select('assunto_id', [
                     '' => 'Não filtrar por assunto...',

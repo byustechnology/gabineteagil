@@ -93,6 +93,10 @@ class AssuntoController extends Controller
      */
     public function destroy(Assunto $assunto)
     {
+        if ($assunto->ocorrencias->count()) {
+            return back()->withErrors(['Desculpe, mas o assunto ' . $assunto->titulo . ' já está sendo utilizado em uma ocorrência. Altere o assunto responsável de todas as ocorrências associadas a este assunto, e então faça a remoção.']);
+        }
+
         $assunto->delete();
         session()->flash('flash_danger', 'Assunto ' . $assunto->titulo . ' removido com sucesso!');
         return back();

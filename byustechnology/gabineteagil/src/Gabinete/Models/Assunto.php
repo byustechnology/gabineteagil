@@ -19,6 +19,28 @@ class Assunto extends Model
      * @var array
      */
      protected $guarded = [];
+
+     /**
+     * Define as contagens que precisam 
+     * ser carregadas com este 
+     * modelo.
+     * 
+     * @var array
+     */
+    protected $withCount = [
+        'ocorrencias', 
+    ];
+
+     /**
+      * Um orgão pode possuir várias 
+      * ocorrências associadas a ele.
+      *
+      * @return \Illuminate\Database\Eloquent\Collection
+      */
+      public function ocorrencias()
+      {
+         return $this->hasMany(Ocorrencia::class);
+      }
     
     /**
      * Define um caminho para o modelo.

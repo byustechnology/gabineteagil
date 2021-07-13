@@ -11,9 +11,18 @@ class PessoaFilters extends Filters
      */
     protected $filters = [
         's', 
+        'keyword', 
         'codigo', 
         'titulo', 
+        'documento', 
+        'tipo', 
     ];
+
+    protected function keyword($keyword)
+    {
+        $field = $this->request->field;
+        $this->$field($keyword);
+    }
 
     protected function s($keyword)
     {
@@ -31,5 +40,15 @@ class PessoaFilters extends Filters
     protected function titulo($titulo)
     {
         return $this->builder->where('titulo', 'like', '%' . $titulo . '%');
+    }
+
+    protected function documento($documento)
+    {
+        return $this->builder->where('documento', 'like', '%' . $documento . '%');
+    }
+
+    protected function tipo($tipo)
+    {
+        return $this->builder->where('tipo', $tipo);
     }
 }

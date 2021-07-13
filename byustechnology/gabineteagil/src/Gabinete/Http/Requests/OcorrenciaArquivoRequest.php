@@ -25,7 +25,7 @@ class OcorrenciaArquivoRequest extends FormRequest
     public function rules()
     {
         return [
-            'arquivo' => 'required'
+            'arquivo' => 'required|mimes:jpg,bmp,png,pdf,doc,docx,xlsx|max:1024'
         ];
     }
 }

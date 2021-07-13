@@ -22,9 +22,22 @@ class CreateOcorrenciasTable extends Migration
             $table->unsignedBigInteger('orgao_responsavel_id')->nullable();
             $table->string('titulo');
             $table->longText('descricao');
+
+            // Conclusão
+            $table->dateTime('concluida_em')->nullable();
+            $table->longText('concluida_observacao')->nullable();
+            $table->unsignedBigInteger('concluida_por')->nullable();
+
+            // Cancelamento
+            $table->dateTime('cancelada_em')->nullable();
+            $table->longText('cancelada_observacao')->nullable();
+            $table->unsignedBigInteger('cancelada_por')->nullable();
+
             $table->timestamps();
 
             $table->foreign('orgao_responsavel_id')->references('id')->on('orgaos_responsaveis')->onDelete('set null');
+            $table->foreign('concluida_por')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('cancelada_por')->references('id')->on('users')->onDelete('set null');
         });
     }
 

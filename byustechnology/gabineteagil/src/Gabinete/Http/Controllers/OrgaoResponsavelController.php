@@ -93,6 +93,10 @@ class OrgaoResponsavelController extends Controller
      */
     public function destroy(OrgaoResponsavel $orgao)
     {
+        if ($orgao->ocorrencias->count()) {
+            return back()->withErrors(['Desculpe, mas o orgão ' . $orgao->titulo . ' já está sendo utilizado em uma ocorrência. Altere o orgão responsável de todas as ocorrências associadas a este orgão, e então faça a remoção.']);
+        }
+
         $orgao->delete();
         session()->flash('flash_danger', 'Orgão ' . $orgao->titulo . ' removida com sucesso!');
         return back();

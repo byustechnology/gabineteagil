@@ -6,9 +6,22 @@ use App\Http\Controllers\Controller;
 use ByusTechnology\Gabinete\Models\Ocorrencia;
 use ByusTechnology\Gabinete\Models\OcorrenciaArquivo;
 use ByusTechnology\Gabinete\Http\Requests\OcorrenciaArquivoRequest;
+use ByusTechnology\Gabinete\Actions\StoreOcorrenciaArquivo;
 
 class OcorrenciaArquivoController extends Controller
 {
+
+    /**
+     * Método construtor da classe
+     * 
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(\ByusTechnology\Gabinete\Http\Middlewares\SomenteOcorrenciasNaoCanceladas::class)->except(['index', 'show']);
+        $this->middleware(\ByusTechnology\Gabinete\Http\Middlewares\SomenteOcorrenciasNaoConcluidas::class)->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +30,7 @@ class OcorrenciaArquivoController extends Controller
      */
     public function index(Ocorrencia $ocorrencia)
     {
-        $arquivos = $ocorrencia->arquivos;
+        $arquivos = $ocorrencia->arquivos()->paginate();
         return view('gabinete::ocorrencia.arquivo.index', compact('ocorrencia', 'arquivos'));
     }
 
@@ -41,10 +54,10 @@ class OcorrenciaArquivoController extends Controller
      */
     public function store(OcorrenciaArquivoRequest $request, Ocorrencia $ocorrencia)
     {
-        $arquivo = (new OcorrenciaArquivo)->fill($request->all());
-        $ocorrencia->arquivos()->save($arquivo);
+        $action = (new StoreOcorrenciaArquivo($ocorrencia, $request->arquivo))->handle();
+        $arquivo = $action->arquivo;
 
-        session()->flash('flash_success', 'Contato ' . $arquivo->titulo . ' adicionada com sucesso!');
+        session()->flash('flash_success', 'Arquivo ' . $arquivo->arquivo . ' adicionada com sucesso na ocorrência!');
         return back();
     }
 

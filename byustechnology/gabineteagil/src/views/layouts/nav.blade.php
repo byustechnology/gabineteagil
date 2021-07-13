@@ -5,15 +5,17 @@
     </button>
     <div class="collapse navbar-collapse" id="mainNavbar">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active"><a class="nav-link" href="{{ route('gabinete.dashboard') }}"><i class="fas fa-tachometer-alt fa-fw mr-1"></i> Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('gabinete.dashboard') }}"><i class="fas fa-tachometer-alt fa-fw mr-1"></i> Dashboard</a></li>
             <li class="nav-item dropdown">
                 <a class="nav-link" href="#" data-toggle="dropdown"><i class="fas fa-clipboard-list fa-fw mr-1"></i> Ocorrências</a>
                 <div class="dropdown-menu shadow-lg">
-                    {!! Form::open(['url' => config('gabinete.path') . '/ocorrencia', 'method' => 'get', 'class' => 'px-4 pt-1 pb-2']) !!}
+                    {!! Form::open(['url' => config('gabinete.path') . '/ocorrencia', 'method' => 'get', 'class' => 'px-3 py-1']) !!}
                     <input name="s" type="text" class="form-control form-control-sm" placeholder="Buscar...">
                     {!! Form::close() !!}
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('ocorrencia.index') }}">Listar ocorrências</a>
                     <a class="dropdown-item" href="{{ route('ocorrencia.create') }}">Cadastrar ocorrência</a>
+                    <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Relatórios</h6>
                     <a class="dropdown-item" href="#">Ocorrências por assunto</a>
                     <a class="dropdown-item" href="#">Ocorrências por pessoa</a>
@@ -23,9 +25,10 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" href="#" data-toggle="dropdown"><i class="fas fa-users fa-fw mr-1"></i> Pessoas</a>
                 <div class="dropdown-menu shadow-lg">
-                    {!! Form::open(['url' => config('gabinete.path') . '/pessoa', 'method' => 'get', 'class' => 'px-4 pt-1 pb-2']) !!}
+                    {!! Form::open(['url' => config('gabinete.path') . '/pessoa', 'method' => 'get', 'class' => 'px-4 py-1']) !!}
                     <input name="s" type="text" class="form-control form-control-sm" placeholder="Buscar...">
                     {!! Form::close() !!}
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('pessoa.index') }}">Listar pessoas</a>
                     <a class="dropdown-item" href="{{ route('pessoa.create') }}">Cadastrar pessoas</a>
                 </div>
@@ -52,6 +55,7 @@
                     {!! Form::close() !!}
                     <a class="dropdown-item" href="{{ route('orgao.index') }}">Listar orgãos responsáveis</a>
                     <a class="dropdown-item" href="{{ route('orgao.create') }}">Cadastrar orgão responsável</a>
+                    <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header mt-2">Assuntos</h6>
                     {!! Form::open(['url' => config('gabinete.path') . '/assunto', 'method' => 'get', 'class' => 'px-4 pt-1 pb-2']) !!}
                     <input name="s" type="text" class="form-control form-control-sm" placeholder="Buscar...">
