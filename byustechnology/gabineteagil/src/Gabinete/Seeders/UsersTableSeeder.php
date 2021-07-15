@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
 
         User::firstOrCreate([
             'name' => 'Administrador', 
-            'email' => 'admin@admin.com.br', 
+            'email' => 'admin@admin.com', 
             'password' => bcrypt('secret')
         ]);
 

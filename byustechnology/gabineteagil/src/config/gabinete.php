@@ -2,6 +2,6 @@
 
 return [
     'title' => env('APP_NAME', 'Gabinete Ágil'), 
-    'path' => 'gabinete', 
+    'path' => '/', 
     'assets' => 'assets', 
 ];
