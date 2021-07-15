@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::redirect('/', config('gabinete.path'));
 Route::redirect('/home', config('gabinete.path'));
