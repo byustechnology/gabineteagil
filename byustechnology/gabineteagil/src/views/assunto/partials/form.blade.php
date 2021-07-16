@@ -41,8 +41,8 @@
         </div>
     @endcomponent
     
-    <div class="form-footer text-right">
+    @component('gabinete::components.form-footer')
         <button type="submit" class="btn btn-success btn-lg"><i class="far fa-save fa-fw mr-1"></i> Salvar</button>
-    </div>
+    @endcomponent
 
 </div>

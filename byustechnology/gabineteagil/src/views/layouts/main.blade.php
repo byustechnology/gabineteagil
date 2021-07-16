@@ -24,13 +24,18 @@
 <body>
     <div id="app">
 
-        <!-- Header -->
-        @include('gabinete::layouts.header')
+        <!-- Navbar -->
+        @include('gabinete::layouts.aside')
 
-        @yield('content')
+        <main>
+            @yield('content')
 
-        <!-- Footer -->
-        @include('gabinete::layouts.footer')
+            <!-- Footer -->
+            @include('gabinete::layouts.footer')
+        </main>
+
+
+        
 
         @include('gabinete::errors.list')
         @include('gabinete::messages.list')

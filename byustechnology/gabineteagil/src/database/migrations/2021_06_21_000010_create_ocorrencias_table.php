@@ -23,6 +23,15 @@ class CreateOcorrenciasTable extends Migration
             $table->string('titulo');
             $table->longText('descricao');
 
+            // Dados do endereço
+            $table->string('cep');
+            $table->string('logradouro');
+            $table->string('numero');
+            $table->string('complemento')->nullable();
+            $table->string('bairro');
+            $table->string('cidade');
+            $table->char('estado', 2);
+
             // Conclusão
             $table->dateTime('concluida_em')->nullable();
             $table->longText('concluida_observacao')->nullable();

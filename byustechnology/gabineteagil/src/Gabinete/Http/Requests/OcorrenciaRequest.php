@@ -24,6 +24,20 @@ class OcorrenciaRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            'pessoa_id' => 'required', 
+            'assunto_id' => 'required', 
+            'etapa_id' => 'required', 
+            'orgao_responsavel_id' => 'required', 
+            'descricao' => 'required', 
+
+            // Endereço
+            'cep' => 'required_if:mudar_endereco,1', 
+            'logradouro' => 'required_if:mudar_endereco,1', 
+            'numero' => 'required_if:mudar_endereco,1', 
+            'bairro' => 'required_if:mudar_endereco,1', 
+            'cidade' => 'required_if:mudar_endereco,1', 
+            'estado' => 'required_if:mudar_endereco,1'
+        ];
     }
 }

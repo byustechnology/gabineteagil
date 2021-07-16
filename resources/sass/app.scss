@@ -7,6 +7,76 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+body {
+    background: #eee;
+
+    &::-webkit-scrollbar { width: 12px; height: 12px; }
+	&::-webkit-scrollbar-track { background: none; }
+	&::-webkit-scrollbar-thumb { background: darken($secondary, 10); }
+	&::-webkit-scrollbar-thumb:hover { background: darken($secondary, 30); }
+}
+
+.sidebar {
+
+    position: relative;
+    width: 100%;
+    display: none;
+
+    @media only screen and (min-width : 992px) {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: $sidebarWidth;
+        height: 100vh;
+    }
+
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar { width: 5px; height: 5px; }
+	&::-webkit-scrollbar-track { background: none; }
+	&::-webkit-scrollbar-thumb { background: darken($warning, 10); }
+	&::-webkit-scrollbar-thumb:hover { background: darken($warning, 30); }
+
+    a { color: #333; }
+    
+    .navbar-nav {
+
+        .nav-link {
+            font-size: 100%;
+            opacity: .7;
+            border-bottom: transparent 2px solid;
+            display: inline-block;
+            padding: .3rem 0; 
+
+            &:hover, &:active {
+                transition: opacity $transition-duration $transition-easing, border $transition-duration $transition-easing;
+                opacity: 1;
+                border-bottom: $primary 2px solid;
+            }
+        }
+
+        .divider {
+            display: block;
+            margin: 2rem 0 .75rem 0;
+            font-weight: 500;
+            letter-spacing: -0.015rem;
+            font-size: 95%;
+            text-transform: uppercase;
+        }
+    }
+}
+
+main {
+
+    @media (min-width: 992px) {
+        padding-left: $sidebarWidth;
+    }
+}
+
+.container-fluid {
+    padding: 0 40px;
+}
 
 .title {
     // color: #fff;
@@ -92,4 +162,17 @@ label {
     box-sizing: border-box;
     padding: 15px;
     z-index: 500;
+}
+
+.form-footer {
+    position: sticky;
+    bottom: 0;
+
+    .card-body {
+        background-color: lighten($success, 50);
+    }
+}
+
+.modal-backdrop {
+    background-color: darken($warning, 20);
 }

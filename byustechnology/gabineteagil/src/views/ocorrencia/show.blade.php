@@ -96,6 +96,32 @@
             <div class="col-lg">
                 @component('gabinete::components.card')
                     @slot('title')
+                        <h2 class="h6 d-block mb-0">Endereço</h2>
+                    @endslot
+
+                    @component('gabinete::components.attribute', ['title' => 'Logradouro'])
+                        {{ $ocorrencia->logradouro }}
+                    @endcomponent
+
+                    @component('gabinete::components.attribute', ['title' => 'Número'])
+                        {{ $ocorrencia->numero }}
+                    @endcomponent
+
+                    @component('gabinete::components.attribute', ['title' => 'Complemento'])
+                        {!! $ocorrencia->complemento ?? '<span class="text-muted">Nenhum</span>' !!}
+                    @endcomponent
+
+                    @component('gabinete::components.attribute', ['title' => 'Cidade/Estado'])
+                        {{ $ocorrencia->cidade }}/{{ $ocorrencia->estado}}
+                    @endcomponent
+
+                    @component('gabinete::components.attribute', ['title' => 'CEP'])
+                        {{ $ocorrencia->cep }}
+                    @endcomponent
+
+                @endcomponent
+                @component('gabinete::components.card')
+                    @slot('title')
                         <h2 class="h6 d-block mb-0">Últimas mensagens</h2>
                     @endslot
 

@@ -17,8 +17,8 @@
 
 <div class="container-fluid">
 
-    <a href="#" data-toggle="modal" data-target="#m-search" class="btn btn-sm btn-primary"><i class="fas fa-search fa-fw mr-1"></i> Buscar</a>
-    {!! request()->query() ? '<a href="' . url(request()->url()) . '" class="btn btn-sm btn-link text-danger"><i class="far fa-times-circle mr-2"></i>Cancelar filtro</a>' : null !!}
+    <a href="#" data-toggle="modal" data-target="#m-search" class="btn btn-primary"><i class="fas fa-search fa-fw mr-1"></i> Buscar</a>
+    {!! request()->query() ? '<a href="' . url(request()->url()) . '" class="btn btn-danger"><i class="far fa-times-circle mr-2"></i>Cancelar filtro</a>' : null !!}
 
     @component('gabinete::components.card')
         @if( ! $pessoas->isEmpty())
@@ -37,7 +37,7 @@
                         <tr>
                             <td>
                                 <a href="{{ url($pessoa->path()) }}"><strong>{{ $pessoa->titulo }}</strong></a><br>
-                                <small class="text-muted">{{ Str::limit($pessoa->descricao, 100) }}</small>
+                                <small class="text-muted">{{ $pessoa->endereco_completo }}</small>
                             </td>
                             <td>{{ $pessoa->codigo }}</td>
                             <td>{{ \ByusTechnology\Gabinete\Models\Pessoa::TIPO[$pessoa->tipo] }}</td>

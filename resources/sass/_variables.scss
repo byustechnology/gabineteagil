@@ -1,5 +1,12 @@
+// Sidebar
+$sidebarWidth: 280px;
+
 // Body
 $body-bg: #fff;
+
+// Colors
+$primary: darken(#ffc107, 20);
+$secondary: #ffc107;
 
 // Typography
 $font-family-sans-serif: 'Poppins', sans-serif;
@@ -12,4 +19,9 @@ $font-weight-normal: 400 !default;
 $font-weight-bold: 500 !default;
 $font-weight-bolder: bolder !default;
 
+// Transitions
+$transition-duration: .2s;
+$transition-easing: ease-in-out;
+
+// Border radius
 $border-radius: 6px;

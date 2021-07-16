@@ -1,4 +1,4 @@
-<div class="card my-3 shadow-sm">
+<div class="card my-3 shadow">
 
     @if (isset($title))
         <div class="card-header bg-white py-3">{{ $title }}</div>

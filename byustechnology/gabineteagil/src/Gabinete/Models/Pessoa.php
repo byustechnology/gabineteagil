@@ -4,11 +4,13 @@ namespace ByusTechnology\Gabinete\Models;
 
 use ByusTechnology\Gabinete\Traits\HasFactory;
 use ByusTechnology\Gabinete\Traits\HasFilters;
+use ByusTechnology\Gabinete\Traits\HasAddress;
+use ByusTechnology\Gabinete\Traits\NeedsAutocode;
 use Illuminate\Database\Eloquent\Model;
 
 class Pessoa extends Model
 {
-    use HasFactory, HasFilters;
+    use HasFactory, HasFilters, HasAddress, NeedsAutocode;
 
     const TIPO = [
         'f' => 'Física', 
@@ -73,6 +75,18 @@ class Pessoa extends Model
         'nascido_em', 
         'conjugue_nascido_em', 
         'fundada_em'
+    ];
+
+    /**
+     * Define quais modelos devem 
+     * ser contados juntos com 
+     * o recurso.
+     * 
+     * @var string
+     */
+    protected $withCount = [
+        'contatos', 
+        'ocorrencias', 
     ];
 
     /**

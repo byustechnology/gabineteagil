@@ -2,6 +2,8 @@
 
 namespace ByusTechnology\Gabinete\Providers;
 
+use ByusTechnology\Gabinete\Models\Ocorrencia;
+use ByusTechnology\Gabinete\Observers\OcorrenciaObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 
@@ -52,6 +54,9 @@ class GabineteServiceProvider extends ServiceProvider
         }
 
         Paginator::useBootstrap();
+
+        // Observers
+        Ocorrencia::observe(OcorrenciaObserver::class);
     }
  
 

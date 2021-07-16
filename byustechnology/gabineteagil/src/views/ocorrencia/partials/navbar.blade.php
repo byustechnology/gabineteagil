@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-9">
-        <nav class="navbar navbar-expand-lg navbar-light border rounded font-weight-bold shadow-sm">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light border rounded font-weight-bold shadow-sm">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ocorrenciaNav"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="ocorrenciaNav">
                 <ul class="navbar-nav">

@@ -93,4 +93,15 @@ class OcorrenciaMensagem extends Model
     {
         return $query->orderBy('created_at', 'desc');
     }
+
+    /**
+     * Verifica se a mensagem foi 
+     * enviada pelo usuário logado.
+     * 
+     * @return boolean
+     */
+    public function foiEnviadaPorMim()
+    {
+        return $this->user->id == auth()->user()->id ? true : false;
+    }
 }
