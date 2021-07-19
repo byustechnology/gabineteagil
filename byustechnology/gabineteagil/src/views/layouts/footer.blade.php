@@ -2,8 +2,7 @@
     <div class="container-fluid my-5">
         <div class="row">
             <div class="col-lg-3 my-3">
-                <img class="d-block mb-3" src="{{ asset('assets/images/logotipo.png') }}" alt="Logotipo {{ config('app.name') }}" width="100">
-                <small>{{ config('app.name') }} é um programa licenciado para Prefeitura de Rio Claro/SP. Desenvolvido por <a href="#">BYUS Tecnologia</a>. Todos os direitos reservados. Em caso de dúvidas, procure o suporte online.</small>
+                <span>{{ config('app.name') }} é um programa licenciado para Gabinetes. Desenvolvido por <a href="#">BYUS Tecnologia</a>. Todos os direitos reservados. Em caso de dúvidas, procure o suporte online.</span>
             </div>
             <div class="my-3 offset-lg-1 col-lg-2">
                 <h4 class="h5">Ocorrências</h4>
