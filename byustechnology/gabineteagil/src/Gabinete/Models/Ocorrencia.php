@@ -12,6 +12,20 @@ class Ocorrencia extends Model
     use HasFactory, HasFilters, HasStatus;
 
     /**
+     * Define quais são os tipos
+     * de ocorrência disponíveis 
+     * para cadastro
+     * 
+     */
+    const TIPOS = [
+        'Requerimento' => 'Requerimento', 
+        'Indicação' => 'Indicação', 
+        'Ofício' => 'Ofício', 
+        'Moção' => 'Moção', 
+        'Projeto' => 'Projeto' 
+    ];
+
+    /**
      * Definindo que nenhum campo 
      * será bloqueado para o método 
      * fill.
@@ -27,7 +41,9 @@ class Ocorrencia extends Model
      * @var array
      */
     protected $dates = [
-        'finalizada_em'
+        'prevista_para', 
+        'concluida_em', 
+        'cancelada_em'
     ];
 
     /**

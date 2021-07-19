@@ -26,7 +26,6 @@ class OrgaoResponsavelRequest extends FormRequest
     {
         return [
             'codigo' => [
-                'required', 
                 Rule::unique('orgaos_responsaveis', 'codigo')->ignore($this->orgao)
             ], 
             'titulo' => 'required',

@@ -10,10 +10,17 @@ class EtapaFilters extends Filters
      * @var array
      */
     protected $filters = [
+        'keyword', 
         's', 
         'codigo', 
         'titulo', 
     ];
+
+    protected function keyword($keyword)
+    {
+        $field = $this->request->field;
+        $this->$field($keyword);
+    }
 
     protected function s($keyword)
     {

@@ -6,20 +6,29 @@
             Informações da ocorrência
         @endslot
 
-        <div class="form-group">
-            {!! Form::label('pessoa_id', 'Pessoa associada *') !!}
-            {!! Form::select('pessoa_id', [
-            '' => 'Por favor, selecione...',
-            ] + \ByusTechnology\Gabinete\Models\Pessoa::ordenado()->pluck('titulo', 'id')->toArray(), null, ['class' => 'form-control']) !!}
-            <span class="form-text">Informe a pessoa que está associada a esta pessoa.</span>
-        </div>
         <div class="row">
-            <div class="col-lg form-group">
+            <div class="col-lg-4 form-group">
                 {!! Form::label('assunto_id', 'Assunto *') !!}
                 {!! Form::select('assunto_id', [
                 '' => 'Por favor, selecione...',
                 ] + \ByusTechnology\Gabinete\Models\Assunto::ordenado()->pluck('titulo', 'id')->toArray(), null, ['class' => 'form-control']) !!}
                 <span class="form-text">Informe qual o assunto associado a esta ocorrência.</span>
+            </div>
+            <div class="col-lg-4 form-group">
+                {!! Form::label('tipo', 'Tipo da ocorrência') !!}
+                {!! Form::select('tipo', [
+                    '' => 'Por favor, selecione...', 
+                ] + \ByusTechnology\Gabinete\Models\Ocorrencia::TIPOS, null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe o tipo relacionado a esta ocorrência.</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg form-group">
+                {!! Form::label('pessoa_id', 'Pessoa associada *') !!}
+                {!! Form::select('pessoa_id', [
+                    '' => 'Por favor, selecione...',
+                ] + \ByusTechnology\Gabinete\Models\Pessoa::ordenado()->pluck('titulo', 'id')->toArray(), null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe a pessoa que está associada a esta pessoa.</span>
             </div>
             <div class="col-lg form-group">
                 {!! Form::label('etapa_id', 'Etapa *') !!}
@@ -40,6 +49,13 @@
             {!! Form::label('descricao', 'Descrição da ocorrência *') !!}
             {!! Form::textarea('descricao', null, ['class' => 'form-control']) !!}
             <span class="form-text">Informe uma descrição para esta ocorrência. De preferência a descrição deverá ser detalhada, afim de abranger e facilitar a aquisição das informações.</span>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 form-group">
+                {!! Form::label('prevista_para', 'Data prevista') !!}
+                {!! Form::date('prevista_para', null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe uma data prevista para a conclusão da ocorrência, ou deixe em branco caso não haja previsão.</span>
+            </div>
         </div>
         <hr class="mb-4 mt-5">
         <div class="row">

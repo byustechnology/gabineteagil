@@ -34,11 +34,14 @@
             @include('gabinete::layouts.footer')
         </main>
 
-
-        
-
         @include('gabinete::errors.list')
         @include('gabinete::messages.list')
+        @include('gabinete::messages.modal')
+
+        <!-- Logout form -->
+        <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
     </div>
 </body>
 

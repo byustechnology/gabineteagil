@@ -15,6 +15,7 @@ class CreateOcorrenciasTable extends Migration
     {
         Schema::create('ocorrencias', function (Blueprint $table) {
             $table->id();
+            $table->string('tipo')->nullable();
             $table->foreignId('prefeitura_id')->constrained()->onDelete('cascade');
             $table->foreignId('pessoa_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('assunto_id')->nullable()->constrained()->onDelete('set null');
@@ -31,6 +32,9 @@ class CreateOcorrenciasTable extends Migration
             $table->string('bairro');
             $table->string('cidade');
             $table->char('estado', 2);
+
+            // Data de previsão
+            $table->dateTime('prevista_para')->nullable();
 
             // Conclusão
             $table->dateTime('concluida_em')->nullable();

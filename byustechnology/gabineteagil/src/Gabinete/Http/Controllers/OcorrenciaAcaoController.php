@@ -37,7 +37,7 @@ class OcorrenciaAcaoController extends Controller
             return back()->withErrors($e->getMessage());
         }
         
-        session()->flash('flash_success', 'Etapa avançada na ocorrência de ' . $ocorrencia->pessoa->titulo . '. Agora a ocorrência está na etapa ' . $avancar->novaEtapa->titulo);
+        session()->flash('flash_modal_success', 'Etapa avançada na ocorrência de ' . $ocorrencia->pessoa->titulo . '. Agora a ocorrência está na etapa ' . $avancar->novaEtapa->titulo);
         return back();
     }
 

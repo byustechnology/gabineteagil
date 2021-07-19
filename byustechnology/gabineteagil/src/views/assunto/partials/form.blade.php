@@ -9,7 +9,7 @@
         <div class="form-group">
             {!! Form::label('codigo', 'Código do assunto *') !!}
             {!! Form::text('codigo', null, ['class' => 'form-control']) !!}
-            <span class="form-text">Preencha um código para o assunto. <span class="text-danger">Este campo deve ser único</span>.</span>
+            <span class="form-text">Preencha um código para o assunto. <span class="text-danger">Este campo deve ser único. Deixe em branco para que o sistema gere um código sozinho</span>.</span>
         </div>
         <div class="form-group">
             {!! Form::label('titulo', 'Título do assunto *') !!}

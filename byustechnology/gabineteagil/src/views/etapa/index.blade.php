@@ -8,7 +8,7 @@
     @include('gabinete::layouts.breadcrumbs', ['b' => Breadcrumbs::render('g-dashboard')])
 
     <div class="table-responsive">
-        <table class="table">
+        <table class="table table-nowrap">
             <thead>
                 <tr>
                     <th>Título</th>

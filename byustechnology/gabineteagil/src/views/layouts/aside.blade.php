@@ -23,11 +23,13 @@
             <li class="nav-item"><a class="nav-link" href="#">Pessoas jurídicas</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Com ocorrências em atraso</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Aniversariantes</a></li>
+            <li class="divider">Mapa</li>
+            <li class="nav-item"><a class="nav-link" href="#">Mapa de ocorrências</a></li>
             <li class="divider">Gestão do aplicativo</li>
             <li class="nav-item"><a class="nav-link" href="{{ route('orgao.index') }}">Orgãos responsáveis</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('orgao.create') }}">Adicionar orgão responsável</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('orgao.create') }}">Assuntos</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('orgao.create') }}">Adicionar assunto</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('assunto.index') }}">Assuntos</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('assunto.create') }}">Adicionar assunto</a></li>
             <li class="divider">Minha conta</li>
             <li class="nav-item"><a class="nav-link" href="#">Meus dados</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Alterar senha</a></li>

@@ -5,11 +5,12 @@ namespace ByusTechnology\Gabinete\Models;
 use ByusTechnology\Gabinete\Traits\HasColorFields;
 use ByusTechnology\Gabinete\Traits\HasFactory;
 use ByusTechnology\Gabinete\Traits\HasFilters;
+use ByusTechnology\Gabinete\Traits\NeedsAutocode;
 use Illuminate\Database\Eloquent\Model;
 
 class Assunto extends Model
 {
-    use HasFactory, HasFilters, HasColorFields;
+    use HasFactory, HasFilters, HasColorFields, NeedsAutocode;
 
     /**
      * Definindo que nenhum campo

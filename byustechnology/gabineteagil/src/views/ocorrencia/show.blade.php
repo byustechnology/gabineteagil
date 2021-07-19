@@ -63,7 +63,7 @@
 
                     @if ($arquivos->count())
                         <div class="table-responsive mt-3">
-                            <table class="table table-hover">
+                            <table class="table table-hover table-nowrap">
                                 <thead>
                                     <tr>
                                         <th>Arquivo</th>

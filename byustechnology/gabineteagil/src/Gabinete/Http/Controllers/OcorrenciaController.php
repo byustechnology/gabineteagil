@@ -53,10 +53,12 @@ class OcorrenciaController extends Controller
     {
         $ocorrencia = (new Ocorrencia)->fill($request->all());
         $ocorrencia->prefeitura_id = Prefeitura::first()->id; // TODO: Ajustar, deixar dinâmico
-        $ocorrencia->titulo = 'Ocorrência de teste';
+        $ocorrencia->titulo = 'Ocorrência de teste'; // TODO: Implementar um título real para a ocorrência
         $ocorrencia->save();
-
-        session()->flash('flash_success', 'Ocorrência ' . $ocorrencia->titulo . ' cadastrada com sucesso!');
+        
+        session()->flash('flash_modal_success', 'Ocorrência ' . $ocorrencia->titulo . ' cadastrada com sucesso!');
+        session()->flash('flash_modal_success_action', '<a href="' . url($ocorrencia->path()) . '">Visualizar ocorrência</a>');
+        
         return back();
     }
 

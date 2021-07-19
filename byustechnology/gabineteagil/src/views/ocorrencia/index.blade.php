@@ -17,23 +17,22 @@
 
 <div class="container-fluid">
 
-    <a href="#" data-toggle="modal" data-target="#m-search" class="btn btn-primary"><i class="fas fa-search fa-fw mr-1"></i> Buscar</a>
-    <a href="#" class="btn btn-success"><i class="fas fa-file-csv fa-fw mr-1"></i> Exportar (CSV)</a>
-    {!! request()->query() ? '<a href="' . url(request()->url()) . '" class="btn btn-danger"><i class="far fa-times-circle mr-2"></i>Cancelar filtro</a>' : null !!}
+    <a href="#" data-toggle="modal" data-target="#m-search" class="btn btn-primary mr-2"><i class="fas fa-search fa-fw mr-2"></i> Buscar</a>
+    <a href="#" class="btn btn-outline-success"><i class="fas fa-file-csv fa-fw mr-2"></i> Exportar (CSV)</a>
+    {!! request()->query() ? '<a href="' . url(request()->url()) . '" class="btn btn-outline-danger"><i class="far fa-times-circle mr-2"></i>Cancelar filtro</a>' : null !!}
 
     @component('gabinete::components.card')
         @if( ! $ocorrencias->isEmpty())
             
             <div class="table-responsive mt-3">
-                <table class="table table-hover table-striped">
+                <table class="table table-hover table-striped table-nowrap">
                     <thead>
                         <tr>
                             <th>Ocorrência</th>
                             <th>Pessoa</th>
                             <th>Aberta em</th>
                             <th class="text-center">Etapa</th>
-                            <th>Orgão</th>
-                            <th>Assunto</th>
+                            <th>Assunto/Orgão</th>
                             <th>Status</th>
                             <th class="table-actions">Ações</th>
                         </tr>
@@ -50,9 +49,14 @@
                                 {{ $ocorrencia->created_at->format('d/m/Y') }}<br>
                                 <small class="text-muted">{{ $ocorrencia->created_at->diffForHumans() }}</small>
                             </td>
-                            <td class="text-center"><span class="badge py-1 animate__animated animate__flash animate__infinite" style="background: {{ $ocorrencia->etapa->cor }}; color: {{ $ocorrencia->etapa->cor_texto }}">{{ $ocorrencia->etapa->titulo }}</span></td>
-                            <td>{{ optional($ocorrencia->orgaoResponsavel)->titulo ?? 'Não informado' }}</td>
-                            <td>{{ optional($ocorrencia->assunto)->titulo ?? 'Não informado' }}</td>
+                            <td class="text-center">
+                                <span class="badge py-1 animate__animated animate__flash animate__infinite" style="background: {{ $ocorrencia->etapa->cor }}; color: {{ $ocorrencia->etapa->cor_texto }}">{{ $ocorrencia->etapa->titulo }}</span><br>
+                                <a href="#" data-toggle="modal" data-target="#m-avancar-listagem" data-url="{{ route('ocorrencia.etapa.avancar', ['ocorrencia' => $ocorrencia]) }}"><small>Avançar etapa <i class="fas fa-arrow-right fa-fw"></i></a></a>
+                            </td>
+                            <td>
+                                {{ optional($ocorrencia->assunto)->titulo ?? 'Não informado' }}<br>
+                                <small>{{ optional($ocorrencia->orgaoResponsavel)->titulo ?? 'Não informado' }}</a>
+                            </td>
                             <td>{{ $ocorrencia->status->descricao }}<br><small class="text-muted">{{ $ocorrencia->status->data->diffForHumans() }}</small></td>
                             <td class="table-actions">
                                 {!! Form::open(['url' => route('ocorrencia.destroy', ['ocorrencia' => $ocorrencia->id]), 'method' => 'delete']) !!}
@@ -75,4 +79,5 @@
 </div>
 
 @include('gabinete::ocorrencia.partials.search')
+@include('gabinete::ocorrencia.partials.avancar-listagem')
 @endsection

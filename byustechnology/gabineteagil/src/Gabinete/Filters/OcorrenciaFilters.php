@@ -18,6 +18,7 @@ class OcorrenciaFilters extends Filters
         'pessoa_id', 
         'orgao_id', 
         'assunto_id',
+        'etapa_id',
     ];
 
     protected function keyword($keyword)
@@ -64,5 +65,10 @@ class OcorrenciaFilters extends Filters
     protected function assunto_id($assunto)
     {
         return $this->builder->where('assunto_id', $assunto);
+    }
+
+    protected function etapa_id($etapa)
+    {
+        return $this->builder->where('assunto_id', $etapa);
     }
 }

@@ -13,18 +13,28 @@
 @section('s-content')
 
     <div class="container-fluid">
-        @if( ! $mensagens->isEmpty())
-            @component('gabinete::components.card')
-                <div style="background: #ddd;" class="p-4 rounded">
+        @component('gabinete::components.card')
+            @if( ! $mensagens->isEmpty())
+            
+                <div class="message-container p-4 rounded">
                     @foreach($mensagens as $mensagem)
-                        <div class="w-50 {{ $mensagem->foiEnviadaPorMim() ? 'ml-auto' : '' }}">
-                            @include('gabinete::components.message-ballon', ['mensagem' => $mensagem])
-                        </div>                    
+
+                        @if ($mensagem->tipo == 'user')
+                            <div class="w-50 {{ $mensagem->foiEnviadaPorMim() ? 'ml-auto' : '' }}">
+                                @include('gabinete::components.message-ballon', ['mensagem' => $mensagem])
+                            </div>
+                        @endif
+                        @if ($mensagem->tipo == 'sys')
+                            <div class="w-50 mx-auto">
+                                @include('gabinete::components.message-ballon', ['mensagem' => $mensagem])
+                            </div>
+                        @endif
+
                     @endforeach
                 </div>
-            @endcomponent
-        @else
-            @include('gabinete::components.no-results')
-        @endif
+            @else
+                @include('gabinete::components.no-results')
+            @endif
+        @endcomponent
     </div>
 @endsection
