@@ -1,10 +1,10 @@
 <!-- Concluir -->
-{!! Form::open(['url' => route('ocorrencia.concluir', ['ocorrencia' => $ocorrencia]), 'method' => 'post']) !!}
+{!! Form::open(['url' => route('ocorrencia.concluir', ['ocorrencia' => $ocorrencia]), 'method' => 'post', 'files' => true]) !!}
 <div class="modal fade" id="m-concluir" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow-lg">
             <div class="modal-header">
-                <h5 class="modal-title">Finalizar conclusão</h5>
+                <h5 class="modal-title">Concluir ocorrência</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -23,6 +23,12 @@
                         {!! Form::label('concluida_observacao', 'Observações da conclusão') !!}
                         {!! Form::textarea('concluida_observacao', null, ['class' => 'form-control', 'rows' => 4]) !!}
                         <span class="form-text">Informe uma observação referente a conclusão da ocorrência. <span class="text-success">Este campo é opcional. Preenche-lo irá ajudar no entendimento de cada ocorrência</span></span>
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('arquivo', 'Anexar arquivo', ['class' => 'd-block']) !!}
+                        {!! Form::file('arquivo') !!}
+                        <span class="form-text">Você pode anexar um arquivo para concluir a ocorrência. <strong class="text-danger">Os arquivos devem ter no máximo 1MB</strong></span>
                     </div>
                 </div>
             </div>

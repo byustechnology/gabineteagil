@@ -188,6 +188,12 @@ class Ocorrencia extends Model
         return $query->orderBy('created_at', 'desc');
     }
 
+    /**
+     * Verifica se a ocorrência foi criada 
+     * em menos de 01 dia.
+     * 
+     * @return boolean
+     */
     public function getNovaAttribute()
     {
         return $this->created_at->diffInDays(today()) > 1 ? false : true;

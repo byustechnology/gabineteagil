@@ -1,5 +1,5 @@
 <!-- Cancelar -->
-{!! Form::open(['url' => route('ocorrencia.cancelar', ['ocorrencia' => $ocorrencia]), 'method' => 'post']) !!}
+{!! Form::open(['url' => route('ocorrencia.cancelar', ['ocorrencia' => $ocorrencia]), 'method' => 'post', 'files' => true]) !!}
 <div class="modal fade" id="m-cancelar" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow-lg">
@@ -23,6 +23,12 @@
                     {!! Form::label('cancelada_observacao', 'Motivo do cancelamento') !!}
                     {!! Form::textarea('cancelada_observacao', null, ['class' => 'form-control']) !!}
                     <span class="form-text">Por favor, informe o motivo referente ao cancelamento desta ocorrência.</span>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('arquivo', 'Anexar arquivo', ['class' => 'd-block']) !!}
+                    {!! Form::file('arquivo') !!}
+                    <span class="form-text">Você pode anexar um arquivo para cancelar a ocorrência. <strong class="text-danger">Os arquivos devem ter no máximo 1MB</strong></span>
                 </div>
             </div>
             <div class="modal-footer">
