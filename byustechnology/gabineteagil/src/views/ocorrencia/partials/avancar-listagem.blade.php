@@ -1,5 +1,5 @@
 <!-- Avançar etapas -->
-{!! Form::open(['url' => route('ocorrencia.etapa.avancar', ['ocorrencia' => $ocorrencia]), 'method' => 'post']) !!}
+{!! Form::open(['url' => '#', 'method' => 'post']) !!}
 <div class="modal fade" id="m-avancar-listagem" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow-lg">

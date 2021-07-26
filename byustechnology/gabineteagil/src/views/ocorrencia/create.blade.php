@@ -11,7 +11,7 @@
 @endslot
 @endcomponent
 
-{!! Form::open(['url' => route('ocorrencia.store'), 'method' => 'post']) !!}
+{!! Form::open(['url' => route('ocorrencia.store'), 'method' => 'post', 'id' => 'form']) !!}
 @include('gabinete::ocorrencia.partials.form')
 {!! Form::close() !!}
 @endsection

@@ -26,6 +26,11 @@ class AvancarEtapaNaOcorrencia {
         }
 
         $this->ocorrencia->etapa_id = $novaEtapa->id;
+
+        if (request()->has('protocolo')) {
+            $this->ocorrencia->protocolo = request('protocolo');
+        }
+        
         $this->ocorrencia->update();
         
         $this->novaEtapa = $novaEtapa;

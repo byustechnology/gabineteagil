@@ -14,6 +14,7 @@ Route::prefix(config('gabinete.path'))->middleware(['web', 'auth'])->group(funct
     Route::resource('/assunto', \ByusTechnology\Gabinete\Http\Controllers\AssuntoController::class);
     Route::resource('/orgao', \ByusTechnology\Gabinete\Http\Controllers\OrgaoResponsavelController::class);
     Route::resource('/etapa', \ByusTechnology\Gabinete\Http\Controllers\EtapaController::class);
+    Route::resource('/agenda', \ByusTechnology\Gabinete\Http\Controllers\AgendaController::class);
     Route::get('/', [\ByusTechnology\Gabinete\Http\Controllers\DashboardController::class, 'index'])->name('gabinete.dashboard');
 });
 

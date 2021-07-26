@@ -59,6 +59,24 @@ Breadcrumbs::for('g-assunto-edit', function ($trail, $assunto) {
     $trail->push('Editar', route('assunto.edit', ['assunto' => $assunto]));
 });
 
+// Agendas
+Breadcrumbs::for('g-agenda', function ($trail) {
+    $trail->parent('g-dashboard');
+    $trail->push('Agendas', route('agenda.index'));
+});
+Breadcrumbs::for('g-agenda-create', function ($trail) {
+    $trail->parent('g-agenda');
+    $trail->push('Adicionar', route('agenda.create'));
+});
+Breadcrumbs::for('g-agenda-show', function ($trail, $agenda) {
+    $trail->parent('g-agenda');
+    $trail->push($agenda->titulo, route('agenda.show', ['agenda' => $agenda]));
+});
+Breadcrumbs::for('g-agenda-edit', function ($trail, $agenda) {
+    $trail->parent('g-agenda-show', $agenda);
+    $trail->push('Editar', route('agenda.edit', ['agenda' => $agenda]));
+});
+
 // Pessoas
 Breadcrumbs::for('g-pessoa', function ($trail) {
     $trail->parent('g-dashboard');

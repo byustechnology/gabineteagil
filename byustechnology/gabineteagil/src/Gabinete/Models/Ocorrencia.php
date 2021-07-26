@@ -133,7 +133,7 @@ class Ocorrencia extends Model
      */
     public function mensagens()
     {
-        return $this->hasMany(OcorrenciaMensagem::class);
+        return $this->hasMany(OcorrenciaMensagem::class)->ordenado();
     }
 
     /**
@@ -197,5 +197,20 @@ class Ocorrencia extends Model
     public function getNovaAttribute()
     {
         return $this->created_at->diffInDays(today()) > 1 ? false : true;
+    }
+
+    /**
+     * Retorna se a ocorrência está 
+     * na última etapa.
+     * 
+     * @return boolean
+     */
+    public function getUltimaEtapaAttribute()
+    {
+        if ($this->etapa->ordem == Etapa::max('ordem')) {
+            return true;
+        }
+
+        return false;
     }
 }

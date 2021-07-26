@@ -25,7 +25,7 @@
                             </div>
                         @endif
                         @if ($mensagem->tipo == 'sys')
-                            <div class="w-50 mx-auto">
+                            <div class="w-50 mx-auto my-4">
                                 @include('gabinete::components.message-ballon', ['mensagem' => $mensagem])
                             </div>
                         @endif

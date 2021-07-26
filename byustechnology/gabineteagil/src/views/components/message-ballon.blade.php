@@ -12,7 +12,7 @@
 @endif
 
 @if ($mensagem->tipo == 'sys')
-    <div class="attribute shadow-sm text-center">
-        <span class="d-block">{{ $mensagem->mensagem }}</span>
+    <div class="attribute shadow-sm text-center text-primary">
+        <small class="d-block">{{ $mensagem->mensagem }}</small>
     </div>
 @endif

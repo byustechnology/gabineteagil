@@ -16,6 +16,8 @@ class PessoaFilters extends Filters
         'titulo', 
         'documento', 
         'tipo', 
+        'aniversariantes', 
+        'comOcorrenciasAtrasadas'
     ];
 
     protected function keyword($keyword)
@@ -50,5 +52,12 @@ class PessoaFilters extends Filters
     protected function tipo($tipo)
     {
         return $this->builder->where('tipo', $tipo);
+    }
+
+    protected function aniversariantes($aniversariantes = 0)
+    {
+        if ($aniversariantes == 1) {
+            return $this->builder->whereDate('nascido_em', today());
+        }
     }
 }

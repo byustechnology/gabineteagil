@@ -13,6 +13,18 @@
                 <div class="form-group">
                     <span>Tem certeza que deseja avançar uma etapa na ocorrência de {{ $ocorrencia->pessoa->titulo }}?</span>
                 </div>
+
+                @if ( empty($ocorrencia->protocolo))
+                    <div class="form-group">
+                        {!! Form::label('protocolo', 'Número do protocolo') !!}
+                        {!! Form::text('protocolo', null, ['class' => 'form-control']) !!}
+                        <span class="form-text">Por favor, informe o número do protocolo referente a etapa antes de avançar.</span>
+                    </div>
+                @else
+                    <div class="alert alert-warning">
+                        <span>Protocolo <strong>{{ $ocorrencia->protocolo }}</strong></span>
+                    </div>
+                @endif
             </div>
             <div class="modal-footer">
                 {!! Form::submit('Avançar etapa', ['class' => 'btn btn-success']) !!}

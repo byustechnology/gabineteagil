@@ -28,7 +28,7 @@
                 {!! Form::select('pessoa_id', [
                     '' => 'Por favor, selecione...',
                 ] + \ByusTechnology\Gabinete\Models\Pessoa::ordenado()->pluck('titulo', 'id')->toArray(), null, ['class' => 'form-control']) !!}
-                <span class="form-text">Informe a pessoa que está associada a esta pessoa.</span>
+                <span class="form-text">Informe a pessoa que está associada a esta ocorrência. Caso não haja, primeiramente <a href="{{ route('pessoa.create') }}">cadastre uma pessoa</a>.</span>
             </div>
             <div class="col-lg form-group">
                 {!! Form::label('etapa_id', 'Etapa *') !!}
@@ -44,11 +44,6 @@
                 ] + \ByusTechnology\Gabinete\Models\OrgaoResponsavel::ordenado()->pluck('titulo', 'id')->toArray(), null, ['class' => 'form-control']) !!}
                 <span class="form-text">Informe qual o orgão responsável associado a esta ocorrência.</span>
             </div>
-        </div>
-        <div class="form-group">
-            {!! Form::label('descricao', 'Descrição da ocorrência *') !!}
-            {!! Form::textarea('descricao', null, ['class' => 'form-control']) !!}
-            <span class="form-text">Informe uma descrição para esta ocorrência. De preferência a descrição deverá ser detalhada, afim de abranger e facilitar a aquisição das informações.</span>
         </div>
         <div class="row">
             <div class="col-lg-4 form-group">
@@ -121,25 +116,74 @@
         @endcomponent
     </div>
 
+    @component('gabinete::components.card')
+        @slot('title')
+            Descrição da ocorrência
+        @endslot
+
+        <div class="form-group">
+            <div id="editor">
+                @if (isset($ocorrencia))
+                    {!! $ocorrencia->descricao !!}
+                @endif
+            </div>
+            {!! Form::hidden('descricao', null, ['id' => 'descricao', 'class' => 'd-none']) !!}
+            <span class="form-text">Digite informações relevantes que descrevam a ocorrência.<br> Essas informações serão salvas na ocorrência para consultas e pesquisas posteriores.</span>
+        </div>
+    @endcomponent
+
     @component('gabinete::components.form-footer')
         <button type="submit" class="btn btn-success btn-lg"><i class="far fa-save fa-fw mr-1"></i> Salvar</button>
     @endcomponent
 </div>
 
-<script>
-    $(function() {
-        switchEndereco()
-        $('#mudarEndereco').change(switchEndereco)
-    });
+@section('meta')
+    <link href="{{ asset('quilljs/snow.css') }}" rel="stylesheet">
+@endsection
 
-    function switchEndereco()
-    {
-        $('.switch-endereco').hide();
+@section('scripts')
+    <script src="{{ asset('quilljs/quilljs.js') }}"></script>
+    <script>
 
-        var selecionado = $('#mudarEndereco:checked').length
+        var toolbarOptions = [
+            ['bold', 'italic', 'underline', 'strike'], ['blockquote'],
+            [{ 'header': 1 }, { 'header': 2 }], [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'indent': '-1'}, { 'indent': '+1' }], [{ 'color': [] }, { 'background': [] }],
+            [{ 'align': [] }], ['clean']
+        ];
 
-        if (selecionado == 1) {
-            $('.switch-endereco').show()
+        var quill = new Quill('#editor', {
+            modules: {
+                toolbar: toolbarOptions
+            },
+            theme: 'snow'
+        });
+
+        $('form').on('submit', function(event) {
+            // Associamos o valor do editor Quill ao campo
+            $('#descricao').val(quill.root.innerHTML)
+
+            return true
+        });
+    </script>
+
+
+    <script>
+        $(function() {
+            switchEndereco()
+            $('#mudarEndereco').change(switchEndereco)
+        });
+
+        function switchEndereco()
+        {
+            $('.switch-endereco').hide();
+
+            var selecionado = $('#mudarEndereco:checked').length
+
+            if (selecionado == 1) {
+                $('.switch-endereco').show()
+            }
         }
-    }
-</script>
+    </script>
+@endsection
+

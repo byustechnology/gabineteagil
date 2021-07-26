@@ -3,12 +3,13 @@
 namespace ByusTechnology\Gabinete\Observers;
 
 use ByusTechnology\Gabinete\Models\Ocorrencia;
+use ByusTechnology\Gabinete\Models\OcorrenciaMensagem;
 use ByusTechnology\Gabinete\Models\Pessoa;
 
 class OcorrenciaObserver
 {
     /**
-     * Handle the Ocorrencia "created" event.
+     * Handle the Ocorrencia "creating" event.
      *
      * @param  \ByusTechnology\Gabinete\Models\Ocorrencia  $ocorrencia
      * @return void
@@ -22,6 +23,7 @@ class OcorrenciaObserver
         if ( ! request()->has('mudar_endereco')) {
 
             $pessoa = Pessoa::find(request('pessoa_id'));
+            
             $ocorrencia->fill($pessoa->only([
                 'cep', 
                 'logradouro', 
@@ -32,6 +34,20 @@ class OcorrenciaObserver
                 'estado', 
             ]));
         }
+    }
+
+    /**
+     * Handle the Ocorrencia "created" event.
+     *
+     * @param  \ByusTechnology\Gabinete\Models\Ocorrencia  $ocorrencia
+     * @return void
+     */
+    public function created(Ocorrencia $ocorrencia)
+    {
+        $ocorrencia->mensagens()->save(new OcorrenciaMensagem([
+            'mensagem' => 'Ocorrência criada em ' . date('d/m/Y à\s H:i:s') . ' por ' . optional(auth()->user())->name ?? 'Sistema', 
+            'tipo' => 'sys'
+        ]));
     }
 
 }

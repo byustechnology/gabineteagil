@@ -51,7 +51,7 @@ class OcorrenciaController extends Controller
      */
     public function store(OcorrenciaRequest $request)
     {
-        $ocorrencia = (new Ocorrencia)->fill($request->all());
+        $ocorrencia = (new Ocorrencia)->fill($request->except('mudar_endereco'));
         $ocorrencia->prefeitura_id = Prefeitura::first()->id; // TODO: Ajustar, deixar dinâmico
         $ocorrencia->titulo = 'Ocorrência de teste'; // TODO: Implementar um título real para a ocorrência
         $ocorrencia->save();
@@ -95,7 +95,11 @@ class OcorrenciaController extends Controller
      */
     public function update(OcorrenciaRequest $request, Ocorrencia $ocorrencia)
     {
-        //
+        $ocorrencia->fill($request->except('mudar_endereco'));
+        $ocorrencia->update();
+
+        session()->flash('flash_success', 'Ocorrência alterada com sucesso!');
+        return redirect($ocorrencia->path());
     }
 
     /**

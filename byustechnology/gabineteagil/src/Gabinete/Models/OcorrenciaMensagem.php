@@ -11,6 +11,11 @@ class OcorrenciaMensagem extends Model
 {
     use HasFactory, HasFilters;
 
+    const TIPOS = [
+        'user' => 'Usuário', 
+        'sys' => 'Sistema'
+    ];
+
     /**
      * Definindo um novo padrão de nome
      * para a tabela relacionada a este modelo.

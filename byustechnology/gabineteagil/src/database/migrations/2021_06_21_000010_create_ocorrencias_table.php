@@ -23,6 +23,7 @@ class CreateOcorrenciasTable extends Migration
             $table->unsignedBigInteger('orgao_responsavel_id')->nullable();
             $table->string('titulo');
             $table->longText('descricao');
+            $table->string('protocolo')->nullable();
 
             // Dados do endereço
             $table->string('cep');

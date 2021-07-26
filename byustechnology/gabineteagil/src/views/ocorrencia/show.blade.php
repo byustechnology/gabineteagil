@@ -27,10 +27,6 @@
                     @component('gabinete::components.attribute', ['title' => 'Pessoa associada'])
                         <a href="{{ url($ocorrencia->pessoa->path()) }}">{{ $ocorrencia->pessoa->titulo }}</a>
                     @endcomponent
-
-                    @component('gabinete::components.attribute', ['title' => 'Descrição da ocorrência'])
-                        {{ $ocorrencia->descricao }}
-                    @endcomponent
                     
                     @component('gabinete::components.attribute', ['title' => 'Assunto'])
                         {{ $ocorrencia->assunto->titulo }}
@@ -52,6 +48,14 @@
                             @endcomponent
                         </div>
                     </div>
+                @endcomponent
+
+                @component('gabinete::components.card')
+                    @slot('title')
+                        Descrição
+                    @endslot
+
+                    {!! $ocorrencia->descricao !!}
                 @endcomponent
 
                 @component('gabinete::components.card')
