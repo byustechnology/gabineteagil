@@ -60,4 +60,13 @@ class PessoaFilters extends Filters
             return $this->builder->whereDate('nascido_em', today());
         }
     }
+
+    protected function comOcorrenciasAtrasadas($atrasos = 0)
+    {
+        if ($atrasos == 1) {
+            return $this->builder->whereHas('ocorrencias', function($query) {
+                $query->whereNull('concluida_em')->whereDate('prevista_para', '<', today());
+            });
+        }
+    }
 }

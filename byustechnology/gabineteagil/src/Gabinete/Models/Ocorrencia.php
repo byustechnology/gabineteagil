@@ -189,6 +189,18 @@ class Ocorrencia extends Model
     }
 
     /**
+     * Scope responsável por retornar ocorrências em aberto.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAbertas($query)
+    {
+        return $query->whereNull('concluida_em')
+            ->whereNull('cancelada_em');
+    }
+
+    /**
      * Verifica se a ocorrência foi criada 
      * em menos de 01 dia.
      * 
