@@ -6,6 +6,7 @@ use ByusTechnology\Gabinete\Models\Ocorrencia;
 use ByusTechnology\Gabinete\Observers\OcorrenciaObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class GabineteServiceProvider extends ServiceProvider
 {
@@ -57,6 +58,9 @@ class GabineteServiceProvider extends ServiceProvider
 
         // Observers
         Ocorrencia::observe(OcorrenciaObserver::class);
+
+        // Removendo o wrapper das API Resources
+        JsonResource::withoutWrapping();
     }
  
 

@@ -37,6 +37,13 @@
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
+            eventSources: [{
+                url: '{{ route('fullcalendar') }}', 
+                method: 'get', 
+                failure: function() {
+                    alert('Desculpe, não foi possível carregar os eventos')
+                }
+            }], 
             locale: 'pt-br', 
             initialView: 'dayGridMonth'
         });

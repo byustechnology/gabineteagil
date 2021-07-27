@@ -15,6 +15,8 @@ class AgendaFilters extends Filters
         'titulo', 
         'inicio_em', 
         'termino_em', 
+        'start', 
+        'end', 
         'user_id'
     ];
 
@@ -50,5 +52,21 @@ class AgendaFilters extends Filters
     protected function user_id($user_id)
     {
         return $this->builder->where('user_id', $user_id);
+    }
+
+    /**
+     * Alias para o FullCalendar.js
+     */
+    protected function start($start)
+    {
+        return $this->builder->where('inicio_em', '>=', $start);
+    }
+    
+    /**
+     * Alias para o FullCalendar.js
+     */
+    protected function end($end)
+    {
+        return $this->builder->where('termino_em', '<=', $end);
     }
 }

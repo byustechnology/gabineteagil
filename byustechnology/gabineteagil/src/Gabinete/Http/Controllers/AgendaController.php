@@ -5,7 +5,7 @@ namespace ByusTechnology\Gabinete\Http\Controllers;
 use App\Http\Controllers\Controller;
 use ByusTechnology\Gabinete\Models\Agenda;
 use ByusTechnology\Gabinete\Filters\AgendaFilters;
-use ByusTechnology\Gabinete\Http\Requests\AssuntoRequest;
+use ByusTechnology\Gabinete\Http\Requests\AgendaRequest;
 
 class AgendaController extends Controller
 {
@@ -34,12 +34,14 @@ class AgendaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \ByusTechnology\Gabinete\Http\Requests\AssuntoRequest  $request
+     * @param  \ByusTechnology\Gabinete\Http\Requests\AgendaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AssuntoRequest $request)
+    public function store(AgendaRequest $request)
     {
-        $agenda = (new Agenda)->fill($request->all());
+        $agenda = (new Agenda)->fill($request->except(['inicio_em_horario', 'termino_em_horario']));
+        $agenda->inicio_em = $agenda->inicio_em->format('Y-m-d') . ' ' . $request->inicio_em_horario;
+        $agenda->termino_em = $agenda->termino_em->format('Y-m-d') . ' ' . $request->termino_em_horario;
         $agenda->prefeitura_id = 1;
         $agenda->save();
 
@@ -72,11 +74,11 @@ class AgendaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \ByusTechnology\Gabinete\Http\Requests\AssuntoRequest  $request
+     * @param  \ByusTechnology\Gabinete\Http\Requests\AgendaRequest  $request
      * @param  \ByusTechnology\Gabinete\Models\Agenda  $agenda
      * @return \Illuminate\Http\Response
      */
-    public function update(AssuntoRequest $request, Agenda $agenda)
+    public function update(AgendaRequest $request, Agenda $agenda)
     {
         $agenda->fill($request->all());
         $agenda->update();

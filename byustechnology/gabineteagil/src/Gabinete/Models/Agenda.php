@@ -18,6 +18,18 @@ class Agenda extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Define quais campos deverão
+     * ser tratados como sendo 
+     * um campo data.
+     * 
+     * @var array
+     */
+    protected $dates = [
+        'inicio_em', 
+        'termino_em'
+    ];
     
     /**
      * Define um caminho para o modelo.
