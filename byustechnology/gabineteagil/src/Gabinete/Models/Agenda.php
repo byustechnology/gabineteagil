@@ -2,6 +2,7 @@
 
 namespace ByusTechnology\Gabinete\Models;
 
+use App\Models\User;
 use ByusTechnology\Gabinete\Traits\HasFactory;
 use ByusTechnology\Gabinete\Traits\HasFilters;
 use Illuminate\Database\Eloquent\Model;
@@ -30,6 +31,18 @@ class Agenda extends Model
         'inicio_em', 
         'termino_em'
     ];
+
+    /**
+     * Define um relacionamento entre 
+     * a agenda e o usuário associado 
+     * a ela
+     * 
+     * @return \App\Models\User
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     
     /**
      * Define um caminho para o modelo.

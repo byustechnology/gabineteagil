@@ -21,6 +21,7 @@ class FullCalendarResource extends JsonResource
             'end' => $this->termino_em->toIso8601String(),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'url' => url($this->path())
         ];
     }
 }
