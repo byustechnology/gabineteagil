@@ -12,6 +12,18 @@ class Agenda extends Model
     use HasFactory, HasFilters;
 
     /**
+     * Define as cores disponíveis
+     * para os agendamentos.
+     * 
+     */
+    const CORES = [
+        '#ffc107' => 'Padrão (amarelo)', 
+        '#007bff' => 'Azul', 
+        '#dc3545' => 'Vermelho', 
+        '#28a745' => 'Verde'
+    ];
+
+    /**
      * Definindo que nenhum campo
      * será bloqueado para o método
      * fill.

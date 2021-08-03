@@ -19,38 +19,62 @@
     
         <div class="row">
             <div class="col-lg-8">
-                @component('gabinete::components.card')
+                @component('ui::card')
                     @slot('title')
                         <h2 class="h6 d-block mb-0">Detalhes da ocorrência</h2>
                     @endslot
 
-                    @component('gabinete::components.attribute', ['title' => 'Pessoa associada'])
+                    @component('ui::attribute', ['title' => 'Pessoa associada'])
                         <a href="{{ url($ocorrencia->pessoa->path()) }}">{{ $ocorrencia->pessoa->titulo }}</a>
                     @endcomponent
                     
-                    @component('gabinete::components.attribute', ['title' => 'Assunto'])
+                    @component('ui::attribute', ['title' => 'Assunto'])
                         {{ $ocorrencia->assunto->titulo }}
                     @endcomponent
 
-                    @component('gabinete::components.attribute', ['title' => 'Orgão responsável'])
+                    @component('ui::attribute', ['title' => 'Orgão responsável'])
                         {{ $ocorrencia->orgaoResponsavel->titulo }}
+                    @endcomponent
+
+                    @component('ui::attribute', ['title' => 'Prevista para'])
+                        {{ $ocorrencia->prevista_para->format('d/m/Y') }}, {{ $ocorrencia->prevista_para->diffForHumans() }}
+                    @endcomponent
+
+                    @component('ui::attribute', ['title' => 'Protocolo'])
+                        {!! $ocorrencia->protocolo ?? '<span class="text-muted">Não informado</span>' !!}
                     @endcomponent
 
                     <div class="row">
                         <div class="col-lg-6">
-                            @component('gabinete::components.attribute', ['title' => 'Adicionado em'])
+                            @component('ui::attribute', ['title' => 'Adicionado em'])
                                 {{ $ocorrencia->created_at->format('d/m/Y') }}, {{ $ocorrencia->created_at->diffForHumans() }}
                             @endcomponent
                         </div>
                         <div class="col-lg-6">
-                            @component('gabinete::components.attribute', ['title' => 'Alterado em'])
+                            @component('ui::attribute', ['title' => 'Alterado em'])
                                 {{ $ocorrencia->updated_at->format('d/m/Y') }}, {{ $ocorrencia->updated_at->diffForHumans() }}
                             @endcomponent
                         </div>
                     </div>
                 @endcomponent
 
-                @component('gabinete::components.card')
+                @if ($ocorrencia->concluida())
+                    @component('ui::card')
+                        @slot('title')
+                            Detalhes da conclusão
+                        @endslot
+
+                        @component('ui::attribute', ['title' => 'Data da conclusão'])
+                            {{ $ocorrencia->concluida_em->format('d/m/Y') }} {{ $ocorrencia->concluida_em->diffForHumans() }}
+                        @endcomponent
+
+                        @component('ui::attribute', ['title' => 'Observação da conclusão'])
+                            {!! $ocorrencia->concluida_observacao ?? '<span class="text-muted">Nenhum observação informada</span>' !!}
+                        @endcomponent
+                    @endcomponent
+                @endif
+
+                @component('ui::card')
                     @slot('title')
                         Descrição
                     @endslot
@@ -58,7 +82,7 @@
                     {!! $ocorrencia->descricao !!}
                 @endcomponent
 
-                @component('gabinete::components.card')
+                @component('ui::card')
                     @slot('title')
                         <h2 class="h6 d-block mb-0">Arquivos associados</h2>
                     @endslot
@@ -93,38 +117,38 @@
                             </table>
                         </div>
                     @else
-                        @include('gabinete::components.no-results')
+                        @include('ui::no-results')
                     @endif
                 @endcomponent
             </div>
             <div class="col-lg">
-                @component('gabinete::components.card')
+                @component('ui::card')
                     @slot('title')
                         <h2 class="h6 d-block mb-0">Endereço</h2>
                     @endslot
 
-                    @component('gabinete::components.attribute', ['title' => 'Logradouro'])
+                    @component('ui::attribute', ['title' => 'Logradouro'])
                         {{ $ocorrencia->logradouro }}
                     @endcomponent
 
-                    @component('gabinete::components.attribute', ['title' => 'Número'])
+                    @component('ui::attribute', ['title' => 'Número'])
                         {{ $ocorrencia->numero }}
                     @endcomponent
 
-                    @component('gabinete::components.attribute', ['title' => 'Complemento'])
+                    @component('ui::attribute', ['title' => 'Complemento'])
                         {!! $ocorrencia->complemento ?? '<span class="text-muted">Nenhum</span>' !!}
                     @endcomponent
 
-                    @component('gabinete::components.attribute', ['title' => 'Cidade/Estado'])
+                    @component('ui::attribute', ['title' => 'Cidade/Estado'])
                         {{ $ocorrencia->cidade }}/{{ $ocorrencia->estado}}
                     @endcomponent
 
-                    @component('gabinete::components.attribute', ['title' => 'CEP'])
+                    @component('ui::attribute', ['title' => 'CEP'])
                         {{ $ocorrencia->cep }}
                     @endcomponent
 
                 @endcomponent
-                @component('gabinete::components.card')
+                @component('ui::card')
                     @slot('title')
                         <h2 class="h6 d-block mb-0">Últimas mensagens</h2>
                     @endslot
@@ -134,13 +158,13 @@
                     @if ($ultimasMensagens->count())
 
                         @foreach($ultimasMensagens as $mensagem)
-                            @include('gabinete::components.message-ballon', ['mensagem' => $mensagem])
+                            @include('ui::message-ballon', ['mensagem' => $mensagem])
                         @endforeach
 
                         <a href="{{ route('ocorrencia.mensagem.index', ['ocorrencia' => $ocorrencia]) }}" class="btn btn-secondary btn-block mt-3">Ver todas as mensagens</a>
 
                     @else
-                        @include('gabinete::components.no-results')
+                        @include('ui::no-results')
                     @endif
                     
                 @endcomponent

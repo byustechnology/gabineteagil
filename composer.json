@@ -30,6 +30,7 @@
         "psr-4": {
             "App\\": "app/",
             "ByusTechnology\\Gabinete\\": "byustechnology/gabineteagil/src/Gabinete/", 
+            "ByusTechnology\\Ui\\": "byustechnology/ui/src/Ui/", 
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }

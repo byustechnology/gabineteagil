@@ -1,6 +1,6 @@
 <div class="container-fluid">
 
-    @component('gabinete::components.card')
+    @component('ui::card')
         @slot('title')
             <h2 class="h6 d-block mb-0">Informações gerais</h2>
         @endslot
@@ -21,7 +21,7 @@
     @endcomponent
     
     <div class="switch-pessoa switch-pessoa-fisica">
-        @component('gabinete::components.card')
+        @component('ui::card')
             @slot('title')
                 <h2 class="h6 d-block mb-0">Pessoa física</h2>
             @endslot
@@ -112,7 +112,7 @@
     </div>
 
     <div class="switch-pessoa switch-pessoa-juridica">
-        @component('gabinete::components.card')
+        @component('ui::card')
             @slot('title')
                 <h2 class="h6 d-block mb-0">Pessoa jurídica</h2>
             @endslot
@@ -138,7 +138,7 @@
         @endcomponent
     </div>
 
-    @component('gabinete::components.card')
+    @component('ui::card')
         @slot('title')
             <h2 class="h6 d-block mb-0">Endereço e localização</h2>
         @endslot
@@ -188,7 +188,7 @@
         </div>
     @endcomponent
 
-    @component('gabinete::components.card')
+    @component('ui::card')
 
         @slot('title')
             <h2 class="h6 d-block mb-0">Informações adicionais</h2>
@@ -209,7 +209,7 @@
         </div>
     @endcomponent
    
-    @component('gabinete::components.form-footer')
+    @component('ui::form-footer')
         <button type="submit" class="btn btn-success btn-lg"><i class="far fa-save fa-fw mr-1"></i> Salvar</button>
     @endcomponent
 </div>

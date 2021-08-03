@@ -6,7 +6,7 @@ use ByusTechnology\Gabinete\Models\Ocorrencia;
 use ByusTechnology\Gabinete\Models\OcorrenciaMensagem;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class OcorrenciaFactory extends Factory
+class OcorrenciaMensagemFactory extends Factory
 {
 
     /**

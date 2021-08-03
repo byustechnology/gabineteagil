@@ -17,7 +17,7 @@
 
     <div class="container-fluid">
 
-        @component('gabinete::components.card')
+        @component('ui::card')
             <div id="calendar"></div>
         @endcomponent
 
@@ -45,7 +45,12 @@
                 }
             }], 
             locale: 'pt-br', 
-            initialView: 'dayGridMonth'
+
+            @if (request()->has('visualizacao'))
+                initialView: '{{ request('visualizacao') }}'
+            @else
+                initialView: 'dayGridMonth'
+            @endif
         });
         calendar.render();
       });

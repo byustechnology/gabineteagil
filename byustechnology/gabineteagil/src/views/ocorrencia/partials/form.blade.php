@@ -1,6 +1,6 @@
 <div class="container-fluid">
 
-    @component('gabinete::components.card')
+    @component('ui::card')
 
         @slot('title')
             Informações da ocorrência
@@ -28,7 +28,7 @@
                 {!! Form::select('pessoa_id', [
                     '' => 'Por favor, selecione...',
                 ] + \ByusTechnology\Gabinete\Models\Pessoa::ordenado()->pluck('titulo', 'id')->toArray(), null, ['class' => 'form-control']) !!}
-                <span class="form-text">Informe a pessoa que está associada a esta ocorrência. Caso não haja, primeiramente <a href="{{ route('pessoa.create') }}">cadastre uma pessoa</a>.</span>
+                <span class="form-text">Informe a pessoa que está associada a esta ocorrência. Caso não haja, primeiramente <a href="#" data-toggle="modal" data-target="#m-pessoa">cadastre uma pessoa</a>.</span>
             </div>
             <div class="col-lg form-group">
                 {!! Form::label('etapa_id', 'Etapa *') !!}
@@ -65,7 +65,7 @@
     @endcomponent
 
     <div class="switch-endereco">
-        @component('gabinete::components.card')
+        @component('ui::card')
             @slot('title')
                 Endereço da ocorrência
             @endslot
@@ -116,7 +116,7 @@
         @endcomponent
     </div>
 
-    @component('gabinete::components.card')
+    @component('ui::card')
         @slot('title')
             Descrição da ocorrência
         @endslot
@@ -132,10 +132,12 @@
         </div>
     @endcomponent
 
-    @component('gabinete::components.form-footer')
+    @component('ui::form-footer')
         <button type="submit" class="btn btn-success btn-lg"><i class="far fa-save fa-fw mr-1"></i> Salvar</button>
     @endcomponent
 </div>
+
+@include('gabinete::ocorrencia.partials.pessoa')
 
 @section('meta')
     <link href="{{ asset('quilljs/snow.css') }}" rel="stylesheet">

@@ -24,10 +24,11 @@ class AgendaFactory extends Factory
      */
     public function definition()
     {
-        $inicio = $this->faker->dateTimeBetween('now', '+2 years');
+        $inicio = $this->faker->dateTimeBetween('-1 week', '+4 weeks');
 
         return [
             'titulo' => $this->faker->sentence(2), 
+            'prefeitura_id' => 1, // TODO: Ajustar para a prefeitura corrente
             'descricao' => $this->faker->optional()->realText(), 
             'inicio_em' => $inicio, 
             'termino_em' => Carbon::createFromFormat('Y-m-d H:i', $inicio->format('Y-m-d H:i'))->addMinutes($this->faker->randomDigit() * 10), 

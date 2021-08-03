@@ -13,7 +13,7 @@
 @section('s-content')
 
     <div class="container-fluid">
-        @component('gabinete::components.card')
+        @component('ui::card')
             @if( ! $arquivos->isEmpty())
                 <div class="table-responsive mt-3">
                     <table class="table table-hover table-striped table-nowrap">
@@ -46,7 +46,7 @@
 
                 {!! $arquivos->links() !!}
             @else
-                @include('gabinete::components.no-results')
+                @include('ui::no-results')
             @endif
         @endcomponent
     </div>

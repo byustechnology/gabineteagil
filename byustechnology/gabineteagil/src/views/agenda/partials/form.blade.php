@@ -1,6 +1,6 @@
 <div class="container-fluid">
 
-    @component('gabinete::components.card')
+    @component('ui::card')
 
         @slot('title')
             Informações do agendamento
@@ -48,10 +48,15 @@
                 ] + \App\Models\User::orderBy('name')->pluck('name', 'id')->toArray(), null, ['class' => 'form-control']) !!}
                 <span class="form-text">Informe o usuário atrelado a esta agenda.</span>
             </div>
+            <div class="col-lg-4 form-group">
+                {!! Form::label('cor', 'Associar uma cor') !!}
+                {!! Form::select('cor', ['' => 'Por favor, selecione...'] + \ByusTechnology\Gabinete\Models\Agenda::CORES, null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe caso deseje associar uma cor para este agendamento.</span>
+            </div>
         </div>
     @endcomponent
     
-    @component('gabinete::components.form-footer')
+    @component('ui::form-footer')
         <button type="submit" class="btn btn-success btn-lg"><i class="far fa-save fa-fw mr-1"></i> Salvar</button>
     @endcomponent
 

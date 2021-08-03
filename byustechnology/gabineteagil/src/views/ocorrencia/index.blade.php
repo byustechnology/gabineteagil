@@ -21,7 +21,7 @@
     <a href="#" class="btn btn-outline-success"><i class="fas fa-file-csv fa-fw mr-2"></i> Exportar (CSV)</a>
     {!! request()->query() ? '<a href="' . url(request()->url()) . '" class="btn btn-outline-danger"><i class="far fa-times-circle mr-2"></i>Cancelar filtro</a>' : null !!}
 
-    @component('gabinete::components.card')
+    @component('ui::card')
         @if( ! $ocorrencias->isEmpty())
             
             <div class="table-responsive mt-3">
@@ -76,7 +76,7 @@
             {!! $ocorrencias->links() !!}
             
         @else
-            @include('gabinete::components.no-results')
+            @include('ui::no-results')
         @endif
     @endcomponent
 </div>

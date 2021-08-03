@@ -17,45 +17,54 @@
 
     <div class="container-fluid">
 
-        @component('gabinete::components.card')
+        @component('ui::card')
             @slot('title')
                 Informações da agenda
             @endslot
             
-            @component('gabinete::components.attribute', ['title' => 'Título'])
+            @component('ui::attribute', ['title' => 'Título'])
                 {{ $agenda->titulo }}
             @endcomponent
 
-            @component('gabinete::components.attribute', ['title' => 'Descrição'])
+            @component('ui::attribute', ['title' => 'Descrição'])
                 {{ $agenda->descricao ?? 'Nenhuma descrição definida' }}
             @endcomponent
 
             <div class="row">
                 <div class="col-lg">
-                    @component('gabinete::components.attribute', ['title' => 'Início em'])
-                        {{ $agenda->inicio_em->format('d/m/Y') }}, {{ $agenda->inicio_em->diffForHumans() }}
+                    @component('ui::attribute', ['title' => 'Início em'])
+                        {{ $agenda->inicio_em->format('d/m/Y') }}
                     @endcomponent
                 </div>
                 <div class="col-lg">
-                    @component('gabinete::components.attribute', ['title' => 'Término em'])
-                        {{ $agenda->termino_em->format('d/m/Y') }}, {{ $agenda->termino_em->diffForHumans() }}
+                    @component('ui::attribute', ['title' => 'Horário de início'])
+                        {{ $agenda->inicio_em->format('H:i') }}
                     @endcomponent
                 </div>
                 <div class="col-lg">
-                    @component('gabinete::components.attribute', ['title' => 'Associado para'])
-                        {{ optional($agenda->user)->name }}
+                    @component('ui::attribute', ['title' => 'Término em'])
+                        {{ $agenda->termino_em->format('d/m/Y') }}
+                    @endcomponent
+                </div>
+                <div class="col-lg">
+                    @component('ui::attribute', ['title' => 'Horário de término'])
+                        {{ $agenda->termino_em->format('H:i') }}
                     @endcomponent
                 </div>
             </div>
 
+            @component('ui::attribute', ['title' => 'Associado para'])
+                {{ optional($agenda->user)->name }}
+            @endcomponent
+
             <div class="row">
                 <div class="col-lg">
-                    @component('gabinete::components.attribute', ['title' => 'Adicionado em'])
+                    @component('ui::attribute', ['title' => 'Adicionado em'])
                         {{ $agenda->created_at->format('d/m/Y') }}, {{ $agenda->created_at->diffForHumans() }}
                     @endcomponent
                 </div>
                 <div class="col-lg">
-                    @component('gabinete::components.attribute', ['title' => 'Alterado em'])
+                    @component('ui::attribute', ['title' => 'Alterado em'])
                         {{ $agenda->updated_at->format('d/m/Y') }}, {{ $agenda->updated_at->diffForHumans() }}
                     @endcomponent
                 </div>

@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        ByusTechnology\Ui\Providers\UiServiceProvider::class, 
         ByusTechnology\Gabinete\Providers\GabineteServiceProvider::class, 
         
         /*

@@ -71,9 +71,9 @@ class SeedDatabase extends Command
         //  $this->info('Adicionando ocorrências...');
         //  Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\OcorrenciasTableSeeder::class]);
 
-        $this->newLine();
-        $this->info('Adicionando mensagens nas ocorrências...');
-        Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\OcorrenciaMensagensTableSeeder::class]);
+        // $this->newLine();
+        // $this->info('Adicionando mensagens nas ocorrências...');
+        // Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\OcorrenciaMensagensTableSeeder::class]);
 
         $this->newLine();
         $this->info('Finalizado!');

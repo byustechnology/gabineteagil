@@ -13,7 +13,7 @@
 @section('s-content')
 
     <div class="container-fluid">
-        @component('gabinete::components.card')
+        @component('ui::card')
             @if( ! $mensagens->isEmpty())
             
                 <div class="message-container p-4 rounded">
@@ -21,19 +21,19 @@
 
                         @if ($mensagem->tipo == 'user')
                             <div class="w-50 {{ $mensagem->foiEnviadaPorMim() ? 'ml-auto' : '' }}">
-                                @include('gabinete::components.message-ballon', ['mensagem' => $mensagem])
+                                @include('ui::message-ballon', ['mensagem' => $mensagem])
                             </div>
                         @endif
                         @if ($mensagem->tipo == 'sys')
                             <div class="w-50 mx-auto my-4">
-                                @include('gabinete::components.message-ballon', ['mensagem' => $mensagem])
+                                @include('ui::message-ballon', ['mensagem' => $mensagem])
                             </div>
                         @endif
 
                     @endforeach
                 </div>
             @else
-                @include('gabinete::components.no-results')
+                @include('ui::no-results')
             @endif
         @endcomponent
     </div>

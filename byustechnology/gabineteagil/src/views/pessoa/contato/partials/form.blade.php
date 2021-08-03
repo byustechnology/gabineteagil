@@ -1,6 +1,6 @@
 <div class="container-fluid">
 
-    @component('gabinete::components.card')
+    @component('ui::card')
 
         @slot('title')
             Informações do contato
@@ -33,7 +33,7 @@
         </div>
     @endcomponent
     
-    @component('gabinete::components.card')
+    @component('ui::card')
         
         @slot('title')
             Informações adicionais
@@ -46,7 +46,7 @@
         </div>
     @endcomponent
     
-    @component('gabinete::components.form-footer')
+    @component('ui::form-footer')
         <button type="submit" class="btn btn-success btn-lg"><i class="far fa-save fa-fw mr-1"></i> Salvar</button>
     @endcomponent
 

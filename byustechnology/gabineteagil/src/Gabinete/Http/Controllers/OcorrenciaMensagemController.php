@@ -18,8 +18,8 @@ class OcorrenciaMensagemController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(\ByusTechnology\Gabinete\Http\Middlewares\SomenteOcorrenciasNaoCanceladas::class);
-        $this->middleware(\ByusTechnology\Gabinete\Http\Middlewares\SomenteOcorrenciasNaoConcluidas::class);
+        $this->middleware(\ByusTechnology\Gabinete\Http\Middlewares\SomenteOcorrenciasNaoCanceladas::class)->except(['index', 'show']);
+        $this->middleware(\ByusTechnology\Gabinete\Http\Middlewares\SomenteOcorrenciasNaoConcluidas::class)->except(['index', 'show']);
     }
     
     /**

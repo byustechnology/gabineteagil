@@ -26,8 +26,8 @@
             <li class="divider">Agenda</li>
             <li class="nav-item"><a class="nav-link" href="{{ route('agenda.index') }}">Ver agenda</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('agenda.create') }}">Novo compromisso</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Compromissos de hoje</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Compromissos da semana</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('agenda.index', ['visualizacao' => 'listWeek']) }}">Compromissos programados</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('agenda.index', ['visualizacao' => 'dayGridWeek']) }}">Compromissos da semana</a></li>
             <li class="divider">Mapa</li>
             <li class="nav-item"><a class="nav-link" href="#">Mapa de ocorrências</a></li>
             <li class="divider">Gestão do aplicativo</li>

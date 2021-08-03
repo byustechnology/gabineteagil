@@ -32,7 +32,7 @@
                 <ul class="list-unstyled mt-3">
                     <li><a href="#">Meus dados</a></li>
                     <li><a href="#">Alterar minha senha</a></li>
-                    <li><a href="#">Sair</a></li>
+                    <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a></li>
                 </ul>
             </div>
         </div>

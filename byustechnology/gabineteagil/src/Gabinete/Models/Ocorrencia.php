@@ -189,6 +189,28 @@ class Ocorrencia extends Model
     }
 
     /**
+     * Scope responsável por retornar ocorrências canceladas.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeCanceladas($query)
+    {
+        return $query->whereNotNull('cancelada_em');
+    }
+
+    /**
+     * Scope responsável por retornar ocorrências não canceladas.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeNaoCanceladas($query)
+    {
+        return $query->whereNull('cancelada_em');
+    }
+
+    /**
      * Scope responsável por retornar ocorrências em aberto.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
@@ -197,7 +219,44 @@ class Ocorrencia extends Model
     public function scopeAbertas($query)
     {
         return $query->whereNull('concluida_em')
-            ->whereNull('cancelada_em');
+            ->naoCanceladas();
+    }
+
+    /**
+     * Scope responsável por retornar ocorrências concluídas.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeConcluidas($query)
+    {
+        return $query->whereNotNull('concluida_em')
+            ->naoCanceladas();
+    }
+
+    /**
+     * Scope responsável por retornar ocorrências não concluídas.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeNaoConcluidas($query)
+    {
+        return $query->whereNull('concluida_em')
+            ->naoCanceladas();
+    }
+
+    /**
+     * Scope responsável por retornar ocorrências em atraso.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAtrasadas($query)
+    {
+        return $query->whereDate('prevista_para', '<', today())
+            ->naoConcluidas()
+            ->naoCanceladas();
     }
 
     /**

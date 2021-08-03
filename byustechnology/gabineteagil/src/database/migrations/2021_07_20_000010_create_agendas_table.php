@@ -21,6 +21,7 @@ class CreateAgendasTable extends Migration
             $table->dateTime('inicio_em');
             $table->dateTime('termino_em')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('cor')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

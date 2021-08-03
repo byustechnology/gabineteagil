@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="offset-lg-4 col-lg-4">
                         <div class="animate__animated animate__fadeIn bg-white p-4 rounded shadow">
-                            <img class="d-block mt-2 mb-3 mx-auto" src="{{ asset('gabinete/svgs/gabinete.svg') }}" alt="Logotipo {{ config('app.name') }}" width="66">
+                            <img class="d-block mb-4 mx-auto" src="{{ asset('assets/images/logotipo.png') }}" alt="Logotipo {{ config('app.name') }}" width="200">
                             
                             @if ($errors->any())
                                 <div class="alert alert-danger">

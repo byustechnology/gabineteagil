@@ -4,6 +4,7 @@ namespace ByusTechnology\Gabinete\Actions;
 
 use ByusTechnology\Gabinete\Models\Ocorrencia;
 use ByusTechnology\Gabinete\Models\Etapa;
+use Illuminate\Http\Request;
 use Exception;
 
 class AvancarEtapaNaOcorrencia {
@@ -17,7 +18,7 @@ class AvancarEtapaNaOcorrencia {
         $this->ocorrencia = $ocorrencia;
     }
 
-    public function handle()
+    public function handle(Request $request)
     {
         $novaEtapa = Etapa::where('ordem', '>', $this->ocorrencia->etapa->ordem)->first();
 
@@ -25,6 +26,7 @@ class AvancarEtapaNaOcorrencia {
             throw new Exception('Não há mais etapas para serem avançadas nesta ocorrência. Por favor, finalize a ocorrência ou altere as etapas manualmente');
         }
 
+        $this->ocorrencia->fill($request->all());
         $this->ocorrencia->etapa_id = $novaEtapa->id;
 
         if (request()->has('protocolo')) {

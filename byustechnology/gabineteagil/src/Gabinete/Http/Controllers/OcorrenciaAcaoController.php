@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use ByusTechnology\Gabinete\Models\Ocorrencia;
 use ByusTechnology\Gabinete\Models\Etapa;
 use ByusTechnology\Gabinete\Actions\AvancarEtapaNaOcorrencia;
+use ByusTechnology\Gabinete\Actions\StoreOcorrenciaArquivo;
 use Illuminate\Http\Request;
 use Exception;
 
@@ -26,13 +27,14 @@ class OcorrenciaAcaoController extends Controller
     /**
      * Avança uma etapa na ocorrência
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \ByusTechnology\Gabinete\Models\Ocorrencia  $ocorrencia
      * @return \Illuminate\Http\Response
      */
-    public function avancar(Ocorrencia $ocorrencia)
+    public function avancar(Request $request, Ocorrencia $ocorrencia)
     {
         try {
-            $avancar = (new AvancarEtapaNaOcorrencia($ocorrencia))->handle();
+            $avancar = (new AvancarEtapaNaOcorrencia($ocorrencia))->handle($request);
         } catch (Exception $e) {
             return back()->withErrors($e->getMessage());
         }
@@ -75,6 +77,10 @@ class OcorrenciaAcaoController extends Controller
         $request->validate([
             'concluida_em' => 'required|date', 
         ]);
+
+        if ($request->has('arquivo')) {
+            (new StoreOcorrenciaArquivo($ocorrencia, $request->arquivo))->handle();
+        }
 
         $ocorrencia->concluida_em = $request->concluida_em ?? now();
         $ocorrencia->concluida_por = auth()->user()->id;

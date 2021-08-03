@@ -1,4 +1,4 @@
-@component('gabinete::components.card')
+@component('ui::card')
     @slot('title')
         <h2 class="h6 d-block mb-0">Informações</h2>
     @endslot
@@ -16,28 +16,28 @@
     </ul>
 @endcomponent
 
-@component('gabinete::components.card')
+@component('ui::card')
     @slot('title')
         <h2 class="h6 d-block mb-0">Endereço</h2>
     @endslot
 
-    @component('gabinete::components.attribute', ['title' => 'Logradouro'])
+    @component('ui::attribute', ['title' => 'Logradouro'])
         {{ $pessoa->logradouro }}
     @endcomponent
 
-    @component('gabinete::components.attribute', ['title' => 'Número'])
+    @component('ui::attribute', ['title' => 'Número'])
         {{ $pessoa->numero }}
     @endcomponent
 
-    @component('gabinete::components.attribute', ['title' => 'Complemento'])
+    @component('ui::attribute', ['title' => 'Complemento'])
         {!! $pessoa->complemento ?? '<span class="text-muted">Nenhum</span>' !!}
     @endcomponent
 
-    @component('gabinete::components.attribute', ['title' => 'Cidade/Estado'])
+    @component('ui::attribute', ['title' => 'Cidade/Estado'])
         {{ $pessoa->cidade }}/{{ $pessoa->estado}}
     @endcomponent
 
-    @component('gabinete::components.attribute', ['title' => 'CEP'])
+    @component('ui::attribute', ['title' => 'CEP'])
         {{ $pessoa->cep }}
     @endcomponent
 

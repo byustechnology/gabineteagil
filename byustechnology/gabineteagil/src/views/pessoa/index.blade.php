@@ -20,7 +20,7 @@
     <a href="#" data-toggle="modal" data-target="#m-search" class="btn btn-primary mr-2"><i class="fas fa-search fa-fw mr-2"></i> Buscar</a>
     {!! request()->query() ? '<a href="' . url(request()->url()) . '" class="btn btn-outline-danger"><i class="far fa-times-circle mr-2"></i>Cancelar filtro</a>' : null !!}
 
-    @component('gabinete::components.card')
+    @component('ui::card')
         @if( ! $pessoas->isEmpty())
             <div class="table-responsive mt-3">
                 <table class="table table-nowrap">
@@ -55,7 +55,7 @@
 
             {!! $pessoas->links() !!}
         @else
-            @include('gabinete::components.no-results')
+            @include('ui::no-results')
         @endif
     @endcomponent
 </div>
