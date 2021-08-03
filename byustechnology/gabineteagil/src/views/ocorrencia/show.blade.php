@@ -37,7 +37,13 @@
                     @endcomponent
 
                     @component('ui::attribute', ['title' => 'Prevista para'])
-                        {{ $ocorrencia->prevista_para->format('d/m/Y') }}, {{ $ocorrencia->prevista_para->diffForHumans() }}
+
+                        @if ( ! empty($ocorrencia->prevista_para))
+                            {{ $ocorrencia->prevista_para->format('d/m/Y') }}, {{ $ocorrencia->prevista_para->diffForHumans() }}
+                        @else
+                            <span class="text-muted">Não informado</span>
+                        @endif
+                        
                     @endcomponent
 
                     @component('ui::attribute', ['title' => 'Protocolo'])
