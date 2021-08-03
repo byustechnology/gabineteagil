@@ -1,6 +1,6 @@
-<aside class="sidebar bg-warning" id="collapseSidebar">
+<aside class="sidebar bg-warning d-none d-md-block" id="mainNavigation">
     <div class="p-4">
-        <div class="sidebar-logo my-3">
+        <div class="sidebar-logo my-3 d-none d-md-block">
             <a href="{{ route('gabinete.dashboard') }}"><img src="{{ asset('assets/images/logotipo.png') }}" alt="Logotipo {{ config('app.name') }}" width="128"></a>
         </div>
 

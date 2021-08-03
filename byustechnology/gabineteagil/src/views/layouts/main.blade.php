@@ -26,6 +26,13 @@
 <body>
     <div id="app">
 
+        <header class="bg-warning d-md-none p-4">
+            <div class="d-flex align-items-center justify-content-between">
+                <a href="{{ route('gabinete.dashboard') }}"><img src="{{ asset('assets/images/logotipo.png') }}" alt="Logotipo {{ config('app.name') }}" width="128"></a>
+                <a href="#" class="sidebar-toggler" class="btn btn-primary"><i class="fas fa-bars fa-fw mr-1"></i> Menu</a>
+            </div>
+        </header>
+
         <!-- Navbar -->
         @include('gabinete::layouts.aside')
 

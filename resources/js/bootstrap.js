@@ -13,8 +13,14 @@ try {
     require('bootstrap');
 
     // Tooltips
-    window.$(function () {
-        window.$('[data-toggle="tooltip"]').tooltip()
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+
+        $('.sidebar-toggler').click(function() {
+            console.log('Clicked!')
+            $('#mainNavigation').toggleClass('d-none')
+        })
+
     });
 
 } catch (e) {}
