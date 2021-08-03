@@ -14,6 +14,7 @@ class OcorrenciaFilters extends Filters
         'keyword',
         'codigo',
         'titulo',
+        'descricao', 
         'pessoa',
         'pessoa_id', 
         'orgao_id', 
@@ -47,6 +48,11 @@ class OcorrenciaFilters extends Filters
     protected function titulo($titulo)
     {
         return $this->builder->where('titulo', 'like', '%' . $titulo . '%');
+    }
+
+    protected function descricao($descricao)
+    {
+        return $this->builder->where('descricao', 'like', '%' . $descricao . '%');
     }
 
     protected function tipo($tipo)

@@ -21,6 +21,7 @@
                     'titulo' => 'Título',
                     'codigo' => 'Código',
                     'pessoa' => 'Pessoa',
+                    'descricao' => 'Descrição da ocorrência'
                     ], null, ['class' => 'form-control']) !!}
                     <span class="form-text">Informe em qual campo você deseja fazer a sua busca.</span>
                 </div>
