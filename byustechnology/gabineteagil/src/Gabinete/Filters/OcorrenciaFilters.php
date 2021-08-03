@@ -19,6 +19,9 @@ class OcorrenciaFilters extends Filters
         'orgao_id', 
         'assunto_id',
         'etapa_id',
+        'abertas', 
+        'abertaHa', 
+        'atrasadas'
     ];
 
     protected function keyword($keyword)
@@ -71,4 +74,25 @@ class OcorrenciaFilters extends Filters
     {
         return $this->builder->where('assunto_id', $etapa);
     }
+
+    protected function abertas($abertas = 0)
+    {
+        if ($abertas == 1) {
+            return $this->builder->abertas();
+        }
+    }
+
+    protected function abertasHa($dias = 1)
+    {
+        return $this->builder->abertas()->whereDate('created_at', '<=', today())->where('created_at', '>=', today()->subDays($dias));
+    }
+
+    protected function atrasadas($atrasadas = 0)
+    {
+        if ($atrasadas == 1) {
+            return $this->builder->atrasadas();
+        }
+    }
+
+
 }

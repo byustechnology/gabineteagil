@@ -12,7 +12,7 @@
                         <strong class="display-4 mr-4 ml-2">{{ \ByusTechnology\Gabinete\Models\Ocorrencia::abertas()->count() }}</strong>
                         <div>
                             <h5 class="m-0">Ocorrências em aberto</h5>
-                            <a href="#">Visualizar ocorrências</a>
+                            <a href="{{ route('ocorrencia.index', ['abertas' => 1]) }}">Visualizar ocorrências</a>
                         </div>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                         <strong class="display-4 mr-4 ml-2">{{ \ByusTechnology\Gabinete\Models\Ocorrencia::abertas()->whereDate('created_at', '<=', today())->count() }}</strong>
                         <div>
                             <h5 class="m-0">Abertas há 01 dia</h5>
-                            <a href="#">Visualizar ocorrências</a>
+                            <a href="{{ route('ocorrencia.index', ['abertaHa' => 1]) }}">Visualizar ocorrências</a>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                         <strong class="display-4 mr-4 ml-2">{{ \ByusTechnology\Gabinete\Models\Ocorrencia::atrasadas()->count() }}</strong>
                         <div>
                             <h5 class="m-0">Ocorrências em atraso</h5>
-                            <a href="#" class="text-white">Visualizar ocorrências</a>
+                            <a href="{{ route('ocorrencia.index', ['atrasadas' => 1]) }}" class="text-white">Visualizar ocorrências</a>
                         </div>
                     </div>
                 </div>
