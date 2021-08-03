@@ -29,9 +29,8 @@
                     <thead>
                         <tr>
                             <th>Ocorrência</th>
-                            <th>Pessoa</th>
-                            <th>Aberta em</th>
                             <th class="text-center">Etapa</th>
+                            <th>Aberta em</th>
                             <th>Assunto/Orgão</th>
                             <th>Status</th>
                             <th class="table-actions">Ações</th>
@@ -41,20 +40,21 @@
                         @foreach($ocorrencias as $ocorrencia)
                         <tr>
                             <td>
-                                <a href="{{ url($ocorrencia->path()) }}"><strong>{{ $ocorrencia->titulo }}</strong></a><br>
-                                <small class="text-muted">{{ Str::limit(strip_tags($ocorrencia->descricao), 100) }}</small>
-                            </td>
-                            <td>{{ optional($ocorrencia->pessoa)->titulo ?? 'Sem pessoa atrelada' }}</td>
-                            <td>
-                                {{ $ocorrencia->created_at->format('d/m/Y') }}<br>
-                                <small class="text-muted">{{ $ocorrencia->created_at->diffForHumans() }}</small>
+                                <a href="{{ url($ocorrencia->path()) }}"><strong>{{ $ocorrencia->tipo }}, {{ optional($ocorrencia->pessoa)->titulo ?? 'Sem pessoa atrelada' }}</strong></a><br>
+                                <small class="text-muted">
+                                    {{ $ocorrencia->bairro }} - {{ $ocorrencia->cidade }}/{{ $ocorrencia->estado }}<br>
+                                    {{ Str::limit(strip_tags($ocorrencia->descricao), 100) }}
+                                </small>
                             </td>
                             <td class="text-center">
                                 <span class="badge py-1 animate__animated animate__flash animate__infinite" style="background: {{ $ocorrencia->etapa->cor }}; color: {{ $ocorrencia->etapa->cor_texto }}">{{ $ocorrencia->etapa->titulo }}</span><br>
-                                
                                 @if ( ! $ocorrencia->ultima_etapa)
                                     <a href="#" data-toggle="modal" data-target="#m-avancar-listagem" data-url="{{ route('ocorrencia.etapa.avancar', ['ocorrencia' => $ocorrencia]) }}"><small>Avançar etapa <i class="fas fa-arrow-right fa-fw"></i></a></a>
                                 @endif
+                            </td>
+                            <td>
+                                {{ $ocorrencia->created_at->format('d/m/Y') }}<br>
+                                <small class="text-muted">{{ $ocorrencia->created_at->diffForHumans() }}</small>
                             </td>
                             <td>
                                 {{ optional($ocorrencia->assunto)->titulo ?? 'Não informado' }}<br>

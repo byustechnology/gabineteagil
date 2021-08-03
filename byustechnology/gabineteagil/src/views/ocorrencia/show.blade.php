@@ -32,6 +32,10 @@
                         {{ $ocorrencia->assunto->titulo }}
                     @endcomponent
 
+                    @component('ui::attribute', ['title' => 'Tipo da ocorrência'])
+                        {{ $ocorrencia->tipo }}
+                    @endcomponent
+
                     @component('ui::attribute', ['title' => 'Orgão responsável'])
                         {{ $ocorrencia->orgaoResponsavel->titulo }}
                     @endcomponent

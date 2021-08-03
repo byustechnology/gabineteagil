@@ -19,6 +19,7 @@ class OcorrenciaFilters extends Filters
         'orgao_id', 
         'assunto_id',
         'etapa_id',
+        'tipo', 
         'abertas', 
         'abertaHa', 
         'atrasadas'
@@ -46,6 +47,11 @@ class OcorrenciaFilters extends Filters
     protected function titulo($titulo)
     {
         return $this->builder->where('titulo', 'like', '%' . $titulo . '%');
+    }
+
+    protected function tipo($tipo)
+    {
+        return $this->builder->where('tipo', $tipo);
     }
 
     protected function pessoa($pessoa)

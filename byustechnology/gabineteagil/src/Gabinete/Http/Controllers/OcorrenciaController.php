@@ -50,7 +50,7 @@ class OcorrenciaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(OcorrenciaRequest $request)
-    {
+    {        
         $ocorrencia = (new Ocorrencia)->fill($request->except('mudar_endereco'));
         $ocorrencia->prefeitura_id = Prefeitura::first()->id; // TODO: Ajustar, deixar dinâmico
         $ocorrencia->titulo = 'Ocorrência de teste'; // TODO: Implementar um título real para a ocorrência

@@ -10,18 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    {!! Form::label('titulo', 'Título da pessoa *') !!}
-                    {!! Form::text('titulo', null, ['class' => 'form-control']) !!}
-                    <span class="form-text">Preencha uma identificação para a pessoa.</span>
-                </div>
-                <div class="form-group">
-                    {!! Form::label('tipo', 'Tipo da pessoa') !!}
-                    {!! Form::select('tipo', [
-                        '' => 'Por favor, selecione...'
-                    ] + \ByusTechnology\Gabinete\Models\Pessoa::TIPO, null, ['class' => 'form-control']) !!}
-                    <span class="form-text">Por favor, informe o tipo da pessoa. Ao informar o tipo da pessoa, os novos campos irão aparecer.</span>
-                </div>
+                
             </div>
             <div class="modal-footer">
                 {!! Form::submit('Cadastrar pessoa', ['class' => 'btn btn-success']) !!}

@@ -25,6 +25,13 @@
                     <span class="form-text">Informe em qual campo você deseja fazer a sua busca.</span>
                 </div>
                 <div class="form-group">
+                    {!! Form::label('tipo', 'Tipo da ocorrência') !!}
+                    {!! Form::select('tipo', [
+                    '' => 'Não filtrar por tipo...',
+                    ] + \ByusTechnology\Gabinete\Models\Ocorrencia::TIPOS, null, ['class' => 'form-control']) !!}
+                    <span class="form-text">Selecione o campo acima caso deseje filtrar ocorrências em uma etapa específica.</span>
+                </div>
+                <div class="form-group">
                     {!! Form::label('etapa_id', 'Filtrar etapas') !!}
                     {!! Form::select('etapa_id', [
                     '' => 'Não filtrar por orgão responsável...',

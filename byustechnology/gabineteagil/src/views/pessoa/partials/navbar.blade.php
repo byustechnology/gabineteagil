@@ -11,6 +11,7 @@
         <li class="nav-item">
             <a class="nav-link bg-light mb-2 rounded" href="{{ route('pessoa.show', ['pessoa' => $pessoa]) }}">Geral</a>
             <a class="nav-link bg-light mb-2 rounded" href="{{ route('ocorrencia.index', ['pessoa_id' => $pessoa]) }}">Ocorrências <span class="badge badge-secondary py-1 px-2 ml-1">{{ $pessoa->ocorrencias_count }}</a>
+            <a class="nav-link bg-light mb-2 rounded" href="{{ route('ocorrencia.create', ['pessoa_id' => $pessoa]) }}">Nova ocorrência</a>
             <a class="nav-link bg-light mb-2 rounded" href="{{ route('pessoa.contato.index', ['pessoa' => $pessoa]) }}">Contatos <span class="badge badge-secondary py-1 px-2 ml-1">{{ $pessoa->contatos_count }}</a>
         </li>
     </ul>
