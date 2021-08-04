@@ -188,6 +188,40 @@
         </div>
     @endcomponent
 
+    @if ( ! isset($pessoa))
+        <!--
+            Caso a pessoa ainda não exista, abrimos 
+            o formulário de atalho para os contatos.
+        -->
+        @component('ui::card')
+            @slot('title')
+                Informações de contato
+            @endslot
+
+            <div class="row">
+                <div class="col-lg form-group">
+                    {!! Form::label('email', 'E-mail de contato') !!}
+                    {!! Form::email('email', null, ['class' => 'form-control']) !!}
+                    <span class="form-text">Informe este campo caso você tenha um e-mail de contato para esta pessoa.</span>
+                </div>
+                <div class="col-lg form-group">
+                    {!! Form::label('telefone', 'Telefone fixo') !!}
+                    {!! Form::text('telefone', null, ['class' => 'form-control']) !!}
+                    <span class="form-text">Informe este campo caso você tenha o número do telefone fixo da pessoa.</span>
+                </div>
+                <div class="col-lg form-group">
+                    {!! Form::label('celular', 'Celular') !!}
+                    {!! Form::text('celular', null, ['class' => 'form-control']) !!}
+                    <span class="form-text">Informe este campo caso você tenha o número do celular fixo da pessoa.</span>
+                </div>
+            </div>
+
+            <div class="alert alert-warning">
+               <i class="fas fa-info-circle fa-fw"></i> As informações acima poderão ser cadastradas posteriormente na aba de contatos da pessoa. Caso você não tenha estas informações agora, cadastre a pessoa sem as informações e então posteriormente acesso o menu da pessoa e procure pelo menu "Contatos".
+            </div>
+        @endcomponent
+    @endif
+
     @component('ui::card')
 
         @slot('title')

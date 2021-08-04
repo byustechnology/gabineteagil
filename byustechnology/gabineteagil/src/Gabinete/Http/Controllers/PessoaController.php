@@ -4,6 +4,7 @@ namespace ByusTechnology\Gabinete\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use ByusTechnology\Gabinete\Models\Pessoa;
+use ByusTechnology\Gabinete\Models\PessoaContato;
 use ByusTechnology\Gabinete\Filters\PessoaFilters;
 use ByusTechnology\Gabinete\Http\Requests\PessoaRequest;
 
@@ -39,9 +40,34 @@ class PessoaController extends Controller
      */
     public function store(PessoaRequest $request)
     {
-        $pessoa = (new Pessoa)->fill($request->all());
+        $pessoa = (new Pessoa)->fill($request->except(['email', 'telefone', 'celular']));
         $pessoa->prefeitura_id = 1; // TODO: Modificar para a prefeitura logada.        
         $pessoa->save();
+
+        // Verificando os contatos preenchidos no formulário.
+        if ( ! empty($request->email)) {
+            $pessoa->contatos()->save(new PessoaContato([
+                'titulo' => 'E-mail', 
+                'valor' => $request->email, 
+                'tipo' => 'email'
+            ]));
+        }
+
+        if ( ! empty($request->telefone)) {
+            $pessoa->contatos()->save(new PessoaContato([
+                'titulo' => 'Telefone', 
+                'valor' => $request->telefone, 
+                'tipo' => 'fixo'
+            ]));
+        }
+
+        if ( ! empty($request->celular)) {
+            $pessoa->contatos()->save(new PessoaContato([
+                'titulo' => 'Celular', 
+                'valor' => $request->celular, 
+                'tipo' => 'cel'
+            ]));
+        }
 
         session()->flash('flash_success', 'Pessoa ' . $pessoa->titulo . ' adicionada com sucesso!');
         return back();
