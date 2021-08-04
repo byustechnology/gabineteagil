@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use ByusTechnology\Gabinete\Models\Pessoa;
 use ByusTechnology\Gabinete\Models\PessoaContato;
 use ByusTechnology\Gabinete\Filters\PessoaFilters;
+use ByusTechnology\Gabinete\Actions\StorePessoaImagem;
 use ByusTechnology\Gabinete\Http\Requests\PessoaRequest;
 
 class PessoaController extends Controller
@@ -41,7 +42,13 @@ class PessoaController extends Controller
     public function store(PessoaRequest $request)
     {
         $pessoa = (new Pessoa)->fill($request->except(['email', 'telefone', 'celular']));
-        $pessoa->prefeitura_id = 1; // TODO: Modificar para a prefeitura logada.        
+        $pessoa->prefeitura_id = 1; // TODO: Modificar para a prefeitura logada.
+        if ($request->has('imagem')) {
+            $store = new StorePessoaImagem($pessoa, $request->imagem);
+        }
+
+        dd('ok');
+
         $pessoa->save();
 
         // Verificando os contatos preenchidos no formulário.

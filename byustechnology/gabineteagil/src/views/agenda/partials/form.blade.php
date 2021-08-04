@@ -39,8 +39,21 @@
                 <span class="form-text">Informe uma hora de término.</span>
             </div>
         </div>
+    @endcomponent
+
+    @component('ui::card')
+        @slot('title')
+            Informações adicionais
+        @endslot
 
         <div class="row">
+            <div class="col-lg form-group">
+                {!! Form::label('orgao_responsavel_id', 'Orgão responsável *') !!}
+                {!! Form::select('orgao_responsavel_id', [
+                '' => 'Por favor, selecione...',
+                ] + \ByusTechnology\Gabinete\Models\OrgaoResponsavel::ordenado()->pluck('titulo', 'id')->toArray(), null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe qual o orgão responsável associado a esta ocorrência.</span>
+            </div>
             <div class="col-lg-4 form-group">
                 {!! Form::label('user_id', 'Usuário associado') !!}
                 {!! Form::select('user_id', [
@@ -52,6 +65,56 @@
                 {!! Form::label('cor', 'Associar uma cor') !!}
                 {!! Form::select('cor', ['' => 'Por favor, selecione...'] + \ByusTechnology\Gabinete\Models\Agenda::CORES, null, ['class' => 'form-control']) !!}
                 <span class="form-text">Informe caso deseje associar uma cor para este agendamento.</span>
+            </div>
+        </div>
+    @endcomponent
+
+    @component('ui::card')
+        @slot('title')
+            Endereço do agendamento
+        @endslot
+
+        <div class="row">
+            <div class="col-lg-3 form-group">
+                {!! Form::label('cep', 'CEP') !!}
+                {!! Form::text('cep', null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe o CEP referente ao endereço.</span>
+            </div>
+            <div class="col-lg form-group">
+                {!! Form::label('logradouro', 'Logradouro') !!}
+                {!! Form::text('logradouro', null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe o logradouro referente ao endereço.</span>
+            </div>
+            <div class="col-lg-3 form-group">
+                {!! Form::label('numero', 'Número') !!}
+                {!! Form::text('numero', null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe o número referente ao endereço.</span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            {!! Form::label('complemento', 'Complemento') !!}
+            {!! Form::text('complemento', null, ['class' => 'form-control']) !!}
+            <span class="form-text">Utilize este campo para informa um complemento do endereço. Por exemplo: apto 300, bloco 08...</span>
+        </div>
+
+        <div class="row">
+            <div class="col-lg form-group">
+                {!! Form::label('bairro', 'Bairro') !!}
+                {!! Form::text('bairro', null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe o bairro referente ao endereço.</span>
+            </div>
+            <div class="col-lg form-group">
+                {!! Form::label('cidade', 'Cidade') !!}
+                {!! Form::text('cidade', null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe a cidade referente ao endereço.</span>
+            </div>
+            <div class="col-lg-3 form-group">
+                {!! Form::label('estado', 'Estado') !!}
+                {!! Form::select('estado', [
+                    '' => 'Por favor, selecione...', 
+                ] + \ByusTechnology\Gabinete\Models\Estado::LISTA, null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe o estado referente a cidade escolhida.</span>
             </div>
         </div>
     @endcomponent

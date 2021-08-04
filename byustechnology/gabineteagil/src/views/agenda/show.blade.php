@@ -30,6 +30,10 @@
                 {{ $agenda->descricao ?? 'Nenhuma descrição definida' }}
             @endcomponent
 
+            @component('ui::attribute', ['title' => 'Orgão responsável'])
+                {!! optional($agenda->orgaoResponsavel)->titulo ?? '<span class="text-muted">Nenhuma orgão responsável associado</span>' !!}
+            @endcomponent
+
             <div class="row">
                 <div class="col-lg">
                     @component('ui::attribute', ['title' => 'Início em'])
@@ -69,6 +73,33 @@
                     @endcomponent
                 </div>
             </div>
+        @endcomponent
+
+        @component('ui::card')
+            @slot('title')
+                <h2 class="h6 d-block mb-0">Endereço do agendamento</h2>
+            @endslot
+
+            @component('ui::attribute', ['title' => 'Logradouro'])
+                {{ $agenda->logradouro }}
+            @endcomponent
+
+            @component('ui::attribute', ['title' => 'Número'])
+                {{ $agenda->numero }}
+            @endcomponent
+
+            @component('ui::attribute', ['title' => 'Complemento'])
+                {!! $agenda->complemento ?? '<span class="text-muted">Nenhum</span>' !!}
+            @endcomponent
+
+            @component('ui::attribute', ['title' => 'Cidade/Estado'])
+                {{ $agenda->cidade }}/{{ $agenda->estado}}
+            @endcomponent
+
+            @component('ui::attribute', ['title' => 'CEP'])
+                {{ $agenda->cep }}
+            @endcomponent
+
         @endcomponent
 
     </div>

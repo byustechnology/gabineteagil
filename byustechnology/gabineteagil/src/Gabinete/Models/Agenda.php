@@ -55,6 +55,17 @@ class Agenda extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Uma ocorrência pertence a um
+     * determinado orgão.
+     * 
+     * @return \ByusTechnology\Gabinete\Models\OrgaoResponsavel
+     */
+    public function orgaoResponsavel()
+    {
+        return $this->belongsTo(OrgaoResponsavel::class);
+    }
     
     /**
      * Define um caminho para o modelo.

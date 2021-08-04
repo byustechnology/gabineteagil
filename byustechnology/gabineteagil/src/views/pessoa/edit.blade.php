@@ -11,7 +11,7 @@
 @endslot
 @endcomponent
 
-{!! Form::model($pessoa, ['url' => route('pessoa.update', ['pessoa' => $pessoa]), 'method' => 'put']) !!}
+{!! Form::model($pessoa, ['url' => route('pessoa.update', ['pessoa' => $pessoa]), 'method' => 'put', 'files' => true]) !!}
 @include('gabinete::pessoa.partials.form')
 {!! Form::close() !!}
 @endsection

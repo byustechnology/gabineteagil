@@ -11,7 +11,7 @@
         @endslot
     @endcomponent
 
-    {!! Form::open(['url' => route('pessoa.store'), 'method' => 'post']) !!}
+    {!! Form::open(['url' => route('pessoa.store'), 'method' => 'post', 'files' => true]) !!}
         @include('gabinete::pessoa.partials.form')
     {!! Form::close() !!}
 @endsection

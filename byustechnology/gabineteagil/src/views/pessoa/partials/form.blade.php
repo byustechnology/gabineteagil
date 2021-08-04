@@ -241,6 +241,15 @@
             {!! Form::textarea('observacao', null, ['class' => 'form-control', 'rows' => 3]) !!}
             <span class="form-text">Utilize este campo para adicionar observações referentes a pessoa. <span class="text-success">Este campo é opcional</span></span>
         </div>
+
+        <div class="row">
+            <div class="col-lg-4 form-group">
+                {!! Form::label('imagem', 'Imagem de perfil') !!}
+                {!! Form::file('imagem', null, ['class' => 'd-block']) !!}
+                <span class="form-text">Escolha uma imagem para esta pessoa. <span class="text-danger">As imagens devem ter no máximo 500 pixels de altura por 500 pixels de largura e não devem ultrapassar o tamanho de 1 MB. Formatos aceitos: PNG, JPG e JPEG.</span></span>
+            </div>
+        </div>
+
     @endcomponent
    
     @component('ui::form-footer')
