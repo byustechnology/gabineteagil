@@ -36,6 +36,7 @@
     overflow-y: auto;
     padding: 12px 15px;
     tab-size: 4;
+    min-height: 300px;
     -moz-tab-size: 4;
     text-align: left;
     white-space: pre-wrap;
