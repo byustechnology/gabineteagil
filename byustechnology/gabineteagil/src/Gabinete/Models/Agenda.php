@@ -87,4 +87,17 @@ class Agenda extends Model
     {
         return $query->orderBy('titulo');
     }
+
+    /**
+     * Retorna a cor referente 
+     * ao orgão responsável encontrado, 
+     * ou se nenhum for encontrado, retorna a
+     * cor preta.
+     * 
+     * @return string
+     */
+    public function getCorAttribute()
+    {
+        return optional($this->orgaoResponsavel)->cor ?? '#000';
+    }
 }

@@ -21,6 +21,22 @@
             <div id="calendar"></div>
         @endcomponent
 
+        @component('ui::card')
+            @slot('title')
+                Legendas
+            @endslot
+
+            @foreach(\ByusTechnology\Gabinete\Models\OrgaoResponsavel::ordenado()->pluck('cor', 'titulo')->chunk(3) as $orgaoChunk)
+                <div class="row">
+                    @foreach($orgaoChunk as $orgao => $cor)
+                        <div class="col-lg-4">
+                            <span class="d-block my-2"><i class="fas fa-circle fa-fw mr-1" style="color: {{ $cor }}"></i>{{ $orgao }}</span>
+                        </div>
+                    @endforeach
+                </div>
+            @endforeach
+        @endcomponent
+
         @include('gabinete::agenda.partials.search')
     </div>
 @endsection

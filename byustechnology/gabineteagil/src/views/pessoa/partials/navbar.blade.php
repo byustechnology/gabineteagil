@@ -4,7 +4,11 @@
     @endslot
 
     <div class="profile">
-        <div class="bg-light mb-4 mt-n4 rounded mx-auto shadow" style="width: 250px; height: 250px;"></div>
+        <div class="bg-light mb-4 mt-n4 rounded mx-auto shadow overflow-hidden" style="width: 250px; height: 250px;">
+            @if ( ! empty($pessoa->imagem))
+                <img src="{{ asset('storage/' . $pessoa->imagem) }}" alt="Profile de {{ $pessoa->titulo }}" width="250" height="250">
+            @endif
+        </div>
     </div>
 
     <ul class="nav flex-column">
@@ -12,6 +16,7 @@
             <a class="nav-link bg-light mb-2 rounded" href="{{ route('pessoa.show', ['pessoa' => $pessoa]) }}">Geral</a>
             <a class="nav-link bg-light mb-2 rounded" href="{{ route('ocorrencia.index', ['pessoa_id' => $pessoa]) }}">Ocorrências <span class="badge badge-secondary py-1 px-2 ml-1">{{ $pessoa->ocorrencias_count }}</a>
             <a class="nav-link bg-light mb-2 rounded" href="{{ route('ocorrencia.create', ['pessoa_id' => $pessoa]) }}">Nova ocorrência</a>
+            <a class="nav-link bg-light mb-2 rounded" href="#" data-toggle="modal" data-target="#m-imagem">Gerenciar imagem</a>
             <a class="nav-link bg-light mb-2 rounded" href="{{ route('pessoa.contato.index', ['pessoa' => $pessoa]) }}">Contatos <span class="badge badge-secondary py-1 px-2 ml-1">{{ $pessoa->contatos_count }}</a>
         </li>
     </ul>

@@ -11,6 +11,8 @@ Route::prefix(config('gabinete.path'))->middleware(['web', 'auth'])->group(funct
     Route::name('ocorrencia')->resource('/ocorrencia/{ocorrencia}/mensagem', \ByusTechnology\Gabinete\Http\Controllers\OcorrenciaMensagemController::class);
     Route::resource('/ocorrencia', \ByusTechnology\Gabinete\Http\Controllers\OcorrenciaController::class, ['parameters' => ['ocorrencia' => 'ocorrencia']]);
     Route::name('pessoa')->resource('/pessoa/{pessoa}/contato', \ByusTechnology\Gabinete\Http\Controllers\PessoaContatoController::class);
+    Route::delete('/pessoa/{pessoa}/imagem', [\ByusTechnology\Gabinete\Http\Controllers\PessoaImagemController::class, 'destroy'])->name('pessoa.imagem.destroy');
+    Route::post('/pessoa/{pessoa}/imagem', [\ByusTechnology\Gabinete\Http\Controllers\PessoaImagemController::class, 'store'])->name('pessoa.imagem.store');
     Route::resource('/pessoa', \ByusTechnology\Gabinete\Http\Controllers\PessoaController::class);
     Route::resource('/assunto', \ByusTechnology\Gabinete\Http\Controllers\AssuntoController::class);
     Route::resource('/orgao', \ByusTechnology\Gabinete\Http\Controllers\OrgaoResponsavelController::class);

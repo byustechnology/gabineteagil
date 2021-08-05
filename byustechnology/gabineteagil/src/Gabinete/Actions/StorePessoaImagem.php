@@ -5,7 +5,7 @@ namespace ByusTechnology\Gabinete\Actions;
 use ByusTechnology\Gabinete\Models\Pessoa;
 use ByusTechnology\Gabinete\Actions\HandleUserUploadedFile;
 use Illuminate\Http\UploadedFile;
-
+use Image;
 class StorePessoaImagem
 {
 
@@ -24,27 +24,21 @@ class StorePessoaImagem
     public function handle()
     {
         $handler = new HandleUserUploadedFile($this->file);
+        $uploadPath = 'prefeitura-' . \ByusTechnology\Gabinete\Models\Prefeitura::first()->id . '/pessoa/' . $this->pessoa->id;
 
         // TODO: Ajustar prefeitura. Deve ser dinâmico (multi-tenancy)
         $caminho = $handler->file->storeAs(
-            'prefeitura-' . \ByusTechnology\Gabinete\Models\Prefeitura::first()->id, 
-            $handler->sluggedFilename, 
+            $uploadPath, 
+            'profile.' . $handler->extension, 
             'public'
         );
+        
+        $img = Image::make(storage_path('/app/public/' . $uploadPath . '/' . 'profile.' . $handler->extension));
+        $img->fit(512);
+        $img->save(null, 60);
 
-        $arquivo = new OcorrenciaArquivo;
-        $arquivo->user_id = auth()->user()->id;
-        $arquivo->caminho = pathinfo($caminho, PATHINFO_DIRNAME);
-        $arquivo->arquivo = $handler->sluggedFilename;
-        $arquivo->url = url('storage/' . $caminho);
-        $arquivo->mime = $handler->mime;
-
-        if ( ! empty($this->mensagem)) {
-            $arquivo->ocorrencia_mensagem_id = $this->mensagem->id;
-        }
-
-        $this->arquivo = $this->pessoa->arquivos()->save($arquivo);
-
+        $this->arquivo = $uploadPath . '/' . 'profile.' . $handler->extension;
+        
         return $this;
     }
 

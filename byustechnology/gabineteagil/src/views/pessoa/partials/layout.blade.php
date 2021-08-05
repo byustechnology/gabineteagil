@@ -19,8 +19,5 @@
         </div>
     </div>
 
-    <!-- Logout form -->
-    {!! Form::open(['url' => route('logout'), 'method' => 'post', 'style' => 'display: none', 'id' => 'logout-form']) !!}
-    {!! Form::close() !!}
-
+    @include('gabinete::pessoa.partials.imagem')
 @endsection
