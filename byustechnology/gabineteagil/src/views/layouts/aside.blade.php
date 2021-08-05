@@ -4,8 +4,9 @@
             <a href="{{ route('gabinete.dashboard') }}"><img src="{{ asset('assets/images/logotipo.png') }}" alt="Logotipo {{ config('app.name') }}" width="128"></a>
         </div>
 
-        {!! Form::open(['url' => config('gabinete.path') . '/ocorrencia', 'method' => 'get', 'class' => 'mb-4']) !!}
-            <input name="s" type="text" class="form-control" placeholder="Buscar ocorrência">
+        {!! Form::open(['url' => route('ocorrencia.index'), 'method' => 'get', 'class' => 'mb-4']) !!}
+            {!! Form::text('keyword', null, ['class' => 'form-control', 'placeholder' => 'Buscar ocorrência...']) !!}
+            {!! Form::hidden('field', 'pessoa') !!}
         {!! Form::close() !!}
 
         <ul class="navbar-nav">
