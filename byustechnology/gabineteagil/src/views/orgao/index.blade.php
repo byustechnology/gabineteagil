@@ -56,10 +56,10 @@
 
             {!! $orgaos->links() !!}
 
-        @else
-            @include('ui::no-results')
-        @endif
-    @endcomponent
+            @else
+                @include('ui::no-results')
+            @endif
+        @endcomponent
 
     @include('gabinete::orgao.partials.search')
 @endsection

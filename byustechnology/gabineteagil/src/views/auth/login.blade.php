@@ -14,7 +14,7 @@
                                 <div class="alert alert-danger">
                                     <ul class="list-unstyled mb-0">
                                         @foreach($errors->all() as $error)
-                                            <li><small><i class="fas fa-times mr-1 fa-fw"></i> {{ $error }}</small></li>
+                                            <li><i class="fas fa-times mr-1 fa-fw"></i> {{ $error }}</li>
                                         @endforeach
                                     </ul>
                                 </div>
