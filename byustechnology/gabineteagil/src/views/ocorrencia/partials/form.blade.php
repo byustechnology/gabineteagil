@@ -137,8 +137,6 @@
     @endcomponent
 </div>
 
-@include('gabinete::ocorrencia.partials.pessoa')
-
 @section('meta')
     <link href="{{ asset('quilljs/snow.css') }}" rel="stylesheet">
 @endsection

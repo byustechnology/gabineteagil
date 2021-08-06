@@ -14,4 +14,8 @@
 {!! Form::open(['url' => route('ocorrencia.store'), 'method' => 'post', 'id' => 'form']) !!}
     @include('gabinete::ocorrencia.partials.form')
 {!! Form::close() !!}
+
+<!-- Formulário de cadastro da pessoa -->
+@include('gabinete::ocorrencia.partials.pessoa')
+
 @endsection

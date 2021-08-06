@@ -69,6 +69,14 @@ class PessoaController extends Controller
             ]));
         }
 
+        if ($request->wantsJson()) {
+            return response()->json([
+                'message' => 'Pessoa ' . $pessoa->titulo . ' adicionada com sucesso!', 
+                'errors' => false, 
+                'pessoa' => $pessoa
+            ]);
+        }
+
         session()->flash('flash_success', 'Pessoa ' . $pessoa->titulo . ' adicionada com sucesso!');
         return back();
     }
