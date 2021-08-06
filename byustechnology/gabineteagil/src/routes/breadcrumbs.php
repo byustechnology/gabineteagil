@@ -166,3 +166,9 @@ Breadcrumbs::for('g-ocorrencia-arquivo-edit', function ($trail, $ocorrencia, $ar
     $trail->parent('g-ocorrencia-arquivo-show', $ocorrencia, $arquivo);
     $trail->push('Editar', route('ocorrencia.edit', ['ocorrencia' => $ocorrencia, 'arquivo' => $arquivo]));
 });
+
+// Mapa
+Breadcrumbs::for('g-mapa', function ($trail) {
+    $trail->parent('g-dashboard');
+    $trail->push('Mapa', route('mapa.index'));
+});
