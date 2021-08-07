@@ -38,8 +38,9 @@
             <li class="nav-item"><a class="nav-link" href="{{ route('assunto.index') }}">Assuntos</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('assunto.create') }}">Adicionar assunto</a></li>
             <li class="divider">Minha conta</li>
-            <li class="nav-item"><a class="nav-link" href="#">Meus dados</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Alterar senha</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('conta.index') }}">Meus dados</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('conta.index', ['dados' => 1]) }}">Alterar dados</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('conta.index', ['senha' => 1]) }}">Alterar senha</a></li>
             <li class="nav-item"><a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a></li>
         </ul>
     </div>

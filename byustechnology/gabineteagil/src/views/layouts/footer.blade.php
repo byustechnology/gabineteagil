@@ -30,8 +30,9 @@
             <div class="my-3 col-lg-2">
                 <h4 class="h5">Minha conta</h4>
                 <ul class="list-unstyled mt-3">
-                    <li><a href="#">Meus dados</a></li>
-                    <li><a href="#">Alterar minha senha</a></li>
+                    <li><a href="{{ route('conta.index') }}">Meus dados</a></li>
+                    <li><a href="{{ route('conta.index', ['dados' => 1]) }}">Alterar meus dados</a></li>
+                    <li><a href="{{ route('conta.index', ['senha' => 1]) }}">Alterar minha senha</a></li>
                     <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a></li>
                 </ul>
             </div>

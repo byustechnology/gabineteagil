@@ -5,6 +5,12 @@ Breadcrumbs::for('g-dashboard', function ($trail) {
     $trail->push('Dashboard', route('gabinete.dashboard'));
 });
 
+// Conta
+Breadcrumbs::for('g-conta', function ($trail) {
+    $trail->parent('g-dashboard');
+    $trail->push('Minha conta', route('conta.index'));
+});
+
 // Etapas
 Breadcrumbs::for('g-etapa', function ($trail) {
     $trail->parent('g-dashboard');
