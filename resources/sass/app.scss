@@ -112,6 +112,13 @@ main {
     }
 }
 
+.table-responsive {
+    &::-webkit-scrollbar { width: 5px; height: 5px; }
+	&::-webkit-scrollbar-track { background: none; }
+	&::-webkit-scrollbar-thumb { background: darken($warning, 10); }
+	&::-webkit-scrollbar-thumb:hover { background: darken($warning, 30); }
+}
+
 .table th {
     border-top: none;
     font-size: 80%;
