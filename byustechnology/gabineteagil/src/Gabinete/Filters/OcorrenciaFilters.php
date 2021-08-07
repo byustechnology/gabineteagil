@@ -22,6 +22,8 @@ class OcorrenciaFilters extends Filters
         'etapa_id',
         'tipo', 
         'abertas', 
+        'canceladas', 
+        'concluidas', 
         'abertaHa', 
         'atrasadas'
     ];
@@ -93,6 +95,21 @@ class OcorrenciaFilters extends Filters
             return $this->builder->abertas();
         }
     }
+
+    protected function canceladas($canceladas = 0)
+    {
+        if ($canceladas == 1) {
+            return $this->builder->canceladas();
+        }
+    }
+
+    protected function concluidas($concluidas = 0)
+    {
+        if ($concluidas == 1) {
+            return $this->builder->concluidas();
+        }
+    }
+
 
     protected function abertasHa($dias = 1)
     {

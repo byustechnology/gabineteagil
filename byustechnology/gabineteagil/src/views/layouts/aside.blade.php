@@ -11,7 +11,7 @@
 
         <ul class="navbar-nav">
             <li class="divider">Ocorrências</li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('ocorrencia.index') }}">Todas as ocorrências</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('ocorrencia.index', ['abertas' => 1]) }}">Todas as ocorrências</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('ocorrencia.create') }}">Nova ocorrência</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('ocorrencia.index', ['atrasadas' => 1]) }}">Ocorrências em atraso</a></li>
             <li class="nav-item"><a class="nav-link" href="#"><strike>Ocorrências por assunto</strike></a></li>

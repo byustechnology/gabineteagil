@@ -116,7 +116,7 @@ Breadcrumbs::for('g-pessoa-contato-edit', function ($trail, $pessoa, $contato) {
 // Ocorrências
 Breadcrumbs::for('g-ocorrencia', function ($trail) {
     $trail->parent('g-dashboard');
-    $trail->push('Ocorrências', route('ocorrencia.index'));
+    $trail->push('Ocorrências', route('ocorrencia.index', ['abertas' => 1]));
 });
 Breadcrumbs::for('g-ocorrencia-create', function ($trail) {
     $trail->parent('g-ocorrencia');

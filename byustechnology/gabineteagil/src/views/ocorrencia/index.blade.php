@@ -22,6 +22,14 @@
     {!! request()->query() ? '<a href="' . url(request()->url()) . '" class="btn btn-outline-danger"><i class="far fa-times-circle mr-2"></i>Cancelar filtro</a>' : null !!}
 
     @component('ui::card')
+        
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mb-4">
+            <li class="nav-item"><a class="nav-link {!! request()->has('abertas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['abertas' => 1]) }}">Em aberto</a></li>
+            <li class="nav-item"><a class="nav-link {!! request()->has('concluidas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['concluidas' => 1]) }}">Concluídas</a></li>
+            <li class="nav-item"><a class="nav-link {!! request()->has('canceladas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['canceladas' => 1]) }}">Canceladas</a></li>
+        </ul>
+
         @if( ! $ocorrencias->isEmpty())
             
             <div class="table-responsive mt-3">
