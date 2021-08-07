@@ -18,17 +18,24 @@
 <div class="container-fluid">
 
     <a href="#" data-toggle="modal" data-target="#m-search" class="btn btn-primary mr-2"><i class="fas fa-search fa-fw mr-2"></i> Buscar</a>
-    <a href="#" class="btn btn-outline-success"><i class="fas fa-file-csv fa-fw mr-2"></i> Exportar (CSV)</a>
+    <a href="#" class="btn btn-outline-success mr-2"><i class="fas fa-file-csv fa-fw mr-2"></i> Exportar (CSV)</a>
     {!! request()->query() ? '<a href="' . url(request()->url()) . '" class="btn btn-outline-danger"><i class="far fa-times-circle mr-2"></i>Cancelar filtro</a>' : null !!}
 
     @component('ui::card')
-        
+
         <!-- Tabs -->
-        <ul class="nav nav-tabs mb-4">
-            <li class="nav-item"><a class="nav-link {!! request()->has('abertas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['abertas' => 1]) }}">Em aberto</a></li>
-            <li class="nav-item"><a class="nav-link {!! request()->has('concluidas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['concluidas' => 1]) }}">Concluídas</a></li>
-            <li class="nav-item"><a class="nav-link {!! request()->has('canceladas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['canceladas' => 1]) }}">Canceladas</a></li>
-        </ul>
+        <nav class="navbar navbar-expand-lg navbar-light p-0 mb-3">
+            <button class="border-0 btn-link btn-sm d-md-none" type="button" data-toggle="collapse" data-target="#tableNav"><i class="fas fa-filter fa-fw mr-2"></i> Filtrar registros</button>
+            <div class="collapse navbar-collapse" id="tableNav">
+                <ul class="nav nav-pills flex-column flex-sm-row mt-3 mt-md-0">
+                    <li class="nav-item"><a class="nav-link {!! request()->has('abertas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['abertas' => 1]) }}">Em aberto</a></li>
+                    <li class="nav-item"><a class="nav-link {!! request()->has('concluidas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['concluidas' => 1]) }}">Concluídas</a></li>
+                    <li class="nav-item"><a class="nav-link {!! request()->has('canceladas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['canceladas' => 1]) }}">Canceladas</a></li>
+                    <li class="nav-item"><a class="nav-link {!! request()->has('atrasadas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['atrasadas' => 1]) }}">Atrasadas</a></li>
+                </ul>
+            </div>
+        </nav>
+        <hr>
 
         @if( ! $ocorrencias->isEmpty())
             
