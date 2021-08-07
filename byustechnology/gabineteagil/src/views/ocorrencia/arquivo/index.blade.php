@@ -35,7 +35,7 @@
                                     <td>{{ $arquivo->created_at->format('d/m/Y') }}</td>
                                     <td class="table-actions">
                                         {!! Form::open(['url' => route('ocorrencia.arquivo.destroy', ['ocorrencia' => $ocorrencia, 'arquivo' => $arquivo]), 'method' => 'delete']) !!}
-                                        <button data-toggle="tooltip" title="Remover" type="sumbit" class="btn btn-table-actions text-danger btn-link"><i class="far fa-trash-alt fa-fw"></i></button>
+                                        <button data-toggle="tooltip" title="Remover" type="sumbit" class="btn btn-table-actions text-danger btn-link confirm-delete"><i class="far fa-trash-alt fa-fw"></i></button>
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>

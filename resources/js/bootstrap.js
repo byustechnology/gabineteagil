@@ -17,9 +17,24 @@ try {
         $('[data-toggle="tooltip"]').tooltip()
 
         $('.sidebar-toggler').click(function() {
-            console.log('Clicked!')
             $('#mainNavigation').toggleClass('d-none')
         })
+
+        /**
+         * Sends confirmation message for the user
+         * before he delete the register.
+         */
+        $('.confirm-delete').click(function(event)
+        {
+            event.preventDefault();
+
+            var form = $(this).parents('form');
+            var confirmation = confirm('Tem certeza que deseja remover este item? Este procedimento é irreversível.');
+
+            if(confirmation) {
+                form.submit();
+            }
+        });
 
     });
 

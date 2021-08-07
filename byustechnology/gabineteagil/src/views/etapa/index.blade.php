@@ -26,7 +26,7 @@
                         <td class="table-actions">
                             {!! Form::open(['url' => '', 'method' => 'delete']) !!}
                                 <a data-toggle="tooltip" title="Editar" href="#" class="btn btn-table-actions btn-link"><i class="far fa-edit fa-fw"></i></a>
-                                <button data-toggle="tooltip" title="Remover" type="sumbit" class="btn btn-table-actions text-danger btn-link"><i class="far fa-trash-alt fa-fw"></i></button>
+                                <button data-toggle="tooltip" title="Remover" type="sumbit" class="btn btn-table-actions text-danger btn-link confirm-delete"><i class="far fa-trash-alt fa-fw"></i></button>
                             {!! Form::close() !!}
                         </td>
                     </tr>
