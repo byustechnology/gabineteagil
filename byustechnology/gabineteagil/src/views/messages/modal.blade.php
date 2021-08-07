@@ -2,8 +2,8 @@
 <!-- Erro -->
 <div class="modal fade" id="m-flash-modal-success" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content shadow-lg border-0">
-            <div class="modal-body bg-success text-white text-center rounded-lg">
+        <div class="modal-content shadow-lg border-0 rounded-lg overflow-hidden animate__animated animate__tada">
+            <div class="modal-body bg-success text-white text-center">
                 <span>{!! session()->get('flash_modal_success') !!}</span>                
             </div>
 

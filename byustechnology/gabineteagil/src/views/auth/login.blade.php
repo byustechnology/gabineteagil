@@ -11,7 +11,7 @@
                             <img class="d-block mb-4 mx-auto" src="{{ asset('assets/images/logotipo.png') }}" alt="Logotipo {{ config('app.name') }}" width="200">
                             
                             @if ($errors->any())
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger animate__animated animate__bounce">
                                     <ul class="list-unstyled mb-0">
                                         @foreach($errors->all() as $error)
                                             <li><i class="fas fa-times mr-1 fa-fw"></i> {{ $error }}</li>

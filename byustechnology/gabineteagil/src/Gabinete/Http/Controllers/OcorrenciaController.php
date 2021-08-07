@@ -57,7 +57,7 @@ class OcorrenciaController extends Controller
         $ocorrencia->save();
         
         session()->flash('flash_modal_success', 'Ocorrência ' . $ocorrencia->titulo . ' cadastrada com sucesso!');
-        session()->flash('flash_modal_success_action', '<a href="' . url($ocorrencia->path()) . '">Visualizar ocorrência</a>');
+        session()->flash('flash_modal_success_action', '<a href="' . url($ocorrencia->path()) . '" class="btn btn-outline-primary m-auto btn-sm">Visualizar ocorrência</a>');
         
         return back();
     }
