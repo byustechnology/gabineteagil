@@ -18,7 +18,7 @@
     </div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0ELl7QgmF-3tRevTurL_v0JIH2ISAIXE&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap"></script>
     <script>
         let map;
 
