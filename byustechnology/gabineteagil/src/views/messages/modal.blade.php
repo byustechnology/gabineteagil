@@ -3,7 +3,7 @@
 <div class="modal fade" id="m-flash-modal-success" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow-lg border-0">
-            <div class="modal-body bg-success text-white text-center">
+            <div class="modal-body bg-success text-white text-center rounded-lg">
                 <span>{!! session()->get('flash_modal_success') !!}</span>                
             </div>
 
