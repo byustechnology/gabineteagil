@@ -20,6 +20,7 @@ class OcorrenciaFilters extends Filters
         'orgao_id', 
         'assunto_id',
         'etapa_id',
+        'orgao_responsavel_id', 
         'tipo', 
         'abertas', 
         'canceladas', 
@@ -72,6 +73,11 @@ class OcorrenciaFilters extends Filters
     protected function pessoa_id($pessoa)
     {
         return $this->builder->where('pessoa_id', $pessoa);
+    }
+
+    protected function orgao_responsavel_id($orgao)
+    {
+        return $this->builder->where('orgao_responsavel_id', $orgao);
     }
 
     protected function orgao_id($orgao)
