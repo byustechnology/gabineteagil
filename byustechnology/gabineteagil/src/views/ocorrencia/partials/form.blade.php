@@ -12,7 +12,7 @@
                 {!! Form::select('assunto_id', [
                 '' => 'Por favor, selecione...',
                 ] + \ByusTechnology\Gabinete\Models\Assunto::ordenado()->pluck('titulo', 'id')->toArray(), null, ['class' => 'form-control']) !!}
-                <span class="form-text">Informe qual o assunto associado a esta ocorrência.</span>
+                <span class="form-text">Informe qual o assunto associado a esta ocorrência.  {!! ! isset($ocorrencia) ? 'Caso não haja, primeiramente <a href="#" data-toggle="modal" data-target="#m-assunto">cadastre um assunto</a>' : null !!}</span>
             </div>
             <div class="col-lg-4 form-group">
                 {!! Form::label('tipo', 'Tipo da ocorrência') !!}
@@ -28,7 +28,7 @@
                 {!! Form::select('pessoa_id', [
                     '' => 'Por favor, selecione...',
                 ] + \ByusTechnology\Gabinete\Models\Pessoa::ordenado()->pluck('titulo', 'id')->toArray(), null, ['class' => 'form-control']) !!}
-                <span class="form-text">Informe a pessoa que está associada a esta ocorrência. Caso não haja, primeiramente <a href="#" data-toggle="modal" data-target="#m-pessoa">cadastre uma pessoa</a>.</span>
+                <span class="form-text">Informe a pessoa que está associada a esta ocorrência. {!! ! isset($ocorrencia) ? 'Caso não haja, primeiramente <a href="#" data-toggle="modal" data-target="#m-pessoa">cadastre uma pessoa</a>' : null !!}.</span>
             </div>
             <div class="col-lg form-group">
                 {!! Form::label('etapa_id', 'Etapa *') !!}

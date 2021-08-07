@@ -15,7 +15,8 @@
     @include('gabinete::ocorrencia.partials.form')
 {!! Form::close() !!}
 
-<!-- Formulário de cadastro da pessoa -->
+<!-- Formulários on-the-fly -->
 @include('gabinete::ocorrencia.partials.pessoa')
+@include('gabinete::ocorrencia.partials.assunto')
 
 @endsection

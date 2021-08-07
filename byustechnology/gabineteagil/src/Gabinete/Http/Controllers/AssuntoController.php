@@ -43,6 +43,14 @@ class AssuntoController extends Controller
         $assunto->prefeitura_id = 1; // TODO: Modificar para a prefeitura logada.        
         $assunto->save();
 
+        if ($request->wantsJson()) {
+            return response()->json([
+                'message' => 'Pessoa ' . $assunto->titulo . ' adicionada com sucesso!', 
+                'errors' => false, 
+                'assunto' => $assunto
+            ]);
+        }
+
         session()->flash('flash_success', 'Assunto ' . $assunto->titulo . ' adicionado com sucesso!');
         return back();
     }
