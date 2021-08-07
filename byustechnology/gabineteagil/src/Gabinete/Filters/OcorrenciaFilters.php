@@ -86,7 +86,7 @@ class OcorrenciaFilters extends Filters
 
     protected function etapa_id($etapa)
     {
-        return $this->builder->where('assunto_id', $etapa);
+        return $this->builder->where('etapa_id', $etapa);
     }
 
     protected function abertas($abertas = 0)
