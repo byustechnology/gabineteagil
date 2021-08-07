@@ -11,6 +11,7 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+    require('jquery-mask-plugin');
 
     // Tooltips
     $(function () {
@@ -20,10 +21,8 @@ try {
             $('#mainNavigation').toggleClass('d-none')
         })
 
-        /**
-         * Sends confirmation message for the user
-         * before he delete the register.
-         */
+        // Sends a user confirmation before deleting 
+        // a resource.
         $('.confirm-delete').click(function(event)
         {
             event.preventDefault();
@@ -35,6 +34,21 @@ try {
                 form.submit();
             }
         });
+
+        // Masked inputs
+        var celularRule = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+        celularOption = {
+            onKeyPress: function(val, e, field, options) {
+                field.mask(celularRule.apply({}, arguments), options);
+            }
+        };
+        $('.hora').mask('00:00');
+        $('.celular').mask(celularRule, celularOption);
+        $('.cpf').mask('000.000.000-00', {reverse: true});
+        $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
+        $('.cep').mask('00000-000');
 
     });
 
