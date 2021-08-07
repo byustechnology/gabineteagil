@@ -35,7 +35,7 @@
                 <div class="form-group">
                     {!! Form::label('etapa_id', 'Filtrar etapas') !!}
                     {!! Form::select('etapa_id', [
-                    '' => 'Não filtrar por orgão responsável...',
+                    '' => 'Não filtrar por etapas...',
                     ] + \ByusTechnology\Gabinete\Models\Etapa::ordenado()->pluck('titulo', 'id')->toArray(), null, ['class' => 'form-control']) !!}
                     <span class="form-text">Selecione o campo acima caso deseje filtrar ocorrências em uma etapa específica.</span>
                 </div>

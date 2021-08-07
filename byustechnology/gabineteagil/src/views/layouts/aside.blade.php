@@ -16,7 +16,7 @@
             <li class="nav-item"><a class="nav-link" href="{{ route('ocorrencia.index', ['concluidas' => 1]) }}">Ocorrências em concluídas</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('ocorrencia.index', ['canceladas' => 1]) }}">Ocorrências em canceladas</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('ocorrencia.index', ['atrasadas' => 1]) }}">Ocorrências em atraso</a></li>
-            <li class="nav-item"><a class="nav-link" href="#"><strike>Ocorrências por assunto</strike></a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('ocorrencia.relatorio.por-assunto') }}">Ocorrências por assunto</a></li>
             <li class="nav-item"><a class="nav-link" href="#"><strike>Ocorrências por pessoa</strike></a></li>
             <li class="nav-item"><a class="nav-link" href="#"><strike>Ocorrências por região</strike></a></li>
             <li class="nav-item"><a class="nav-link" href="#"><strike>Visão geral</strike></a></li>

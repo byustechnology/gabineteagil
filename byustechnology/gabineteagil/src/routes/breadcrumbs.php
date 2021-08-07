@@ -173,6 +173,20 @@ Breadcrumbs::for('g-ocorrencia-arquivo-edit', function ($trail, $ocorrencia, $ar
     $trail->push('Editar', route('ocorrencia.edit', ['ocorrencia' => $ocorrencia, 'arquivo' => $arquivo]));
 });
 
+// Ocorrência, relatório
+Breadcrumbs::for('g-ocorrencia-relatorio', function ($trail) {
+    $trail->parent('g-ocorrencia');
+    $trail->push('Relatórios');
+});
+Breadcrumbs::for('g-ocorrencia-relatorio-por-assunto', function ($trail) {
+    $trail->parent('g-ocorrencia-relatorio');
+    $trail->push('Por assunto', route('ocorrencia.relatorio.por-assunto'));
+});
+Breadcrumbs::for('g-ocorrencia-relatorio-por-assunto-show', function ($trail) {
+    $trail->parent('g-ocorrencia-relatorio-por-assunto');
+    $trail->push('Visualizar');
+});
+
 // Mapa
 Breadcrumbs::for('g-mapa', function ($trail) {
     $trail->parent('g-dashboard');
