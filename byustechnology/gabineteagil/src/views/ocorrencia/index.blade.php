@@ -64,7 +64,7 @@
                             <td class="text-center">
                                 <span class="badge py-1 animate__animated animate__flash animate__infinite" style="background: {{ $ocorrencia->etapa->cor }}; color: {{ $ocorrencia->etapa->cor_texto }}">{{ $ocorrencia->etapa->titulo }}</span><br>
                                 @if ( ! $ocorrencia->ultima_etapa)
-                                    <a href="#" data-toggle="modal" data-target="#m-avancar-listagem" data-url="{{ route('ocorrencia.etapa.avancar', ['ocorrencia' => $ocorrencia]) }}"><small>Avançar etapa <i class="fas fa-arrow-right fa-fw"></i></a></a>
+                                    <a href="#" data-toggle="modal" data-target="#m-avancar-listagem" data-url="{{ route('ocorrencia.etapa.avancar', ['ocorrencia' => $ocorrencia]) }}" data-protocolo="{{ $ocorrencia->protocolo }}"><small>Avançar etapa <i class="fas fa-arrow-right fa-fw"></i></a></a>
                                 @endif
                             </td>
                             <td>

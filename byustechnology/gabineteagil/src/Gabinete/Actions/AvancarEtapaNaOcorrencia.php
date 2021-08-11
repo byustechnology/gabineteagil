@@ -26,7 +26,7 @@ class AvancarEtapaNaOcorrencia {
             throw new Exception('Não há mais etapas para serem avançadas nesta ocorrência. Por favor, finalize a ocorrência ou altere as etapas manualmente');
         }
 
-        $this->ocorrencia->fill($request->all());
+        $this->ocorrencia->fill($request->except('concluir'));
         $this->ocorrencia->etapa_id = $novaEtapa->id;
 
         if ($request->has('protocolo')) {
@@ -38,8 +38,9 @@ class AvancarEtapaNaOcorrencia {
 
         // Caso a etapa tenha como ação a conclusão, 
         // ou cancelamento da ocorrência, executamos 
-        // essas ações aqui.
-        if ($novaEtapa->conclui) {
+        // essas ações aqui. Também podemos executar 
+        // caso um request tenha sido passado.
+        if ($novaEtapa->conclui or $request->has('concluir')) {
             $conclusao = new ConcluirOcorrencia($this->ocorrencia);
             $conclusao->handle($request);
         }
