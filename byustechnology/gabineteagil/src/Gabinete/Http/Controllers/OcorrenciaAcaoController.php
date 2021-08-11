@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use ByusTechnology\Gabinete\Models\Ocorrencia;
 use ByusTechnology\Gabinete\Models\Etapa;
 use ByusTechnology\Gabinete\Actions\AvancarEtapaNaOcorrencia;
-use ByusTechnology\Gabinete\Actions\StoreOcorrenciaArquivo;
+use ByusTechnology\Gabinete\Actions\ConcluirOcorrencia;
+use ByusTechnology\Gabinete\Actions\CancelarOcorrencia;
 use Illuminate\Http\Request;
 use Exception;
 
@@ -78,16 +79,10 @@ class OcorrenciaAcaoController extends Controller
             'concluida_em' => 'required|date', 
         ]);
 
-        if ($request->has('arquivo')) {
-            (new StoreOcorrenciaArquivo($ocorrencia, $request->arquivo))->handle();
-        }
-
-        $ocorrencia->concluida_em = $request->concluida_em ?? now();
-        $ocorrencia->concluida_por = auth()->user()->id;
-        $ocorrencia->concluida_observacao = $request->concluida_observacao;
-        $ocorrencia->update();
+        $conclusao = new ConcluirOcorrencia($ocorrencia);
+        $conclusao->handle($request);
         
-        session()->flash('flash_success', 'Ocorrência de ' . $ocorrencia->pessoa->titulo . ' concluída com sucesso!');
+        session()->flash('flash_success', 'Ocorrência de ' . $conclusao->ocorrencia->pessoa->titulo . ' concluída com sucesso!');
         return back();
     }
 
