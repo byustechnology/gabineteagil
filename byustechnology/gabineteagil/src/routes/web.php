@@ -29,6 +29,9 @@ Route::prefix(config('gabinete.path'))->middleware(['web', 'auth'])->group(funct
     Route::get('/fullcalendar', \ByusTechnology\Gabinete\Http\Controllers\FullCalendarController::class)->name('fullcalendar');
     Route::resource('/agenda', \ByusTechnology\Gabinete\Http\Controllers\AgendaController::class);
     
+    // Usuários
+    Route::resource('/usuario', \ByusTechnology\Gabinete\Http\Controllers\UsuarioController::class);
+
     // Conta
     Route::patch('/conta', [\ByusTechnology\Gabinete\Http\Controllers\ContaController::class, 'update'])->name('conta.update');
     Route::get('/conta', [\ByusTechnology\Gabinete\Http\Controllers\ContaController::class, 'index'])->name('conta.index');

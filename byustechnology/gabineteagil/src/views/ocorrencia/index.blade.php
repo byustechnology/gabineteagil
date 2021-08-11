@@ -28,10 +28,10 @@
             <button class="border-0 btn-link btn-sm d-md-none" type="button" data-toggle="collapse" data-target="#tableNav"><i class="fas fa-filter fa-fw mr-2"></i> Filtrar registros</button>
             <div class="collapse navbar-collapse" id="tableNav">
                 <ul class="nav nav-pills flex-column flex-sm-row mt-3 mt-md-0">
-                    <li class="nav-item"><a class="nav-link {!! request()->has('abertas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['abertas' => 1]) }}">Em aberto</a></li>
-                    <li class="nav-item"><a class="nav-link {!! request()->has('concluidas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['concluidas' => 1]) }}">Concluídas</a></li>
-                    <li class="nav-item"><a class="nav-link {!! request()->has('canceladas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['canceladas' => 1]) }}">Canceladas</a></li>
-                    <li class="nav-item"><a class="nav-link {!! request()->has('atrasadas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['atrasadas' => 1]) }}">Atrasadas</a></li>
+                    <li class="nav-item"><a class="nav-link btn-sm {!! request()->has('abertas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['abertas' => 1]) }}">Em aberto</a></li>
+                    <li class="nav-item"><a class="nav-link btn-sm {!! request()->has('concluidas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['concluidas' => 1]) }}">Concluídas</a></li>
+                    <li class="nav-item"><a class="nav-link btn-sm {!! request()->has('canceladas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['canceladas' => 1]) }}">Canceladas</a></li>
+                    <li class="nav-item"><a class="nav-link btn-sm {!! request()->has('atrasadas') ? 'active' : null !!}" href="{{ route('ocorrencia.index', ['atrasadas' => 1]) }}">Atrasadas</a></li>
                 </ul>
             </div>
         </nav>
@@ -40,7 +40,7 @@
         @if( ! $ocorrencias->isEmpty())
             
             <div class="table-responsive mt-3">
-                <table class="table table-hover table-striped table-nowrap">
+                <table class="table table-nowrap">
                     <thead>
                         <tr>
                             <th>Ocorrência</th>
@@ -58,7 +58,7 @@
                                 <a href="{{ url($ocorrencia->path()) }}"><strong>{{ $ocorrencia->tipo }}, {{ optional($ocorrencia->pessoa)->titulo ?? 'Sem pessoa atrelada' }}</strong></a><br>
                                 <small class="text-muted">
                                     {{ $ocorrencia->bairro }} - {{ $ocorrencia->cidade }}/{{ $ocorrencia->estado }}<br>
-                                    {{ Str::limit(strip_tags($ocorrencia->descricao), 100) }}
+                                    
                                 </small>
                             </td>
                             <td class="text-center">
@@ -76,11 +76,18 @@
                                 <small>{{ optional($ocorrencia->orgaoResponsavel)->titulo ?? 'Não informado' }}</a>
                             </td>
                             <td>{{ $ocorrencia->status->descricao }}<br><small class="text-muted">{{ $ocorrencia->status->data->diffForHumans() }}</small></td>
-                            <td class="table-actions">
+                            <td class="table-actions" rowspan="2">
                                 {!! Form::open(['url' => route('ocorrencia.destroy', ['ocorrencia' => $ocorrencia->id]), 'method' => 'delete']) !!}
                                 <a data-toggle="tooltip" title="Editar" href="{{ route('ocorrencia.edit', ['ocorrencia' => $ocorrencia]) }}" class="btn btn-table-actions btn-link"><i class="far fa-edit fa-fw"></i></a>
                                 <button data-toggle="tooltip" title="Remover" type="sumbit" class="btn btn-table-actions text-danger btn-link confirm-delete"><i class="far fa-trash-alt fa-fw"></i></button>
                                 {!! Form::close() !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="border-0 py-1 bg-light">
+                                <a href="{{ route('ocorrencia.arquivo.index', ['ocorrencia' => $ocorrencia]) }}"><small>Arquivos</small></a>
+                                <a href="{{ route('ocorrencia.mensagem.index', ['ocorrencia' => $ocorrencia]) }}" class="ml-2"><small>Mensagens</small></a>
+                                <small class="ml-2"> - {{ Str::limit(strip_tags($ocorrencia->descricao), 100) }}</small>
                             </td>
                         </tr>
                         @endforeach
