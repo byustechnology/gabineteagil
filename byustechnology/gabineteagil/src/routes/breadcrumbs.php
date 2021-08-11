@@ -18,7 +18,7 @@ Breadcrumbs::for('g-etapa', function ($trail) {
 });
 Breadcrumbs::for('g-etapa-create', function ($trail) {
     $trail->parent('g-etapa');
-    $trail->push('Adicionar', route('etapa.crete'));
+    $trail->push('Adicionar', route('etapa.create'));
 });
 Breadcrumbs::for('g-etapa-show', function ($trail, $etapa) {
     $trail->parent('g-etapa');
@@ -27,6 +27,24 @@ Breadcrumbs::for('g-etapa-show', function ($trail, $etapa) {
 Breadcrumbs::for('g-etapa-edit', function ($trail, $etapa) {
     $trail->parent('g-etapa-show', $etapa);
     $trail->push('Editar', route('etapa.edit', ['etapa' => $etapa]));
+});
+
+// Usuários
+Breadcrumbs::for('g-usuario', function ($trail) {
+    $trail->parent('g-dashboard');
+    $trail->push('Usuários', route('usuario.index'));
+});
+Breadcrumbs::for('g-usuario-create', function ($trail) {
+    $trail->parent('g-usuario');
+    $trail->push('Adicionar', route('usuario.create'));
+});
+Breadcrumbs::for('g-usuario-show', function ($trail, $usuario) {
+    $trail->parent('g-usuario');
+    $trail->push($usuario->name, route('usuario.show', ['usuario' => $usuario]));
+});
+Breadcrumbs::for('g-usuario-edit', function ($trail, $usuario) {
+    $trail->parent('g-usuario-show', $usuario);
+    $trail->push('Editar', route('usuario.edit', ['usuario' => $usuario]));
 });
 
 // Orgãos responsáveis

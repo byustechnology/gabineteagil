@@ -29,13 +29,20 @@ class AvancarEtapaNaOcorrencia {
         $this->ocorrencia->fill($request->all());
         $this->ocorrencia->etapa_id = $novaEtapa->id;
 
-        if (request()->has('protocolo')) {
-            $this->ocorrencia->protocolo = request('protocolo');
+        if ($request->has('protocolo')) {
+            $this->ocorrencia->protocolo = $request->protocolo;
         }
-        
+
         $this->ocorrencia->update();
-        
         $this->novaEtapa = $novaEtapa;
+
+        // Caso a etapa tenha como ação a conclusão, 
+        // ou cancelamento da ocorrência, executamos 
+        // essas ações aqui.
+        if ($novaEtapa->conclui) {
+            $conclusao = new ConcluirOcorrencia($this->ocorrencia);
+            $conclusao->handle($request);
+        }
 
         return $this;
     }

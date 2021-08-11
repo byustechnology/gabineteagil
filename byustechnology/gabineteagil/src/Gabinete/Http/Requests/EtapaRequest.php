@@ -24,6 +24,12 @@ class EtapaRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            'codigo' => [
+                Rule::unique('etapas', 'codigo')->ignore($this->etapa)
+            ], 
+            'titulo' => 'required',
+            'ordem' => 'required|numeric', 
+        ];
     }
 }

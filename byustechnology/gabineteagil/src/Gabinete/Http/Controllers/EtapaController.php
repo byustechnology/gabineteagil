@@ -39,7 +39,11 @@ class EtapaController extends Controller
      */
     public function store(EtapaRequest $request)
     {
-        //
+        $etapa = (new Etapa)->fill($request->all());
+        $etapa->save();
+
+        session()->flash('flash_success', 'Etapa ' . $etapa->titulo . ' adicionada com sucesso!');
+        return back();
     }
 
     /**
