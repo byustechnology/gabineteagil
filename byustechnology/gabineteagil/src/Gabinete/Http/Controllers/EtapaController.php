@@ -77,7 +77,11 @@ class EtapaController extends Controller
      */
     public function update(EtapaRequest $request, Etapa $etapa)
     {
-        //
+        $etapa->fill($request->all());
+        $etapa->update();
+
+        session()->flash('flash_success', 'Etapa ' . $etapa->titulo . ' alterada com sucesso!');
+        return back();
     }
 
     /**
@@ -88,6 +92,12 @@ class EtapaController extends Controller
      */
     public function destroy(Etapa $etapa)
     {
+        $etapa->loadCount('ocorrencias');
+
+        if ($etapa->ocorrencias_count > 0) {
+            return back()->withErrors(['Desculpe, mas existem ' . $etapa->ocorrencias_count . ' ocorrência(s) nesta etapa. Não é possível remover a ocorrência, pois isso fará as ocorrências perderem a relação com a etapa.']);
+        }
+
         $etapa->delete();
         session()->flash('flash_danger', 'Etapa ' . $etapa->titulo . ' removida com sucesso!');
         return back();

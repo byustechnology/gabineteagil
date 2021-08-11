@@ -25,7 +25,7 @@
             </div>
             <div class="col-lg-3 form-group">
                 {!! Form::label('inicio_em_horario', 'Hora de início') !!}
-                {!! Form::text('inicio_em_horario', null, ['class' => 'form-control']) !!}
+                {!! Form::text('inicio_em_horario', null, ['class' => 'form-control hora']) !!}
                 <span class="form-text">Informe uma hora de início.</span>
             </div>
             <div class="col-lg-3 form-group">
@@ -35,7 +35,7 @@
             </div>
             <div class="col-lg-3 form-group">
                 {!! Form::label('termino_em_horario', 'Hora de término') !!}
-                {!! Form::text('termino_em_horario', null, ['class' => 'form-control']) !!}
+                {!! Form::text('termino_em_horario', null, ['class' => 'form-control hora']) !!}
                 <span class="form-text">Informe uma hora de término.</span>
             </div>
         </div>
