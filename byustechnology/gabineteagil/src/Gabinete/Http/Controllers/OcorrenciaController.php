@@ -2,6 +2,7 @@
 
 namespace ByusTechnology\Gabinete\Http\Controllers;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use ByusTechnology\Gabinete\Models\Prefeitura;
 use ByusTechnology\Gabinete\Models\Ocorrencia;
@@ -50,11 +51,21 @@ class OcorrenciaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(OcorrenciaRequest $request)
-    {        
-        $ocorrencia = (new Ocorrencia)->fill($request->except('mudar_endereco'));
+    {
+        $ocorrencia = (new Ocorrencia)->fill($request->except(['mudar_endereco', 'vereador_compartilhado', 'vereadores']));
         $ocorrencia->prefeitura_id = Prefeitura::first()->id; // TODO: Ajustar, deixar dinâmico
         $ocorrencia->titulo = 'Ocorrência de teste'; // TODO: Implementar um título real para a ocorrência
         $ocorrencia->save();
+
+        
+        if ($request->has('vereadores')) {
+
+            foreach($request->vereadores as $vereador) {
+                $vereador = User::find($vereador);
+                $ocorrencia->vereadores()->attach($vereador->id, ['vereador' => $vereador->name]);
+            }
+
+        }
         
         session()->flash('flash_modal_success', 'Ocorrência ' . $ocorrencia->titulo . ' cadastrada com sucesso!');
         session()->flash('flash_modal_success_action', '<a href="' . url($ocorrencia->path()) . '" class="btn btn-outline-primary m-auto btn-sm">Visualizar ocorrência</a>');

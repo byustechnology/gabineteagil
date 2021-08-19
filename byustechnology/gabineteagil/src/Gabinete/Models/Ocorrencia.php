@@ -148,6 +148,17 @@ class Ocorrencia extends Model
     }
 
     /**
+     * Definindo o relacionamento entre 
+     * as ocorrências e os vereadores.
+     * 
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function vereadores()
+    {
+        return $this->hasMany(OcorrenciaVereador::class);
+    }
+
+    /**
      * Retorna se a ocorrência está concluida
      * 
      * @return boolean

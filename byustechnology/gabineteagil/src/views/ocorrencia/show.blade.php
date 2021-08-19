@@ -178,6 +178,24 @@
                     @endif
                     
                 @endcomponent
+                @component('ui::card')
+                    @slot('title')
+                        <h2 class="h6 d-block mb-0">Vereadores</h2>
+                    @endslot
+
+                    @if ($ocorrencia->vereadores->count())
+
+                        <ul class="list-unstyled mb-0">
+                            @foreach($ocorrencia->vereadores as $vereador)
+                                <li><i class="fas fa-user-tie fa-fw mr-1"></i> {{ $vereador->vereador }}</li>
+                            @endforeach
+                        </ul>
+
+                    @else
+                        @include('ui::no-results')
+                    @endif
+                    
+                @endcomponent
             </div>
         </div>
     </div>

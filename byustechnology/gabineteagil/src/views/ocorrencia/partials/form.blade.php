@@ -18,7 +18,7 @@
                 {!! Form::label('tipo', 'Tipo da ocorrência') !!}
                 {!! Form::select('tipo', [
                     '' => 'Por favor, selecione...', 
-                ] + \ByusTechnology\Gabinete\Models\Ocorrencia::TIPOS, null, ['class' => 'form-control']) !!}
+                ] + \ByusTechnology\Gabinete\Models\TipoOcorrencia::ordenado()->pluck('titulo', 'id')->toArray(), null, ['class' => 'form-control']) !!}
                 <span class="form-text">Informe o tipo relacionado a esta ocorrência.</span>
             </div>
         </div>
@@ -58,7 +58,15 @@
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" name="mudar_endereco" id="mudarEndereco">
                     <label class="custom-control-label" for="mudarEndereco">O endereço da pessoa é diferente do endereço da ocorrência?</label>
-                    <span class="form-text">Marque este campo caso precise informar um endereço de ocorrência diferente do endereço da pessoa solicitante</span>
+                    <span class="form-text">Marque este campo caso precise informar um endereço de ocorrência diferente do endereço da pessoa solicitante.</span>
+                </div>
+            </div>
+
+            <div class="col-lg-4 form-group">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="vereador_compartilhado" id="vereadorCompartilhado">
+                    <label class="custom-control-label" for="vereadorCompartilhado">Compartilhar com vereadores?</label>
+                    <span class="form-text">Preencha este campo caso mais de um vereador precise ser notificado sobre o andamento desta ocorrência.</span>
                 </div>
             </div>
         </div>
@@ -116,19 +124,56 @@
         @endcomponent
     </div>
 
+    <div class="switch-vereadores">
+        @component('ui::card')
+            @slot('title')
+                Vereadores envolvidos
+            @endslot
+
+            @foreach(\ByusTechnology\Gabinete\Models\Usuario::vereadores()->orderBy('name')->get()->chunk(3) as $usersRow)
+                <div class="row">
+                    @foreach($usersRow as $user)
+                        <div class="col-lg-4 form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="vereadores[{{ $user->id }}]" value="{{ $user->id }}" id="vereadores-{{ $user->id }}">
+                                <label class="custom-control-label" for="vereadores-{{ $user->id }}">{{ $user->name }}</label>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endforeach
+        @endcomponent
+    </div>
+
     @component('ui::card')
         @slot('title')
             Descrição da ocorrência
         @endslot
 
         <div class="form-group">
-            <div id="editor">
+            <div id="editorDescricao">
                 @if (isset($ocorrencia))
                     {!! $ocorrencia->descricao !!}
                 @endif
             </div>
             {!! Form::hidden('descricao', null, ['id' => 'descricao', 'class' => 'd-none']) !!}
-            <span class="form-text">Digite informações relevantes que descrevam a ocorrência.<br> Essas informações serão salvas na ocorrência para consultas e pesquisas posteriores.</span>
+            <span class="form-text">Digite informações relevantes que descrevam a ocorrência.<br> Essas informações serão incluídas no documento da ocorrência.</span>
+        </div>
+    @endcomponent
+
+    @component('ui::card')
+        @slot('title')
+            Observações da ocorrência
+        @endslot
+
+        <div class="form-group">
+            <div id="editorObservacao">
+                @if (isset($ocorrencia))
+                    {!! $ocorrencia->observacao !!}
+                @endif
+            </div>
+            {!! Form::hidden('observacao', null, ['id' => 'observacao', 'class' => 'd-none']) !!}
+            <span class="form-text">Utilize este campo para adicionar observações na ocorrência.<br> Essas informações serão salvas na ocorrência para consultas e pesquisas posteriores.</span>
         </div>
     @endcomponent
 
@@ -152,7 +197,13 @@
             [{ 'align': [] }], ['clean']
         ];
 
-        var quill = new Quill('#editor', {
+        var quillDescricao = new Quill('#editorDescricao', {
+            modules: {
+                toolbar: toolbarOptions
+            },
+            theme: 'snow'
+        });
+        var quillObservacao = new Quill('#editorObservacao', {
             modules: {
                 toolbar: toolbarOptions
             },
@@ -161,7 +212,8 @@
 
         $('form').on('submit', function(event) {
             // Associamos o valor do editor Quill ao campo
-            $('#descricao').val(quill.root.innerHTML)
+            $('#descricao').val(quillDescricao.root.innerHTML)
+            $('#observacao').val(quillObservacao.root.innerHTML)
 
             return true
         });
@@ -171,8 +223,37 @@
     <script>
         $(function() {
             switchEndereco()
+            switchVereadores()
+            switchTipo()
+            $('#tipo').change(switchTipo)
             $('#mudarEndereco').change(switchEndereco)
+            $('#vereadorCompartilhado').change(switchVereadores)
         });
+
+        function switchTipo()
+        {
+            var tipo = $('#tipo').val()
+
+            if (tipo != '') {
+                $.get('{{ route('ocorrencia.tipo.index') }}?id=' + tipo, function(data) {
+
+                    const value = data[0].template
+                    const delta = quillDescricao.clipboard.convert(value)
+                    quillDescricao.setContents(delta, 'silent')
+                }, 'json')
+            }
+        }
+
+        function switchVereadores()
+        {
+            $('.switch-vereadores').hide();
+
+            var selecionado = $('#vereadorCompartilhado:checked').length
+
+            if (selecionado == 1) {
+                $('.switch-vereadores').show()
+            }
+        }
 
         function switchEndereco()
         {
