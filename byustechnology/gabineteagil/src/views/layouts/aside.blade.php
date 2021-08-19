@@ -41,6 +41,7 @@
             <li class="divider">Mapa</li>
             <li class="nav-item"><a class="nav-link" href="{{ route('mapa.index') }}">Mapa de ocorrências</a></li>
             <li class="divider">Gestão do aplicativo</li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('ocorrencia.tipo.index') }}">Tipos de ocorrências</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('orgao.index') }}">Orgãos responsáveis</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('orgao.create') }}">Adicionar orgão responsável</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('assunto.index') }}">Assuntos</a></li>
