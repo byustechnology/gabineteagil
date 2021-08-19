@@ -32,6 +32,18 @@
             </div>
             {!! Form::hidden('template', null, ['id' => 'template', 'class' => 'd-none']) !!}
             <span class="form-text">Informe um documento de referência para o tipo da ocorrência. <span class="text-success">Este campo é opcional</span>. As informações preenchidas aqui serão pré-carregadas dependendo do tipo de ocorrência selecionada. Você pode utilizar este campo para preencher automaticamente alguns campos essenciais para a sua ocorrência.</span>
+            <hr>
+            <span class="form-text">
+                Você pode usar algumas tags que serão sobrepostas quando o arquivo for gerado
+
+                <ul class="list-unstyled">
+                    <li>- <strong class="text-primary">!@codigo</strong> Código da ocorrência</li>
+                    <li>- <strong class="text-primary">!@dataHoje</strong> Data do dia atual</li>
+                    <li>- <strong class="text-primary">!@protocolo</strong> Protocolo da ocorrência</li>
+                    <li>- <strong class="text-primary">!@observacao</strong> Observação da ocorrência</li>
+                    <li>- <strong class="text-primary">!@cidadePrefeitura</strong> Cidade onde a prefeitura está localizada</li>
+                </ul>
+            </span>
         </div>
     @endcomponent
     

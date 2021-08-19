@@ -21,7 +21,7 @@
             <div class="col-lg-8">
                 @component('ui::card')
                     @slot('title')
-                        <h2 class="h6 d-block mb-0">Detalhes da ocorrência</h2>
+                        Detalhes da ocorrência
                     @endslot
 
                     @component('ui::attribute', ['title' => 'Pessoa associada'])
@@ -102,7 +102,7 @@
 
                 @component('ui::card')
                     @slot('title')
-                        <h2 class="h6 d-block mb-0">Arquivos associados</h2>
+                        Arquivos associados
                     @endslot
 
                     <a href="#" data-toggle="modal" data-target="#m-ocorrencia-arquivo" class="btn btn-success btn-sm mb-2">Novo arquivo</a>
@@ -140,9 +140,26 @@
                 @endcomponent
             </div>
             <div class="col-lg">
+                
+                @if ($ocorrencia->concluida())
+                    @component('ui::card')
+                        @slot('title')
+                            Ocorrência concluída
+                        @endslot
+
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link bg-light mb-2 rounded active" href="{{ route('ocorrencia.pdf.template', ['ocorrencia' => $ocorrencia]) }}" target="_blank"><i class="far fa-file-pdf fa-fw mr-1"></i> Download do template</a>
+                                <a class="nav-link bg-light mb-2 rounded" href="#" data-toggle="modal" data-target="#m-notificar-email"><i class="far fa-envelope fa-fw mr-1"></i> Notificar via e-mail</a>
+                                <a class="nav-link bg-light mb-2 rounded" href="#" data-toggle="modal" data-target="#m-notificar-whats"><i class="fab fa-whatsapp fa-fw mr-1"></i> Notificar via WhatsApp</a>
+                            </li>
+                        </ul>
+                    @endcomponent
+                @endif
+
                 @component('ui::card')
                     @slot('title')
-                        <h2 class="h6 d-block mb-0">Endereço</h2>
+                        Endereço
                     @endslot
 
                     @component('ui::attribute', ['title' => 'Logradouro'])
@@ -168,7 +185,7 @@
                 @endcomponent
                 @component('ui::card')
                     @slot('title')
-                        <h2 class="h6 d-block mb-0">Últimas mensagens</h2>
+                       Últimas mensagens
                     @endslot
 
                     <a href="#" data-toggle="modal" data-target="#m-ocorrencia-mensagem" class="btn btn-success btn-sm mb-2">Nova mensagem</a>
@@ -186,7 +203,7 @@
                 @endcomponent
                 @component('ui::card')
                     @slot('title')
-                        <h2 class="h6 d-block mb-0">Vereadores</h2>
+                        Vereadores
                     @endslot
 
                     @if ($ocorrencia->vereadores->count())

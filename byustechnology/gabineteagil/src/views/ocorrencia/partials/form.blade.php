@@ -87,7 +87,7 @@
                     @foreach($usersRow as $user)
                         <div class="col-lg-4 form-group">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="vereadores[{{ $user->id }}]" value="{{ $user->id }}" id="vereadores-{{ $user->id }}" {{ $ocorrencia->vereadores->contains('user_id', $user->id) ? 'checked' : null }}>
+                                <input type="checkbox" class="custom-control-input" name="vereadores[{{ $user->id }}]" value="{{ $user->id }}" id="vereadores-{{ $user->id }}" {{ (isset($ocorrencia) and $ocorrencia->vereadores->contains('user_id', $user->id)) ? 'checked' : null }}>
                                 <label class="custom-control-label" for="vereadores-{{ $user->id }}">{{ $user->name }}</label>
                                 <span class="form-text">{{ $user->email }}</span>
                             </div>
@@ -230,18 +230,17 @@
             switchEndereco()
             switchVereadores()
             switchTipo()
-            $('#tipo').change(switchTipo)
+            $('#tipo_ocorrencia_id').change(switchTipo)
             $('#mudarEndereco').change(switchEndereco)
             $('#vereadorCompartilhado').change(switchVereadores)
         });
 
         function switchTipo()
         {
-            var tipo = $('#tipo').val()
+            var tipo = $('#tipo_ocorrencia_id').val()
 
             if (tipo != '') {
                 $.get('{{ route('ocorrencia.tipo.index') }}?id=' + tipo, function(data) {
-
                     const value = data[0].template
                     const delta = quillDescricao.clipboard.convert(value)
                     quillDescricao.setContents(delta, 'silent')
