@@ -27,6 +27,7 @@
                         <thead>
                             <tr>
                                 <th>Nome</th>
+                                <th>Tipo</th>
                                 <th>E-mail</th>
                                 <th>Adicionado em</th>
                                 <th class="table-actions">Ações</th>
@@ -36,6 +37,7 @@
                             @foreach($usuarios as $usuario)
                                 <tr>
                                     <td><a href="{{ url($usuario->path()) }}"><strong>{{ $usuario->name }}</strong></a></td>
+                                    <td>{{ \ByusTechnology\Gabinete\Models\Usuario::TYPES[$usuario->type] }}</td>
                                     <td><a href="mailto:{{ $usuario->email }}">{{ $usuario->email }}</a></td>
                                     <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
                                     <td class="table-actions">

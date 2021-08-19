@@ -9,6 +9,13 @@ class Usuario extends User
 {
     use HasFilters;
 
+    const TYPES = [
+        '' => 'Não definido', 
+        'admin' => 'Administrador', 
+        'vereador' => 'Vereador', 
+        'funcionario' => 'Funcionario', 
+    ];
+
     /**
      * Define qual o nome da tabela associada
      * a este recurso
@@ -16,6 +23,17 @@ class Usuario extends User
      * @var string
      */
     protected $table = 'users';
+
+    /**
+     * Scope responsável por filtrar os usuários vereadores.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeVereadores($query)
+    {
+        return $query->where('type', 'vereador');
+    }
 
     /**
      * Scope responsável pela ordenação do recurso.

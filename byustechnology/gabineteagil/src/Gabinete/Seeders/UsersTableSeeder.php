@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = \Faker\Factory::create();
 
         User::firstOrCreate([
             'name' => 'Administrador', 
@@ -23,5 +24,14 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('secret')
         ]);
 
+        // Adicionando os vereadores
+        foreach(range(1, 20) as $range) {
+            User::firstOrCreate([
+                'name' => $faker->name, 
+                'email' => $faker->unique()->email, 
+                'type' => 'vereador', 
+                'password' => bcrypt('secret')
+            ]);
+        }
     }
 }

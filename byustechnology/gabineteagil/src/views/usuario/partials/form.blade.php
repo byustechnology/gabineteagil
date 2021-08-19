@@ -16,6 +16,17 @@
             {!! Form::email('email', null, ['class' => 'form-control']) !!}
             <span class="form-text">Informe o e-mail de cadastro do usuário. <span class="text-success">Este e-mail será utilizado para realizar login no sistema</span>.</span>
         </div>
+
+        <div class="form-group">
+            {!! Form::label('type', 'Tipo do usuário') !!}
+            {!! Form::select('type', [
+                '' => 'Por favor, selecione...', 
+                'admin' => 'Administrador (acesso total)', 
+                'funcionario' => 'Funcionário',     
+                'vereador' => 'Vereador',     
+            ], null, ['class' => 'form-control']) !!}
+            <span class="form-text">Informe qual o tipo de acesso referente a este usuário. Dependendo do nível de acesso algumas permissões poderão ser dadas ou negadas.</span>
+        </div>
     @endcomponent
 
     @component('ui::card')
