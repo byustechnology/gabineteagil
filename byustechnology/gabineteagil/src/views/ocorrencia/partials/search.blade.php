@@ -11,8 +11,8 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    {!! Form::label('keyword', 'Palavra-chave') !!}
-                    {!! Form::text('keyword', null, ['class' => 'form-control']) !!}
+                    {!! Form::label('s', 'Palavra-chave') !!}
+                    {!! Form::text('s', null, ['class' => 'form-control']) !!}
                     <span class="form-text">Informe uma palavra-chave para buscar pelo recurso.</span>
                 </div>
                 <div class="form-group">
