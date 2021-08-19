@@ -40,6 +40,7 @@ class UsuarioController extends Controller
     public function store(UsuarioRequest $request)
     {
         $usuario = (new Usuario)->fill($request->all());
+        $usuario->type = $request->type; // Aplicamos o type aqui pois o model padrão User não tem type no fillable.
         $usuario->save();
 
         session()->flash('flash_success', 'Usuario ' . $usuario->name . ' adicionada com sucesso!');
@@ -81,6 +82,10 @@ class UsuarioController extends Controller
 
         if ( ! empty($request->password)) {
             $usuario->password = bcrypt($request->password);
+        }
+
+        if ( $request->has('type')) {
+            $usuario->type = $request->type; // Aplicamos o type aqui pois o model padrão User não tem type no fillable.
         }
 
         $usuario->update();
