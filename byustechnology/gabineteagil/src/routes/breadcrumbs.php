@@ -47,6 +47,24 @@ Breadcrumbs::for('g-usuario-edit', function ($trail, $usuario) {
     $trail->push('Editar', route('usuario.edit', ['usuario' => $usuario]));
 });
 
+// Tipos de ocorrências
+Breadcrumbs::for('g-ocorrencia-tipo', function ($trail) {
+    $trail->parent('g-dashboard');
+    $trail->push('Tipos de ocorrência', route('ocorrencia.tipo.index'));
+});
+Breadcrumbs::for('g-ocorrencia-tipo-create', function ($trail) {
+    $trail->parent('g-ocorrencia-tipo');
+    $trail->push('Adicionar', route('ocorrencia.tipo.create'));
+});
+Breadcrumbs::for('g-ocorrencia-tipo-show', function ($trail, $tipo) {
+    $trail->parent('g-ocorrencia-tipo');
+    $trail->push($tipo->titulo, route('ocorrencia.tipo.show', ['tipo' => $tipo]));
+});
+Breadcrumbs::for('g-ocorrencia-tipo-edit', function ($trail, $tipo) {
+    $trail->parent('g-ocorrencia-tipo-show', $tipo);
+    $trail->push('Editar', route('ocorrencia.tipo.edit', ['tipo' => $tipo]));
+});
+
 // Orgãos responsáveis
 Breadcrumbs::for('g-orgao', function ($trail) {
     $trail->parent('g-dashboard');

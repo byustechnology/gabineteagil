@@ -52,6 +52,10 @@ class SeedDatabase extends Command
         Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\EtapasTableSeeder::class]);
 
         $this->newLine();
+        $this->info('Adicionando tipo de ocorrências');
+        Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\TipoOcorrenciasTableSeeder::class]);
+
+        $this->newLine();
         $this->info('Adicionando orgãos responsáveis...');
         Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\OrgaosResponsaveisTableSeeder::class]);
 
