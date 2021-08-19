@@ -87,7 +87,7 @@
                             <td colspan="5" class="border-0 py-1 bg-light">
                                 <a href="{{ route('ocorrencia.arquivo.index', ['ocorrencia' => $ocorrencia]) }}"><small>Arquivos</small></a>
                                 <a href="{{ route('ocorrencia.mensagem.index', ['ocorrencia' => $ocorrencia]) }}" class="ml-2"><small>Mensagens</small></a>
-                                <small class="ml-2"> - {{ Str::limit(strip_tags($ocorrencia->descricao), 100) }}</small>
+                                <small class="ml-2">{{ Str::limit(strip_tags($ocorrencia->observacao), 100) }}</small>
                             </td>
                         </tr>
                         @endforeach

@@ -137,6 +137,7 @@
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" name="vereadores[{{ $user->id }}]" value="{{ $user->id }}" id="vereadores-{{ $user->id }}">
                                 <label class="custom-control-label" for="vereadores-{{ $user->id }}">{{ $user->name }}</label>
+                                <span class="form-text">{{ $user->email }}</span>
                             </div>
                         </div>
                     @endforeach
