@@ -15,8 +15,8 @@
                 <span class="form-text">Informe qual o assunto associado a esta ocorrência.  {!! ! isset($ocorrencia) ? 'Caso não haja, primeiramente <a href="#" data-toggle="modal" data-target="#m-assunto">cadastre um assunto</a>' : null !!}</span>
             </div>
             <div class="col-lg-4 form-group">
-                {!! Form::label('tipo', 'Tipo da ocorrência') !!}
-                {!! Form::select('tipo', [
+                {!! Form::label('tipo_ocorrencia_id', 'Tipo da ocorrência') !!}
+                {!! Form::select('tipo_ocorrencia_id', [
                     '' => 'Por favor, selecione...', 
                 ] + \ByusTechnology\Gabinete\Models\TipoOcorrencia::ordenado()->pluck('titulo', 'id')->toArray(), null, ['class' => 'form-control']) !!}
                 <span class="form-text">Informe o tipo relacionado a esta ocorrência.</span>
@@ -52,11 +52,13 @@
                 <span class="form-text">Informe uma data prevista para a conclusão da ocorrência, ou deixe em branco caso não haja previsão.</span>
             </div>
         </div>
-        <hr class="mb-4 mt-5">
+        <hr class="mb-4 mt-3">
+
         <div class="row">
-            <div class="col-lg-4 form-group">
+
+            <div class="col-lg-4 form-group {{ isset($ocorrencia) ? 'd-none' : null }}">
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="mudar_endereco" id="mudarEndereco">
+                    <input type="checkbox" class="custom-control-input" name="mudar_endereco" id="mudarEndereco" {{ isset($ocorrencia) ? 'checked' : null }}>
                     <label class="custom-control-label" for="mudarEndereco">O endereço da pessoa é diferente do endereço da ocorrência?</label>
                     <span class="form-text">Marque este campo caso precise informar um endereço de ocorrência diferente do endereço da pessoa solicitante.</span>
                 </div>
@@ -64,13 +66,37 @@
 
             <div class="col-lg-4 form-group">
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="vereador_compartilhado" id="vereadorCompartilhado">
+                    <input type="checkbox" class="custom-control-input" name="vereador_compartilhado" id="vereadorCompartilhado" {{ (isset($ocorrencia) and $ocorrencia->vereadores_count > 0) ? 'checked' : null }}>
                     <label class="custom-control-label" for="vereadorCompartilhado">Compartilhar com vereadores?</label>
                     <span class="form-text">Preencha este campo caso mais de um vereador precise ser notificado sobre o andamento desta ocorrência.</span>
                 </div>
             </div>
         </div>
     @endcomponent
+    
+    <div class="switch-vereadores">
+
+        
+        @component('ui::card')
+            @slot('title')
+                Vereadores envolvidos
+            @endslot
+
+            @foreach(\ByusTechnology\Gabinete\Models\Usuario::vereadores()->orderBy('name')->get()->chunk(3) as $usersRow)
+                <div class="row">
+                    @foreach($usersRow as $user)
+                        <div class="col-lg-4 form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="vereadores[{{ $user->id }}]" value="{{ $user->id }}" id="vereadores-{{ $user->id }}" {{ $ocorrencia->vereadores->contains('user_id', $user->id) ? 'checked' : null }}>
+                                <label class="custom-control-label" for="vereadores-{{ $user->id }}">{{ $user->name }}</label>
+                                <span class="form-text">{{ $user->email }}</span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endforeach
+        @endcomponent
+    </div>
 
     <div class="switch-endereco">
         @component('ui::card')
@@ -121,28 +147,6 @@
                     <span class="form-text">Informe o estado referente a cidade escolhida.</span>
                 </div>
             </div>
-        @endcomponent
-    </div>
-
-    <div class="switch-vereadores">
-        @component('ui::card')
-            @slot('title')
-                Vereadores envolvidos
-            @endslot
-
-            @foreach(\ByusTechnology\Gabinete\Models\Usuario::vereadores()->orderBy('name')->get()->chunk(3) as $usersRow)
-                <div class="row">
-                    @foreach($usersRow as $user)
-                        <div class="col-lg-4 form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="vereadores[{{ $user->id }}]" value="{{ $user->id }}" id="vereadores-{{ $user->id }}">
-                                <label class="custom-control-label" for="vereadores-{{ $user->id }}">{{ $user->name }}</label>
-                                <span class="form-text">{{ $user->email }}</span>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            @endforeach
         @endcomponent
     </div>
 

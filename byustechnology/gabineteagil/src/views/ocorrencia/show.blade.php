@@ -33,7 +33,7 @@
                     @endcomponent
 
                     @component('ui::attribute', ['title' => 'Tipo da ocorrência'])
-                        {{ $ocorrencia->tipo }}
+                        {{ $ocorrencia->tipoOcorrencia->titulo }}
                     @endcomponent
 
                     @component('ui::attribute', ['title' => 'Orgão responsável'])
@@ -89,7 +89,15 @@
                         Descrição
                     @endslot
 
-                    {!! $ocorrencia->descricao !!}
+                    {!! $ocorrencia->descricao ?? '<span class="text-muted">Nenhuma descrição informada</span>' !!}
+                @endcomponent
+
+                @component('ui::card')
+                    @slot('title')
+                        Observação
+                    @endslot
+
+                    {!! $ocorrencia->observacao ?? '<span class="text-muted">Nenhuma observação informada</span>' !!}
                 @endcomponent
 
                 @component('ui::card')
@@ -170,8 +178,6 @@
                         @foreach($ultimasMensagens as $mensagem)
                             @include('ui::message-ballon', ['mensagem' => $mensagem])
                         @endforeach
-
-                        <a href="{{ route('ocorrencia.mensagem.index', ['ocorrencia' => $ocorrencia]) }}" class="btn btn-secondary btn-block mt-3">Ver todas as mensagens</a>
 
                     @else
                         @include('ui::no-results')

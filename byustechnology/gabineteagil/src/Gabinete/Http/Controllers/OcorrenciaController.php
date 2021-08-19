@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use ByusTechnology\Gabinete\Models\Prefeitura;
 use ByusTechnology\Gabinete\Models\Ocorrencia;
+use ByusTechnology\Gabinete\Models\OcorrenciaVereador;
 use ByusTechnology\Gabinete\Filters\OcorrenciaFilters;
 use ByusTechnology\Gabinete\Http\Requests\OcorrenciaRequest;
 
@@ -59,12 +60,15 @@ class OcorrenciaController extends Controller
 
         
         if ($request->has('vereadores')) {
-
+            $vereadores = User::whereIn('id', $request->vereadores)->get();
             foreach($request->vereadores as $vereador) {
-                $vereador = User::find($vereador);
-                $ocorrencia->vereadores()->attach($vereador->id, ['vereador' => $vereador->name]);
+                $vereador = $vereadores->where('id', $vereador)->first();
+                OcorrenciaVereador::create([
+                    'ocorrencia_id' => $ocorrencia->id, 
+                    'user_id' => $vereador->id, 
+                    'vereador' => $vereador->name
+                ]);
             }
-
         }
         
         session()->flash('flash_modal_success', 'Ocorrência ' . $ocorrencia->titulo . ' cadastrada com sucesso!');
@@ -106,8 +110,24 @@ class OcorrenciaController extends Controller
      */
     public function update(OcorrenciaRequest $request, Ocorrencia $ocorrencia)
     {
-        $ocorrencia->fill($request->except('mudar_endereco'));
+        $ocorrencia->fill($request->except(['mudar_endereco', 'vereador_compartilhado', 'vereadores']));
         $ocorrencia->update();
+
+        // Remove todos os vereadores para depois 
+        // sincroniza-los novamente.
+        $ocorrencia->vereadores()->delete();
+
+        if ($request->has('vereadores')) {
+            $vereadores = User::whereIn('id', $request->vereadores)->get();
+            foreach($request->vereadores as $vereador) {
+                $vereador = $vereadores->where('id', $vereador)->first();
+                OcorrenciaVereador::create([
+                    'ocorrencia_id' => $ocorrencia->id, 
+                    'user_id' => $vereador->id, 
+                    'vereador' => $vereador->name
+                ]);
+            }
+        }
 
         session()->flash('flash_success', 'Ocorrência alterada com sucesso!');
         return redirect($ocorrencia->path());

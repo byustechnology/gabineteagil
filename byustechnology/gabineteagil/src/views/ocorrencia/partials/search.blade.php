@@ -26,10 +26,10 @@
                     <span class="form-text">Informe em qual campo você deseja fazer a sua busca.</span>
                 </div>
                 <div class="form-group">
-                    {!! Form::label('tipo', 'Tipo da ocorrência') !!}
-                    {!! Form::select('tipo', [
+                    {!! Form::label('tipo_ocorrencia_id', 'Tipo da ocorrência') !!}
+                    {!! Form::select('tipo_ocorrencia_id', [
                     '' => 'Não filtrar por tipo...',
-                    ] + \ByusTechnology\Gabinete\Models\Ocorrencia::TIPOS, null, ['class' => 'form-control']) !!}
+                    ] + \ByusTechnology\Gabinete\Models\TipoOcorrencia::ordenado()->pluck('titulo', 'id')->toArray(), null, ['class' => 'form-control']) !!}
                     <span class="form-text">Selecione o campo acima caso deseje filtrar ocorrências em uma etapa específica.</span>
                 </div>
                 <div class="form-group">

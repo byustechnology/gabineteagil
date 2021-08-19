@@ -12,20 +12,6 @@ class Ocorrencia extends Model
     use HasFactory, HasFilters, HasStatus;
 
     /**
-     * Define quais são os tipos
-     * de ocorrência disponíveis 
-     * para cadastro
-     * 
-     */
-    const TIPOS = [
-        'Requerimento' => 'Requerimento', 
-        'Indicação' => 'Indicação', 
-        'Ofício' => 'Ofício', 
-        'Moção' => 'Moção', 
-        'Projeto' => 'Projeto' 
-    ];
-
-    /**
      * Definindo que nenhum campo 
      * será bloqueado para o método 
      * fill.
@@ -54,6 +40,8 @@ class Ocorrencia extends Model
      * @var array
      */
     protected $with = [
+        'tipoOcorrencia', 
+        'vereadores', 
         'etapa', 
         'pessoa', 
     ];
@@ -66,6 +54,7 @@ class Ocorrencia extends Model
      * @var array
      */
     protected $withCount = [
+        'vereadores', 
         'mensagens', 
         'arquivos'
     ];
@@ -79,6 +68,17 @@ class Ocorrencia extends Model
     public function prefeitura()
     {
         return $this->belongsTo(Prefeitura::class);
+    }
+
+    /**
+     * Uma ocorrência está associada 
+     * a um determinado tipo.
+     * 
+     * @return \ByusTechnology\Gabinete\Models\TipoOcorrencia
+     */
+    public function tipoOcorrencia()
+    {
+        return $this->belongsTo(TipoOcorrencia::class);
     }
 
     /**

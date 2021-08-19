@@ -55,7 +55,7 @@
                         @foreach($ocorrencias as $ocorrencia)
                         <tr>
                             <td>
-                                <a href="{{ url($ocorrencia->path()) }}"><strong>{{ $ocorrencia->tipo }}, {{ optional($ocorrencia->pessoa)->titulo ?? 'Sem pessoa atrelada' }}</strong></a><br>
+                                <a href="{{ url($ocorrencia->path()) }}"><strong>{{ $ocorrencia->tipoOcorrencia->titulo }}, {{ optional($ocorrencia->pessoa)->titulo ?? 'Sem pessoa atrelada' }}</strong></a><br>
                                 <small class="text-muted">
                                     {{ $ocorrencia->bairro }} - {{ $ocorrencia->cidade }}/{{ $ocorrencia->estado }}<br>
                                     

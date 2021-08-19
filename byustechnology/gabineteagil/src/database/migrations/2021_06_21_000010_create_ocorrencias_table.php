@@ -15,7 +15,7 @@ class CreateOcorrenciasTable extends Migration
     {
         Schema::create('ocorrencias', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo')->nullable();
+            $table->unsignedBigInteger('tipo_ocorrencia_id')->nullable();
             $table->foreignId('prefeitura_id')->constrained()->onDelete('cascade');
             $table->foreignId('pessoa_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('assunto_id')->nullable()->constrained()->onDelete('set null');
@@ -50,6 +50,7 @@ class CreateOcorrenciasTable extends Migration
 
             $table->timestamps();
 
+            $table->foreign('tipo_ocorrencia_id')->references('id')->on('tipo_ocorrencias')->onDelete('set null');
             $table->foreign('orgao_responsavel_id')->references('id')->on('orgaos_responsaveis')->onDelete('set null');
             $table->foreign('concluida_por')->references('id')->on('users')->onDelete('set null');
             $table->foreign('cancelada_por')->references('id')->on('users')->onDelete('set null');

@@ -25,9 +25,9 @@ class UsersTableSeeder extends Seeder
         ]);
 
         // Adicionando os vereadores
-        foreach(range(1, 20) as $range) {
+        foreach(range(1, 3) as $range) {
             User::firstOrCreate([
-                'name' => $faker->name, 
+                'name' => $faker->firstName() . ' '  . $faker->lastName(), 
                 'email' => $faker->unique()->email, 
                 'type' => 'vereador', 
                 'password' => bcrypt('secret')
