@@ -141,21 +141,17 @@
             </div>
             <div class="col-lg">
                 
-                @if ($ocorrencia->concluida())
-                    @component('ui::card')
-                        @slot('title')
-                            Ocorrência concluída
-                        @endslot
-
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link bg-light mb-2 rounded active" href="{{ route('ocorrencia.pdf.template', ['ocorrencia' => $ocorrencia]) }}" target="_blank"><i class="far fa-file-pdf fa-fw mr-1"></i> Download do template</a>
+                @component('ui::card')
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link bg-light mb-2 rounded active" href="{{ route('ocorrencia.pdf.template', ['ocorrencia' => $ocorrencia]) }}" target="_blank"><i class="far fa-file-pdf fa-fw mr-1"></i> Download do template</a>
+                            @if ($ocorrencia->concluida())
                                 <a class="nav-link bg-light mb-2 rounded" href="#" data-toggle="modal" data-target="#m-notificar-email"><i class="far fa-envelope fa-fw mr-1"></i> Notificar via e-mail</a>
                                 <a class="nav-link bg-light mb-2 rounded" href="#" data-toggle="modal" data-target="#m-notificar-whats"><i class="fab fa-whatsapp fa-fw mr-1"></i> Notificar via WhatsApp</a>
-                            </li>
-                        </ul>
-                    @endcomponent
-                @endif
+                            @endif
+                        </li>
+                    </ul>
+                @endcomponent
 
                 @component('ui::card')
                     @slot('title')
