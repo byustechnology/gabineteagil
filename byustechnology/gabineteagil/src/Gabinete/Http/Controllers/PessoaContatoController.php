@@ -42,6 +42,11 @@ class PessoaContatoController extends Controller
     public function store(PessoaContatoRequest $request, Pessoa $pessoa)
     {
         $contato = (new PessoaContato)->fill($request->all());
+
+        if (empty($contato->titulo)) {
+            $contato->titulo = PessoaContato::TIPOS[$contato->tipo];
+        }
+
         $pessoa->contatos()->save($contato);
 
         session()->flash('flash_success', 'Contato ' . $contato->titulo . ' adicionada com sucesso!');
@@ -83,6 +88,11 @@ class PessoaContatoController extends Controller
     public function update(PessoaContatoRequest $request, Pessoa $pessoa, PessoaContato $contato)
     {
         $contato->fill($request->all());
+
+        if (empty($contato->titulo)) {
+            $contato->titulo = PessoaContato::TIPOS[$contato->tipo];
+        }
+
         $contato->update();
 
         session()->flash('flash_success', 'Contato ' . $contato->titulo . ' alterado com sucesso!');
