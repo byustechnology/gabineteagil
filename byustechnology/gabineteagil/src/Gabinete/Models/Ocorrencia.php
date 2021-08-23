@@ -295,4 +295,20 @@ class Ocorrencia extends Model
 
         return false;
     }
+
+    /**
+     * Retorna o WhatsApp associado a 
+     * pessoa da ocorrência.
+     * 
+     * @return mixed
+     */
+    public function getPessoaWhatsappAttribute()
+    {
+        if ( ! empty($this->pessoa)) {
+            $whats = $this->pessoa->contatos()->where('tipo', 'whats')->first('valor');
+            return optional($whats)->valor;
+        }
+
+        return null;
+    }
 }

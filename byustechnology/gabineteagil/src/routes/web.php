@@ -10,6 +10,7 @@ Route::prefix(config('gabinete.path'))->middleware(['web', 'auth'])->group(funct
 
     // Ocorrências
     Route::get('/ocorrencia/relatorio/por-assunto', [\ByusTechnology\Gabinete\Http\Controllers\OcorrenciaRelatorioController::class, 'porAssunto'])->name('ocorrencia.relatorio.por-assunto');
+    Route::post('/ocorrencia/{ocorrencia}/notificar/whatsapp', [\ByusTechnology\Gabinete\Http\Controllers\OcorrenciaNotificacaoController::class, 'whatsApp'])->name('ocorrencia.notificar.whatsapp');
     Route::get('/ocorrencia/{ocorrencia}/pdf', [\ByusTechnology\Gabinete\Http\Controllers\OcorrenciaPdfController::class, 'pdf'])->name('ocorrencia.pdf.template');
     Route::post('/ocorrencia/{ocorrencia}/cancelar', [\ByusTechnology\Gabinete\Http\Controllers\OcorrenciaAcaoController::class, 'cancelar'])->name('ocorrencia.cancelar');
     Route::post('/ocorrencia/{ocorrencia}/concluir', [\ByusTechnology\Gabinete\Http\Controllers\OcorrenciaAcaoController::class, 'concluir'])->name('ocorrencia.concluir');
