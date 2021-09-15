@@ -11,7 +11,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 form-group">
-                {!! Form::label('tipo', 'Tipo da pessoa') !!}
+                {!! Form::label('tipo', 'Tipo da pessoa *') !!}
                 {!! Form::select('tipo', [
                     '' => 'Por favor, selecione...'
                 ] + \ByusTechnology\Gabinete\Models\Pessoa::TIPO, null, ['class' => 'form-control']) !!}

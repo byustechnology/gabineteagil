@@ -32,12 +32,12 @@ class OcorrenciaRequest extends FormRequest
             'descricao' => 'required', 
 
             // Endereço
-            'cep' => 'required_if:mudar_endereco,1', 
-            'logradouro' => 'required_if:mudar_endereco,1', 
-            'numero' => 'required_if:mudar_endereco,1', 
-            'bairro' => 'required_if:mudar_endereco,1', 
-            'cidade' => 'required_if:mudar_endereco,1', 
-            'estado' => 'required_if:mudar_endereco,1'
+            // 'cep' => 'required_if:mudar_endereco,1', 
+            // 'logradouro' => 'required_if:mudar_endereco,1', 
+            // 'numero' => 'required_if:mudar_endereco,1', 
+            'bairro' => 'required_if:mudar_endereco,on', 
+            'cidade' => 'required_if:mudar_endereco,on', 
+            'estado' => 'required_if:mudar_endereco,on'
         ];
     }
 }

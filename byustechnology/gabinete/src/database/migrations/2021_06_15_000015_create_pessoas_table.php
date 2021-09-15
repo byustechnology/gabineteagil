@@ -21,12 +21,12 @@ class CreatePessoasTable extends Migration
 
             // Documento é usado CPF ou CNPJ
             $table->string('tipo');
-            $table->string('documento');
+            $table->string('documento')->nullable();
 
             // Dados do endereço
-            $table->string('cep');
-            $table->string('logradouro');
-            $table->string('numero');
+            $table->string('cep')->nullable();
+            $table->string('logradouro')->nullable();
+            $table->string('numero')->nullable();
             $table->string('complemento')->nullable();
             $table->string('bairro');
             $table->string('cidade');

@@ -34,6 +34,9 @@ Route::prefix(config('gabinete.path'))->middleware(['web', 'auth'])->group(funct
     Route::get('/fullcalendar', \ByusTechnology\Gabinete\Http\Controllers\FullCalendarController::class)->name('fullcalendar');
     Route::resource('/agenda', \ByusTechnology\Gabinete\Http\Controllers\AgendaController::class);
     
+    // Configurações
+    Route::resource('configuracao', \ByusTechnology\Gabinete\Http\Controllers\ConfiguracaoController::class);
+
     // Usuários
     Route::resource('/usuario', \ByusTechnology\Gabinete\Http\Controllers\UsuarioController::class);
 

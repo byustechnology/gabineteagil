@@ -57,7 +57,7 @@
             @endslot
 
             @component('ui::attribute', ['title' => 'Documento (CPF)'])
-            {{ $pessoa->documento }}
+            {!! $pessoa->documento ?? '<span class="text-muted">Não informado</span>' !!}
             @endcomponent
 
             <div class="row">
@@ -133,7 +133,7 @@
             @endslot
 
             @component('ui::attribute', ['title' => 'Documento (CNPJ)'])
-            {{ $pessoa->documento }}
+            {!! $pessoa->documento ?? '<span class="text-muted">Não informado</span>' !!}
             @endcomponent
 
             @component('ui::attribute', ['title' => 'Ramo de atuação'])

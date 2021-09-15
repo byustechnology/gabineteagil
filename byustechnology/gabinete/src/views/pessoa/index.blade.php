@@ -39,7 +39,7 @@
                                 <a href="{{ url($pessoa->path()) }}"><strong>{{ $pessoa->titulo }}</strong></a><br>
                                 <small class="text-muted">{{ $pessoa->endereco_completo }}</small>
                             </td>
-                            <td>{{ $pessoa->codigo }}</td>
+                            <td>{!! $pessoa->documento ?? '<span class="text-muted">Não informado</span>' !!}</td>
                             <td>{{ \ByusTechnology\Gabinete\Models\Pessoa::TIPO[$pessoa->tipo] }}</td>
                             <td class="table-actions">
                                 {!! Form::open(['url' => route('pessoa.destroy', ['pessoa' => $pessoa->id]), 'method' => 'delete']) !!}

@@ -15,6 +15,7 @@
                 <li class="divider">Administração</li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('etapa.index') }}">Etapas</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('usuario.index') }}">Usuários</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('configuracao.index') }}">Configurações</a></li>
             @endif
             <li class="divider">Ocorrências</li>
             <li class="nav-item"><a class="nav-link" href="{{ route('ocorrencia.create') }}">Nova ocorrência</a></li>

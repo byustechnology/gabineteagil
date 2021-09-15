@@ -28,11 +28,11 @@
     @endslot
 
     @component('ui::attribute', ['title' => 'Logradouro'])
-        {{ $pessoa->logradouro }}
+        {!! $pessoa->logradouro ?? '<span class="text-muted">Sem logradouro</span>' !!}
     @endcomponent
 
     @component('ui::attribute', ['title' => 'Número'])
-        {{ $pessoa->numero }}
+        {!! $pessoa->numero ?? '<span class="text-muted">Sem número</span>' !!}
     @endcomponent
 
     @component('ui::attribute', ['title' => 'Complemento'])
@@ -40,11 +40,11 @@
     @endcomponent
 
     @component('ui::attribute', ['title' => 'Cidade/Estado'])
-        {{ $pessoa->cidade }}/{{ $pessoa->estado}}
+        {!! $pessoa->cidade ?? '<span class="text-muted">Sem cidade</span>' !!}/{!! $pessoa->estado ?? '<span class="text-muted">Sem estado</span>' !!}
     @endcomponent
 
     @component('ui::attribute', ['title' => 'CEP'])
-        {{ $pessoa->cep }}
+        {!! $pessoa->cep ?? '<span class="text-muted">Sem CEP</span>' !!}
     @endcomponent
 
 @endcomponent

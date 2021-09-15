@@ -223,6 +223,12 @@ Breadcrumbs::for('g-ocorrencia-relatorio-por-assunto-show', function ($trail) {
     $trail->push('Visualizar');
 });
 
+// Configurações
+Breadcrumbs::for('g-configuracao', function ($trail) {
+    $trail->parent('g-dashboard');
+    $trail->push('Configurações', route('configuracao.index'));
+});
+
 // Mapa
 Breadcrumbs::for('g-mapa', function ($trail) {
     $trail->parent('g-dashboard');

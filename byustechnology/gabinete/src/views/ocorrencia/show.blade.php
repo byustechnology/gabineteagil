@@ -159,11 +159,11 @@
                     @endslot
 
                     @component('ui::attribute', ['title' => 'Logradouro'])
-                        {{ $ocorrencia->logradouro }}
+                        {!! $ocorrencia->logradouro ?? '<span class="text-muted">Sem logradouro</span>' !!}
                     @endcomponent
 
                     @component('ui::attribute', ['title' => 'Número'])
-                        {{ $ocorrencia->numero }}
+                        {!! $ocorrencia->numero ?? '<span class="text-muted">Sem número</span>' !!}
                     @endcomponent
 
                     @component('ui::attribute', ['title' => 'Complemento'])
@@ -171,11 +171,11 @@
                     @endcomponent
 
                     @component('ui::attribute', ['title' => 'Cidade/Estado'])
-                        {{ $ocorrencia->cidade }}/{{ $ocorrencia->estado}}
+                        {!! $ocorrencia->cidade ?? '<span class="text-muted">Sem cidade</span>' !!}/{!! $ocorrencia->estado ?? '<span class="text-muted">Sem estado</span>' !!}
                     @endcomponent
 
                     @component('ui::attribute', ['title' => 'CEP'])
-                        {{ $ocorrencia->cep }}
+                        {!! $ocorrencia->cep ?? '<span class="text-muted">Não informado</span>' !!}
                     @endcomponent
 
                 @endcomponent

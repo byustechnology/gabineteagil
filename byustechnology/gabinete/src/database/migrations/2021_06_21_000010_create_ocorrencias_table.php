@@ -27,9 +27,9 @@ class CreateOcorrenciasTable extends Migration
             $table->string('protocolo')->nullable();
 
             // Dados do endereço
-            $table->string('cep');
-            $table->string('logradouro');
-            $table->string('numero');
+            $table->string('cep')->nullable();
+            $table->string('logradouro')->nullable();
+            $table->string('numero')->nullable();
             $table->string('complemento')->nullable();
             $table->string('bairro');
             $table->string('cidade');
