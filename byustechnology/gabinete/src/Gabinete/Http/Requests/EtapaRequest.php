@@ -26,6 +26,7 @@ class EtapaRequest extends FormRequest
     {
         return [
             'codigo' => [
+                'required', 
                 Rule::unique('etapas', 'codigo')->ignore($this->etapa)
             ], 
             'titulo' => 'required',

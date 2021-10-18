@@ -27,7 +27,9 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@chartisan/chartjs": "^2.1.0",
         "animate.css": "^4.1.1",
+        "chart.js": "^2.9.4",
         "jquery-mask-plugin": "^1.14.16"
     }
 }

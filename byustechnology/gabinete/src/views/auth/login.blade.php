@@ -8,8 +8,8 @@
                 <div class="row">
                     <div class="offset-lg-4 col-lg-4">
                         <div class="animate__animated animate__fadeIn bg-white px-4 py-5 rounded shadow">
-                            <img class="d-block mb-4 mx-auto" src="{{ asset('assets/images/logotipo.png') }}" alt="Logotipo {{ config('app.name') }}" width="200">
-                            
+                            <img class="d-block mb-4 mx-auto" src="{{ asset('assets/images/logotipo-login.png') }}" alt="Logotipo {{ config('app.name') }}" width="200">
+
                             @if ($errors->any())
                                 <div class="alert alert-danger animate__animated animate__bounce">
                                     <ul class="list-unstyled mb-0">
@@ -19,7 +19,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            
+
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend">

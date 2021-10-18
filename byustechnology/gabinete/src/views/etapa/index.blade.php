@@ -31,6 +31,7 @@
                                 <th>Cor</th>
                                 <th class="text-center">Conclui</th>
                                 <th class="text-center">Cancela</th>
+                                <th>Cód</th>
                                 <th class="table-actions">Ações</th>
                             </tr>
                         </thead>
@@ -42,6 +43,7 @@
                                     <td><i class="fas fa-square fa-fw mr-2" style="color: {{ $etapa->cor }}"></i>{{ $etapa->cor }}</td>
                                     <td class="text-center">{!! $etapa->conclui ? '<i data-toggle="tooltip" title="Ocorrências nesta etapa serão concluidas automaticamente" class="far fa-check-circle fa-fw text-success"></i>' : '<i class="far fa-circle fa-fw text-muted"></i>' !!}</td>
                                     <td class="text-center">{!! $etapa->cancela ? '<i data-toggle="tooltip" title="Ocorrências nesta etapa serão canceladas automaticamente" class="far fa-check-circle fa-fw text-success"></i>' : '<i class="far fa-circle fa-fw text-muted"></i>' !!}</td>
+                                    <td>{{ $etapa->codigo }}</td>
                                     <td class="table-actions">
                                         {!! Form::open(['url' => route('etapa.destroy', ['etapa' => $etapa]), 'method' => 'delete']) !!}
                                             <a data-toggle="tooltip" title="Editar" href="{{ route('etapa.edit', ['etapa' => $etapa]) }}" class="btn btn-table-actions btn-link"><i class="far fa-edit fa-fw"></i></a>
@@ -61,4 +63,9 @@
             @endif
         @endcomponent
     </div>
+
+
+<!-- Modals -->
+@include('gabinete::etapa.partials.search')
+
 @endsection
