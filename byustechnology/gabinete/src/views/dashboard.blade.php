@@ -63,10 +63,10 @@
 
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link bg-light mb-2 rounded active" href="#">Adicionar pessoa</a>
-                            <a class="nav-link bg-light mb-2 rounded active" href="#">Adicionar ocorrência</a>
-                            <a class="nav-link bg-light mb-2 rounded active" href="#">Gerenciar agenda</a>
-                            <a class="nav-link bg-light mb-2 rounded active" href="#">Gerenciar usuários</a>
+                            <a class="nav-link bg-light mb-2 rounded active" href="{{ route('pessoa.create') }}">Adicionar pessoa</a>
+                            <a class="nav-link bg-light mb-2 rounded active" href="{{ route('ocorrencia.create') }}">Adicionar ocorrência</a>
+                            <a class="nav-link bg-light mb-2 rounded active" href="{{ route('agenda.index') }}">Gerenciar agenda</a>
+                            <a class="nav-link bg-light mb-2 rounded active" href="{{ route('usuario.index') }}">Gerenciar usuários</a>
                         </li>
                     </ul>
                 @endcomponent
