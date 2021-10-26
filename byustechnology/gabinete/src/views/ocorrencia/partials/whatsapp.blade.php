@@ -12,7 +12,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     {!! Form::label('mensagem', 'Mensagem da notificação') !!}
-                    {!! Form::textarea('mensagem', 'Olá ' . optional($ocorrencia->pessoa)->titulo . ', a sua ocorrência ' . $ocorrencia->id . ' foi finalizada!', ['class' => 'form-control']) !!}
+                    {!! Form::textarea('mensagem', 'Olá ' . optional($ocorrencia->pessoa)->titulo . ', a sua ocorrência ' . $ocorrencia->id . ' foi atualizada e encontra-se na etapa: ' . $ocorrencia->etapa->titulo . '. Para maiores informações, entre em contato conosco.', ['class' => 'form-control']) !!}
                     <span class="form-text">Preencha a mensagem que será enviada para o WhatsApp.</span>
                 </div>
                 <div class="form-group">

@@ -16,7 +16,7 @@
 @endsection
 @section('s-content')
     <div class="container-fluid">
-    
+
         <div class="row">
             <div class="col-lg-8">
                 @component('ui::card')
@@ -27,7 +27,7 @@
                     @component('ui::attribute', ['title' => 'Pessoa associada'])
                         <a href="{{ url($ocorrencia->pessoa->path()) }}">{{ $ocorrencia->pessoa->titulo }}</a>
                     @endcomponent
-                    
+
                     @component('ui::attribute', ['title' => 'Assunto'])
                         {{ $ocorrencia->assunto->titulo }}
                     @endcomponent
@@ -47,7 +47,7 @@
                         @else
                             <span class="text-muted">Não informado</span>
                         @endif
-                        
+
                     @endcomponent
 
                     @component('ui::attribute', ['title' => 'Protocolo'])
@@ -140,14 +140,26 @@
                 @endcomponent
             </div>
             <div class="col-lg">
-                
+
                 @component('ui::card')
+
+                    @php
+                        $contatos = $ocorrencia->pessoa->contatos;
+                        $whatsapp = $contatos->where('tipo', 'whats')->first();
+
+                        if ( empty($whatsapp)) {
+                            $whatsapp = $contatos->where('tipo', 'cel')->first();
+                        }
+
+                        $email = $contatos->where('tipo', 'email')->first();
+                    @endphp
+
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link bg-light mb-2 rounded active" href="{{ route('ocorrencia.pdf.template', ['ocorrencia' => $ocorrencia]) }}" target="_blank"><i class="far fa-file-pdf fa-fw mr-1"></i> Download do template</a>
-                            @if ($ocorrencia->concluida())
-                                <a class="nav-link bg-light mb-2 rounded" href="#" data-toggle="modal" data-target="#m-notificar-email"><i class="far fa-envelope fa-fw mr-1"></i> Notificar via e-mail</a>                                
-                                <a class="nav-link bg-light mb-2 rounded" href="#" data-toggle="modal" data-target="#m-notificar-whats"><i class="fab fa-whatsapp fa-fw mr-1"></i> Notificar via WhatsApp</a>
+                            <a class="nav-link bg-light mb-2 rounded" href="#" data-toggle="modal" data-target="#m-notificar-whats"><i class="fab fa-whatsapp fa-fw mr-1"></i> Notificar via WhatsApp</a>
+                            @if ( ! empty($email))
+                            <a class="nav-link bg-light mb-2 rounded" href="{{ $email->valor }}" data-toggle="modal" data-target="#m-notificar-email"><i class="far fa-envelope fa-fw mr-1"></i> Notificar via e-mail</a>
                             @endif
                         </li>
                     </ul>
@@ -185,7 +197,7 @@
                     @endslot
 
                     <a href="#" data-toggle="modal" data-target="#m-ocorrencia-mensagem" class="btn btn-success btn-sm mb-2">Nova mensagem</a>
-                    
+
                     @if ($ultimasMensagens->count())
 
                         @foreach($ultimasMensagens as $mensagem)
@@ -195,7 +207,7 @@
                     @else
                         @include('ui::no-results')
                     @endif
-                    
+
                 @endcomponent
                 @component('ui::card')
                     @slot('title')
@@ -213,7 +225,7 @@
                     @else
                         @include('ui::no-results')
                     @endif
-                    
+
                 @endcomponent
             </div>
         </div>

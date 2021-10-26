@@ -12,8 +12,8 @@ class Ocorrencia extends Model
     use HasFactory, HasFilters, HasStatus;
 
     /**
-     * Definindo que nenhum campo 
-     * será bloqueado para o método 
+     * Definindo que nenhum campo
+     * será bloqueado para o método
      * fill.
      *
      * @var array
@@ -21,48 +21,48 @@ class Ocorrencia extends Model
     protected $guarded = [];
 
     /**
-     * Define os campos que devem ser 
+     * Define os campos que devem ser
      * tratados como data.
-     * 
+     *
      * @var array
      */
     protected $dates = [
-        'prevista_para', 
-        'concluida_em', 
+        'prevista_para',
+        'concluida_em',
         'cancelada_em'
     ];
 
     /**
-     * Define quais modelos devem 
-     * ser carregados juntos 
+     * Define quais modelos devem
+     * ser carregados juntos
      * com a ocorrência.
-     * 
+     *
      * @var array
      */
     protected $with = [
-        'tipoOcorrencia', 
-        'vereadores', 
-        'etapa', 
-        'pessoa', 
+        'tipoOcorrencia',
+        'vereadores',
+        'etapa',
+        'pessoa',
     ];
 
     /**
-     * Define as contagens que precisam 
-     * ser carregadas com este 
+     * Define as contagens que precisam
+     * ser carregadas com este
      * modelo.
-     * 
+     *
      * @var array
      */
     protected $withCount = [
-        'vereadores', 
-        'mensagens', 
+        'vereadores',
+        'mensagens',
         'arquivos'
     ];
 
     /**
      * Uma ocorrência pertence a uma
      * determinada prefeitura.
-     * 
+     *
      * @return \ByusTechnology\Gabinete\Models\Prefeitura
      */
     public function prefeitura()
@@ -71,9 +71,9 @@ class Ocorrencia extends Model
     }
 
     /**
-     * Uma ocorrência está associada 
+     * Uma ocorrência está associada
      * a um determinado tipo.
-     * 
+     *
      * @return \ByusTechnology\Gabinete\Models\TipoOcorrencia
      */
     public function tipoOcorrencia()
@@ -84,7 +84,7 @@ class Ocorrencia extends Model
     /**
      * Uma ocorrência pertence a uma
      * determinada pessoa.
-     * 
+     *
      * @return \ByusTechnology\Gabinete\Models\Pessoa
      */
     public function pessoa()
@@ -95,7 +95,7 @@ class Ocorrencia extends Model
     /**
      * Uma ocorrência pertence a um
      * determinado orgão.
-     * 
+     *
      * @return \ByusTechnology\Gabinete\Models\OrgaoResponsavel
      */
     public function orgaoResponsavel()
@@ -104,9 +104,9 @@ class Ocorrencia extends Model
     }
 
     /**
-     * Definindo o relacionamento entre 
+     * Definindo o relacionamento entre
      * a ocorrência e o assunto indicado.
-     * 
+     *
      * @return \ByusTechnology\Gabinete\Models\Assunto
      */
     public function assunto()
@@ -115,9 +115,9 @@ class Ocorrencia extends Model
     }
 
     /**
-     * Definindo o relacionamento entre 
+     * Definindo o relacionamento entre
      * as etapas e a ocorrência.
-     * 
+     *
      * @return \ByusTechnology\Gabinete\Models\Etapa
      */
     public function etapa()
@@ -126,9 +126,9 @@ class Ocorrencia extends Model
     }
 
     /**
-     * Definindo o relacionamento entre 
+     * Definindo o relacionamento entre
      * as mensagens e a ocorrência.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function mensagens()
@@ -137,9 +137,9 @@ class Ocorrencia extends Model
     }
 
     /**
-     * Definindo o relacionamento entre 
+     * Definindo o relacionamento entre
      * os arquivos e a ocorrência.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function arquivos()
@@ -148,9 +148,9 @@ class Ocorrencia extends Model
     }
 
     /**
-     * Definindo o relacionamento entre 
+     * Definindo o relacionamento entre
      * as ocorrências e os vereadores.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function vereadores()
@@ -160,7 +160,7 @@ class Ocorrencia extends Model
 
     /**
      * Retorna se a ocorrência está concluida
-     * 
+     *
      * @return boolean
      */
     public function concluida()
@@ -170,7 +170,7 @@ class Ocorrencia extends Model
 
     /**
      * Retorna se a ocorrência está cancelada
-     * 
+     *
      * @return boolean
      */
     public function cancelada()
@@ -271,9 +271,9 @@ class Ocorrencia extends Model
     }
 
     /**
-     * Verifica se a ocorrência foi criada 
+     * Verifica se a ocorrência foi criada
      * em menos de 01 dia.
-     * 
+     *
      * @return boolean
      */
     public function getNovaAttribute()
@@ -282,9 +282,9 @@ class Ocorrencia extends Model
     }
 
     /**
-     * Retorna se a ocorrência está 
+     * Retorna se a ocorrência está
      * na última etapa.
-     * 
+     *
      * @return boolean
      */
     public function getUltimaEtapaAttribute()
@@ -297,15 +297,20 @@ class Ocorrencia extends Model
     }
 
     /**
-     * Retorna o WhatsApp associado a 
+     * Retorna o WhatsApp associado a
      * pessoa da ocorrência.
-     * 
+     *
      * @return mixed
      */
     public function getPessoaWhatsappAttribute()
     {
         if ( ! empty($this->pessoa)) {
             $whats = $this->pessoa->contatos()->where('tipo', 'whats')->first('valor');
+
+            if ( empty($whats)) {
+                $whats = $this->pessoa->contatos()->where('tipo', 'cel')->first('valor');
+            }
+
             return optional($whats)->valor;
         }
 

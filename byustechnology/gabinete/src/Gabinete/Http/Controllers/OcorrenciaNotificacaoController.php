@@ -12,11 +12,11 @@ class OcorrenciaNotificacaoController extends Controller
     public function whatsApp(Request $request, Ocorrencia $ocorrencia)
     {
         $request->validate([
-            'mensagem' => 'required', 
+            'mensagem' => 'required',
             'numero' => 'required'
         ]);
 
-        return redirect('https://api.whatsapp.com/send?phone=55' . $request->numero . '&text=Hello');
+        return redirect('https://api.whatsapp.com/send?phone=55' . $request->numero . '&text=' . urlencode($request->mensagem));
     }
 
 }
