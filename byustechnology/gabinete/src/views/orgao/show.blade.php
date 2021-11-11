@@ -3,7 +3,7 @@
 @section('content')
 
     @component('gabinete::layouts.title')
-        
+
         <h1 class="d-block my-3 mt-4 h3">{{ $orgao->titulo }} - Orgão responsável</h1>
 
         @slot('actions')
@@ -21,7 +21,7 @@
             @slot('title')
                 Informações do orgão responsável
             @endslot
-            
+
             <div class="row">
                 <div class="col-lg-8">
                     @component('ui::attribute', ['title' => 'Título'])
@@ -58,6 +58,30 @@
             </div>
         @endcomponent
 
+        @component('ui::card')
+            @slot('title')
+                Responsável
+            @endslot
+
+            <div class="row">
+                <div class="col-lg-6">
+                    @component('ui::attribute', ['title' => 'Responsável'])
+                        {!! $orgao->responsavel ?? '<span class="text-muted">Não informado</span>' !!}
+                    @endcomponent
+                </div>
+                <div class="col-lg">
+                    @component('ui::attribute', ['title' => 'Telefone resp.'])
+                        {!! $orgao->responsavel_telefone ?? '<span class="text-muted">Não informado</span>' !!}
+                    @endcomponent
+                </div>
+                <div class="col-lg">
+                    @component('ui::attribute', ['title' => 'E-mail resp.'])
+                        {!! $orgao->responsavel_email ? '<a href="mailto:{{ $orgao->responsavel_email }}">{{ $orgao->responsavel_email }}</a>'  : '<span class="text-muted">Não informado</span>' !!}
+                    @endcomponent
+                </div>
+            </div>
+        @endcomponent
+
     </div>
-    
+
 @endsection

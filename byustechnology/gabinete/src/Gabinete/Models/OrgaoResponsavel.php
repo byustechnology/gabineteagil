@@ -11,41 +11,44 @@ use Illuminate\Database\Eloquent\Model;
 class OrgaoResponsavel extends Model
 {
     use HasFactory, HasFilters, HasColorFields, NeedsAutocode;
-    
+
     /**
-    * Define o nome da tabela relacionado 
+    * Define o nome da tabela relacionado
     * a este recurso.
-    * 
+    *
     * @var string
     */
     protected $table = 'orgaos_responsaveis';
-    
+
     /**
-    * Definindo os campos que podem 
+    * Definindo os campos que podem
     * ser preenchidos.
     *
     * @var array
     */
     protected $fillable = [
-        'codigo', 
-        'titulo', 
-        'descricao', 
-        'cor', 
+        'codigo',
+        'titulo',
+        'descricao',
+        'cor',
+        'responsavel',
+        'responsavel_telefone',
+        'responsavel_email'
     ];
-    
+
     /**
-    * Define as contagens que precisam 
-    * ser carregadas com este 
+    * Define as contagens que precisam
+    * ser carregadas com este
     * modelo.
-    * 
+    *
     * @var array
     */
     protected $withCount = [
-        'ocorrencias', 
+        'ocorrencias',
     ];
-    
+
     /**
-    * Um orgão pode possuir várias 
+    * Um orgão pode possuir várias
     * ocorrências associadas a ele.
     *
     * @return \Illuminate\Database\Eloquent\Collection
@@ -54,7 +57,7 @@ class OrgaoResponsavel extends Model
     {
         return $this->hasMany(Ocorrencia::class);
     }
-    
+
     /**
     * Define um caminho para o modelo.
     *
@@ -64,7 +67,7 @@ class OrgaoResponsavel extends Model
     {
         return config('gabinete.path') . '/orgao/' . $this->id;
     }
-    
+
     /**
     * Scope responsável pela ordenação do recurso.
     *

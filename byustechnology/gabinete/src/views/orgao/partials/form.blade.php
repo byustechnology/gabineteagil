@@ -33,7 +33,32 @@
             </div>
         </div>
     @endcomponent
-    
+
+    @component('ui::card')
+        @slot('title')
+            Informações do responsável
+        @endslot
+
+        <div class="row">
+            <div class="col-lg-6 form-group">
+                {!! Form::label('responsavel', 'Responsável') !!}
+                {!! Form::text('responsavel', null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe o nome do responsável por este orgão.</span>
+            </div>
+            <div class="col-lg-3 form-group">
+                {!! Form::label('responsavel_telefone', 'Telefone do resp.') !!}
+                {!! Form::text('responsavel_telefone', null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe o telefone do responsável pelo orgão.</span>
+            </div>
+            <div class="col-lg-3 form-group">
+                {!! Form::label('responsavel_email', 'E-mail do resp.') !!}
+                {!! Form::text('responsavel_email', null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe o e-mail do responsável pelo orgão (caso haja).</span>
+            </div>
+        </div>
+
+    @endcomponent
+
     @component('ui::form-footer')
         <button type="submit" class="btn btn-success btn-lg"><i class="far fa-save fa-fw mr-1"></i> Salvar</button>
     @endcomponent
