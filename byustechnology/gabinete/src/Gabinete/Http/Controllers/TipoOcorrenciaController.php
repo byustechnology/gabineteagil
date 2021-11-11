@@ -3,6 +3,7 @@
 namespace ByusTechnology\Gabinete\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use ByusTechnology\Gabinete\Models\Ocorrencia;
 use ByusTechnology\Gabinete\Models\TipoOcorrencia;
 use ByusTechnology\Gabinete\Filters\TipoOcorrenciaFilters;
 use ByusTechnology\Gabinete\Http\Requests\TipoOcorrenciaRequest;
@@ -47,7 +48,7 @@ class TipoOcorrenciaController extends Controller
     public function store(TipoOcorrenciaRequest $request)
     {
         $tipo = (new TipoOcorrencia)->fill($request->all());
-        $tipo->prefeitura_id = 1; // TODO: Modificar para a prefeitura logada.        
+        $tipo->prefeitura_id = 1; // TODO: Modificar para a prefeitura logada.
         $tipo->save();
 
         session()->flash('flash_success', 'Tipo de ocorrência ' . $tipo->titulo . ' adicionado com sucesso!');

@@ -3,9 +3,20 @@
 namespace ByusTechnology\Gabinete\Actions;
 
 use ByusTechnology\Gabinete\Models\Ocorrencia;
-use Illuminate\Http\Request;
 
 class FormatarTemplateOcorrencia {
+
+    const TAGS = [
+        '!@codigo' => 'Código da ocorrência',
+        '!@dataHoje' => 'Data do dia atual',
+        '!@protocolo' => 'Protocolo da ocorrência',
+        '!@observacao' => 'Observação da ocorrência',
+        '!@cidadePrefeitura' => 'Cidade onde a prefeitura está localizada',
+        '!@orgaoResponsavelNome' => 'Nome do responsável pelo orgão associado',
+        '!@orgaoResponsavelTelefone' => 'Telefone do responsável pelo orgão associado',
+        '!@orgaoResponsavelEmail' => 'E-mail do responsável pelo orgão associado',
+        '!@consideracao' => 'Exibe o cadastro das considerações relacionadas ao tipo da ocorrência'
+    ];
 
     public $ocorrencia;
 
@@ -17,11 +28,15 @@ class FormatarTemplateOcorrencia {
     public function handle()
     {
         $replaces = [
-            '!@codigo' => $this->ocorrencia->id, 
-            '!@dataHoje' => today()->format('d/m/Y'), 
-            '!@protocolo' => $this->ocorrencia->protocolo, 
-            '!@observacao' => $this->ocorrencia->observacao, 
-            '!@cidadePrefeitura' => $this->ocorrencia->prefeitura->cidade
+            '!@codigo' => $this->ocorrencia->id,
+            '!@dataHoje' => today()->format('d/m/Y'),
+            '!@protocolo' => $this->ocorrencia->protocolo,
+            '!@observacao' => $this->ocorrencia->observacao,
+            '!@cidadePrefeitura' => $this->ocorrencia->prefeitura->cidade,
+            '!@orgaoResponsavelNome' => optional($this->ocorrencia->orgao)->responsavel,
+            '!@orgaoResponsavelTelefone' => optional($this->ocorrencia->orgao)->responsavel_telefone,
+            '!@orgaoResponsavelEmail' => optional($this->ocorrencia->orgao)->responsavel_email,
+            '!@consideracao' => optional($this->ocorrencia->ocorrenciaTipo)->consideracao
         ];
 
         return str_replace(array_keys($replaces), array_values($replaces), $this->ocorrencia->descricao);

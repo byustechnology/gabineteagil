@@ -23,7 +23,7 @@
         @slot('title')
             Template
         @endslot
-        
+
         <div class="form-group">
             <div id="editor">
                 @if (isset($tipo))
@@ -37,16 +37,26 @@
                 Você pode usar algumas tags que serão sobrepostas quando o arquivo for gerado
 
                 <ul class="list-unstyled">
-                    <li>- <strong class="text-primary">!@codigo</strong> Código da ocorrência</li>
-                    <li>- <strong class="text-primary">!@dataHoje</strong> Data do dia atual</li>
-                    <li>- <strong class="text-primary">!@protocolo</strong> Protocolo da ocorrência</li>
-                    <li>- <strong class="text-primary">!@observacao</strong> Observação da ocorrência</li>
-                    <li>- <strong class="text-primary">!@cidadePrefeitura</strong> Cidade onde a prefeitura está localizada</li>
+                    @foreach(\ByusTechnology\Gabinete\Actions\FormatarTemplateOcorrencia::TAGS as $indice => $descricao)
+                        <li>- <strong class="text-primary">{{ $indice }}</strong> {{ $descricao }}</li>
+                    @endforeach
                 </ul>
             </span>
         </div>
     @endcomponent
-    
+
+    @component('ui::card')
+        @slot('title')
+            Considerações
+        @endslot
+
+        <div class="form-group">
+            {!! Form::label('consideracao', 'Considerações') !!}
+            {!! Form::textarea('consideracao', null, ['class' => 'form-control']) !!}
+            <span class="form-text">Informe este campo caso hajam considerações sobre este tipo de ocorrência.</span>
+        </div>
+    @endcomponent
+
     @component('ui::form-footer')
         <button type="submit" class="btn btn-success btn-lg"><i class="far fa-save fa-fw mr-1"></i> Salvar</button>
     @endcomponent

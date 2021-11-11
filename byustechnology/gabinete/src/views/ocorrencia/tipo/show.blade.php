@@ -3,7 +3,7 @@
 @section('content')
 
     @component('gabinete::layouts.title')
-        
+
         <h1 class="d-block my-3 mt-4 h3">{{ $tipo->titulo }} - Tipos de ocorrência</h1>
 
         @slot('actions')
@@ -44,6 +44,39 @@
             </div>
         @endcomponent
 
+        @component('ui::card')
+            @slot('title')
+                Template
+            @endslot
+
+            @php
+                $ocorrenciaTeste = \ByusTechnology\Gabinete\Models\Ocorrencia::first()
+            @endphp
+
+            @if ( ! request()->has('preview') and ! empty($ocorrenciaTeste))
+            <a href="{{ url()->current() . '?preview=true' }}" class="btn btn-sm btn-primary mb-3" data-toggle="tooltip" title="Visualiza como o template ficará em uma ocorrência">Visualizar preview</a>
+            @endif
+
+            @if (request()->has('preview'))
+                <a href="{{ url()->current() }}" class="btn btn-sm btn-primary mb-3" data-toggle="tooltip" title="Remove o preview do template">Remover preview</a>
+                @php
+                    $parser = new \ByusTechnology\Gabinete\Actions\FormatarTemplateOcorrencia($ocorrenciaTeste)
+                @endphp
+
+                {!! $parser->handle() !!}
+            @else
+                <span>{!! $tipo->template ?? '<span class="text-muted">Nenhum template cadastrado</span>' !!}</span>
+            @endif
+        @endcomponent
+
+        @component('ui::card')
+            @slot('title')
+                Considerações
+            @endslot
+
+            <span>{!! $tipo->consideracao ?? '<span class="text-muted">Nenhuma consideração informada</span>' !!}</span>
+        @endcomponent
+
     </div>
-    
+
 @endsection
