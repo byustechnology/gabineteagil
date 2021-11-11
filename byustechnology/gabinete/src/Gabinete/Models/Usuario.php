@@ -10,16 +10,18 @@ class Usuario extends User
     use HasFilters;
 
     const TYPES = [
-        '' => 'Não definido', 
-        'admin' => 'Administrador', 
-        'vereador' => 'Vereador', 
-        'funcionario' => 'Funcionario', 
+        '' => 'Não definido',
+        'root' => 'Administrador',
+        'chefe' => 'Chefe de gabinete',
+        'assessor' => 'Assessor',
+        'vereador' => 'Vereador',
+        'estagiario' => 'Estagiário',
     ];
 
     /**
      * Define qual o nome da tabela associada
      * a este recurso
-     * 
+     *
      * @var string
      */
     protected $table = 'users';
