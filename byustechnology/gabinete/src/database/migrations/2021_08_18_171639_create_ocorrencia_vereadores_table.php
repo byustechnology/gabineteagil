@@ -15,6 +15,7 @@ class CreateOcorrenciaVereadoresTable extends Migration
     {
         Schema::create('ocorrencia_vereadores', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('prefeitura_id')->contrained()->onDelete('cascade');
             $table->unsignedBigInteger('ocorrencia_id');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('vereador');

@@ -1,24 +1,57 @@
 @extends('gabinete::layouts.main')
-@section('title', 'Usuários')
+@section('title', $prefeitura->titulo . ' - Prefeitura')
 @section('content')
 
     @component('gabinete::layouts.title')
 
-        <h1 class="d-block mb-3 mt-4 h3">Usuários</h1>
+        <h1 class="d-block my-3 mt-4 h3">{{ $prefeitura->titulo }} - Prefeitura</h1>
 
         @slot('actions')
-            <a href="{{ route('usuario.create') }}" class="btn btn-success"><i class="far fa-plus-square fa-fw mr-1"></i> Adicionar</a>
+            <a href="{{ route('prefeitura.edit', ['prefeitura' => $prefeitura]) }}" class="btn btn-success"><i class="far fa-edit fa-fw mr-1"></i> Editar</a>
         @endslot
 
         @slot('breadcrumbs')
-            @include('gabinete::layouts.breadcrumbs', ['b' => Breadcrumbs::render('g-usuario')])
+            @include('gabinete::layouts.breadcrumbs', ['b' => Breadcrumbs::render('g-prefeitura-show', $prefeitura)])
         @endslot
     @endcomponent
 
     <div class="container-fluid">
 
-        <a href="#" data-toggle="modal" data-target="#m-search" class="btn btn-primary mr-2"><i class="fas fa-search fa-fw mr-2"></i> Buscar</a>
-        {!! request()->query() ? '<a href="' . url(request()->url()) . '" class="btn btn-outline-danger"><i class="far fa-times-circle mr-2"></i>Cancelar filtro</a>' : null !!}
+        @component('ui::card')
+            @slot('title')
+                Informações da prefeitura
+            @endslot
+
+            @component('ui::attribute', ['title' => 'Título'])
+                {{ $prefeitura->titulo }}
+            @endcomponent
+
+            <div class="row">
+                <div class="col-lg-7">
+                    @component('ui::attribute', ['title' => 'Cidade'])
+                        {{ $prefeitura->cidade }}
+                    @endcomponent
+                </div>
+                <div class="col-lg-5">
+                    @component('ui::attribute', ['title' => 'Estado'])
+                        {{ $prefeitura->estado }}
+                    @endcomponent
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg">
+                    @component('ui::attribute', ['title' => 'Adicionado em'])
+                        {{ $prefeitura->created_at->format('d/m/Y') }}, {{ $prefeitura->created_at->diffForHumans() }}
+                    @endcomponent
+                </div>
+                <div class="col-lg">
+                    @component('ui::attribute', ['title' => 'Alterado em'])
+                        {{ $prefeitura->updated_at->format('d/m/Y') }}, {{ $prefeitura->updated_at->diffForHumans() }}
+                    @endcomponent
+                </div>
+            </div>
+        @endcomponent
 
         @component('ui::card')
             @if($usuarios->count())
@@ -54,14 +87,11 @@
                         </tbody>
                     </table>
                 </div>
-
-                {!! $usuarios->links() !!}
-
             @else
                 @include('ui::no-results')
             @endif
         @endcomponent
+
     </div>
 
-    @include('gabinete::usuario.partials.search')
 @endsection

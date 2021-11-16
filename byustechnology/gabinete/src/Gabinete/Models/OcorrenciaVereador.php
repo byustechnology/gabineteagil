@@ -2,24 +2,25 @@
 
 namespace ByusTechnology\Gabinete\Models;
 
+use ByusTechnology\Gabinete\Traits\BelongsToPrefeitura;
 use ByusTechnology\Gabinete\Traits\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class OcorrenciaVereador extends Model
 {
-    use HasFactory;
+    use HasFactory, BelongsToPrefeitura;
 
     /**
-     * Define a tabela relacionada a este 
+     * Define a tabela relacionada a este
      * recurso.
-     * 
+     *
      * @var string
      */
     protected $table = 'ocorrencia_vereadores';
 
     /**
-     * Definindo que nenhum campo 
-     * será bloqueado para o método 
+     * Definindo que nenhum campo
+     * será bloqueado para o método
      * fill.
      *
      * @var array
@@ -27,9 +28,9 @@ class OcorrenciaVereador extends Model
     protected $guarded = [];
 
     /**
-     * Definindo a relação entre os 
+     * Definindo a relação entre os
      * vereadores e as ocorrências.
-     * 
+     *
      * @return \ByusTechnology\Gabinete\Models\Ocorrencia
      */
     public function ocorrencia()

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use ByusTechnology\Gabinete\Models\Usuario;
 use ByusTechnology\Gabinete\Filters\UsuarioFilters;
 use ByusTechnology\Gabinete\Http\Requests\UsuarioRequest;
+use ByusTechnology\Onleads\Scopes\PrefeituraScope;
 
 class UsuarioController extends Controller
 {
@@ -104,5 +105,42 @@ class UsuarioController extends Controller
         $usuario->delete();
         session()->flash('flash_danger', 'Usuario ' . $usuario->name . ' removida com sucesso!');
         return back();
+    }
+
+    /**
+     * Impersonate user. This method is only
+     * avaliable to system admins.
+     *
+     * @param  \App\Models\User  $usuario
+     * @return \Illuminate\Http\Response
+     */
+    public function personificar(Usuario $usuario)
+    {
+
+        $personificadoId = auth()->user()->id;
+        session()->put('personificado', $personificadoId);
+        auth()->loginUsingId($usuario->id);
+
+        session()->flash('flash_success', 'Você está personificado como <strong>' . $usuario->name . '</strong>. Todas as ações tomadas serão em nome deste usuário.');
+        return redirect(config('gabinete.path'));
+    }
+
+    /**
+     * Leave impersonated user. This method is only
+     * avaliable to system admins.
+     *
+     * @param  \App\Models\User  $usuario
+     * @return \Illuminate\Http\Response
+     */
+    public function despersonificar()
+    {
+        if ( ! session()->has('personificado')) {
+            abort(403, 'Você não tem permissão para despersonificar um usuário');
+        }
+        auth()->login(Usuario::withoutGlobalScope(PrefeituraScope::class)->find(session()->get('personificado')));
+        session()->forget('personificado');
+
+        session()->flash('flash_success', 'Você foi despersonificado e agora está utilizando o usuário <strong>' . auth()->user()->name . '</strong>');
+        return redirect(config('gabinete.path'));
     }
 }

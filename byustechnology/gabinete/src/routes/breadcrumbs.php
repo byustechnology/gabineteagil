@@ -11,6 +11,24 @@ Breadcrumbs::for('g-conta', function ($trail) {
     $trail->push('Minha conta', route('conta.index'));
 });
 
+// Prefeitura
+Breadcrumbs::for('g-prefeitura', function ($trail) {
+    $trail->parent('g-dashboard');
+    $trail->push('Prefeituras', route('prefeitura.index'));
+});
+Breadcrumbs::for('g-prefeitura-create', function ($trail) {
+    $trail->parent('g-prefeitura');
+    $trail->push('Adicionar', route('prefeitura.create'));
+});
+Breadcrumbs::for('g-prefeitura-show', function ($trail, $prefeitura) {
+    $trail->parent('g-prefeitura');
+    $trail->push($prefeitura->titulo, route('prefeitura.show', ['prefeitura' => $prefeitura]));
+});
+Breadcrumbs::for('g-prefeitura-edit', function ($trail, $prefeitura) {
+    $trail->parent('g-prefeitura-show', $prefeitura);
+    $trail->push('Editar', route('prefeitura.edit', ['prefeitura' => $prefeitura]));
+});
+
 // Etapas
 Breadcrumbs::for('g-etapa', function ($trail) {
     $trail->parent('g-dashboard');

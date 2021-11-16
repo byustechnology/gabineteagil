@@ -2,6 +2,7 @@
 
 namespace ByusTechnology\Gabinete\Models;
 
+use ByusTechnology\Gabinete\Traits\BelongsToPrefeitura;
 use ByusTechnology\Gabinete\Traits\HasColorFields;
 use ByusTechnology\Gabinete\Traits\HasFactory;
 use ByusTechnology\Gabinete\Traits\HasFilters;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Assunto extends Model
 {
-    use HasFactory, HasFilters, HasColorFields, NeedsAutocode;
+    use HasFactory, HasFilters, HasColorFields, NeedsAutocode, BelongsToPrefeitura;
 
     /**
      * Definindo que nenhum campo
@@ -22,27 +23,27 @@ class Assunto extends Model
      protected $guarded = [];
 
      /**
-     * Define as contagens que precisam 
-     * ser carregadas com este 
+     * Define as contagens que precisam
+     * ser carregadas com este
      * modelo.
-     * 
+     *
      * @var array
      */
     protected $withCount = [
-        'ocorrencias', 
+        'ocorrencias',
     ];
 
-     /**
-      * Um orgão pode possuir várias 
-      * ocorrências associadas a ele.
-      *
-      * @return \Illuminate\Database\Eloquent\Collection
-      */
-      public function ocorrencias()
-      {
-         return $this->hasMany(Ocorrencia::class);
-      }
-    
+    /**
+    * Um orgão pode possuir várias
+    * ocorrências associadas a ele.
+    *
+    * @return \Illuminate\Database\Eloquent\Collection
+    */
+    public function ocorrencias()
+    {
+      return $this->hasMany(Ocorrencia::class);
+    }
+
     /**
      * Define um caminho para o modelo.
      *

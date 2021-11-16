@@ -2,17 +2,18 @@
 
 namespace ByusTechnology\Gabinete\Models;
 
+use ByusTechnology\Gabinete\Traits\BelongsToPrefeitura;
 use ByusTechnology\Gabinete\Traits\HasFactory;
 use ByusTechnology\Gabinete\Traits\HasFilters;
 use Illuminate\Database\Eloquent\Model;
 
 class TipoOcorrencia extends Model
 {
-    use HasFactory, HasFilters;
+    use HasFactory, HasFilters, BelongsToPrefeitura;
 
     /**
-     * Definindo que nenhum campo 
-     * será bloqueado para o método 
+     * Definindo que nenhum campo
+     * será bloqueado para o método
      * fill.
      *
      * @var array

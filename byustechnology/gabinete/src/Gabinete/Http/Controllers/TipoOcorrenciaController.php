@@ -48,7 +48,6 @@ class TipoOcorrenciaController extends Controller
     public function store(TipoOcorrenciaRequest $request)
     {
         $tipo = (new TipoOcorrencia)->fill($request->all());
-        $tipo->prefeitura_id = 1; // TODO: Modificar para a prefeitura logada.
         $tipo->save();
 
         session()->flash('flash_success', 'Tipo de ocorrência ' . $tipo->titulo . ' adicionado com sucesso!');

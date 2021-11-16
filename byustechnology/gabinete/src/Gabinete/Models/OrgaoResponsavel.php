@@ -2,6 +2,7 @@
 
 namespace ByusTechnology\Gabinete\Models;
 
+use ByusTechnology\Gabinete\Traits\BelongsToPrefeitura;
 use ByusTechnology\Gabinete\Traits\HasColorFields;
 use ByusTechnology\Gabinete\Traits\HasFactory;
 use ByusTechnology\Gabinete\Traits\HasFilters;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrgaoResponsavel extends Model
 {
-    use HasFactory, HasFilters, HasColorFields, NeedsAutocode;
+    use HasFactory, HasFilters, HasColorFields, NeedsAutocode, BelongsToPrefeitura;
 
     /**
     * Define o nome da tabela relacionado

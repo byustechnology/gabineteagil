@@ -38,38 +38,37 @@ class SeedDatabase extends Command
      */
     public function handle()
     {
+        $this->newLine();
+        $this->info('Adicionando prefeituras...');
+        Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\PrefeiturasTableSeeder::class]);
 
         $this->newLine();
         $this->info('Adicionando usuário root');
         Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\UsersTableSeeder::class]);
 
         $this->newLine();
-        $this->info('Adicionando prefeituras...');
-        Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\PrefeiturasTableSeeder::class]);
-
-        $this->newLine();
         $this->info('Adicionando etapas...');
         Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\EtapasTableSeeder::class]);
 
-        $this->newLine();
-        $this->info('Adicionando tipo de ocorrências');
-        Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\TipoOcorrenciasTableSeeder::class]);
+        // $this->newLine();
+        // $this->info('Adicionando tipo de ocorrências');
+        // Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\TipoOcorrenciasTableSeeder::class]);
 
-        $this->newLine();
-        $this->info('Adicionando orgãos responsáveis...');
-        Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\OrgaosResponsaveisTableSeeder::class]);
+        // $this->newLine();
+        // $this->info('Adicionando orgãos responsáveis...');
+        // Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\OrgaosResponsaveisTableSeeder::class]);
 
-        $this->newLine();
-        $this->info('Adicionando assuntos...');
-        Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\AssuntosTableSeeder::class]);
+        // $this->newLine();
+        // $this->info('Adicionando assuntos...');
+        // Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\AssuntosTableSeeder::class]);
 
-        $this->newLine();
-        $this->info('Adicionando pessoas...');
-        Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\PessoasTableSeeder::class]);
+        // $this->newLine();
+        // $this->info('Adicionando pessoas...');
+        // Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\PessoasTableSeeder::class]);
 
-        $this->newLine();
-        $this->info('Adicionando contato para as pessoas...');
-        Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\PessoaContatosTableSeeder::class]);
+        // $this->newLine();
+        // $this->info('Adicionando contato para as pessoas...');
+        // Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\PessoaContatosTableSeeder::class]);
 
         //  $this->newLine();
         //  $this->info('Adicionando ocorrências...');

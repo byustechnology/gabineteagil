@@ -3,24 +3,25 @@
 namespace ByusTechnology\Gabinete\Models;
 
 use App\Models\User;
+use ByusTechnology\Gabinete\Traits\BelongsToPrefeitura;
 use ByusTechnology\Gabinete\Traits\HasFactory;
 use ByusTechnology\Gabinete\Traits\HasFilters;
 use Illuminate\Database\Eloquent\Model;
 
 class OcorrenciaArquivo extends Model
 {
-    use HasFactory, HasFilters;
+    use HasFactory, HasFilters, BelongsToPrefeitura;
 
     const MIME_ICONS = [
-        'application/pdf' => 'far fa-file-pdf', 
-        'image/jpeg' => 'far fa-images', 
-        'image/png' => 'far fa-images', 
-        'image/bmp' => 'far fa-images', 
+        'application/pdf' => 'far fa-file-pdf',
+        'image/jpeg' => 'far fa-images',
+        'image/png' => 'far fa-images',
+        'image/bmp' => 'far fa-images',
     ];
 
     /**
-     * Definindo que nenhum campo 
-     * será bloqueado para o método 
+     * Definindo que nenhum campo
+     * será bloqueado para o método
      * fill.
      *
      * @var array
@@ -28,10 +29,10 @@ class OcorrenciaArquivo extends Model
     protected $guarded = [];
 
     /**
-     * Define os modelos que precisam 
-     * ser carregados junto com 
+     * Define os modelos que precisam
+     * ser carregados junto com
      * este recurso.
-     * 
+     *
      * @var array
      */
     protected $with = [
@@ -39,9 +40,9 @@ class OcorrenciaArquivo extends Model
     ];
 
     /**
-     * Um arquivo pertence a uma 
+     * Um arquivo pertence a uma
      * determinada ocorrência.
-     * 
+     *
      * @return \ByusTechnology\Gabinete\Models\Ocorrencia
      */
     public function ocorrencia()
@@ -50,9 +51,9 @@ class OcorrenciaArquivo extends Model
     }
 
     /**
-     * Um arquivo pode pertencer a uma 
+     * Um arquivo pode pertencer a uma
      * determinada mensagem.
-     * 
+     *
      * @return \ByusTechnology\Gabinete\Models\Ocorrencia
      */
     public function mensagem()
@@ -63,7 +64,7 @@ class OcorrenciaArquivo extends Model
     /**
      * Um arquivo pode estar associado a um
      * usuário.
-     * 
+     *
      * @return \App\Models\User
      */
     public function user()

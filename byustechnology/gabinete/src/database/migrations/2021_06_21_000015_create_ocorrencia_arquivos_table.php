@@ -15,6 +15,7 @@ class CreateOcorrenciaArquivosTable extends Migration
     {
         Schema::create('ocorrencia_arquivos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('prefeitura_id')->contrained()->onDelete('cascade');
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('ocorrencia_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('ocorrencia_mensagem_id')->nullable();

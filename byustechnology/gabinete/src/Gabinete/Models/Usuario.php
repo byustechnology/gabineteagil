@@ -3,15 +3,17 @@
 namespace ByusTechnology\Gabinete\Models;
 
 use App\Models\User;
+use ByusTechnology\Gabinete\Traits\BelongsToPrefeitura;
 use ByusTechnology\Gabinete\Traits\HasFilters;
 
 class Usuario extends User
 {
-    use HasFilters;
+    use HasFilters, BelongsToPrefeitura;
 
     const TYPES = [
         '' => 'Não definido',
-        'root' => 'Administrador',
+        'root' => 'Root',
+        'admin' => 'Administrador',
         'chefe' => 'Chefe de gabinete',
         'assessor' => 'Assessor',
         'vereador' => 'Vereador',

@@ -15,7 +15,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="icon" type="image/svg+xml" href="{{ asset(config('gabinete.assets') . '/svgs/favicon.svg') }}">
-    
+
     @yield('meta')
 
     <!-- Scripts -->
@@ -36,6 +36,18 @@
         @include('gabinete::layouts.aside')
 
         <main>
+            @if (session()->has('personificado'))
+                <div class="bg-danger text-white p-3 animate__animated animate__infinite animate__flash">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div>
+                            <i class="fas fa-exclamation-triangle fa-fw mr-1"></i> Você está personificando o usuário <strong>{{ auth()->user()->name }} {{ auth()->user()->prefeitura ? ', criado por ' . auth()->user()->prefeitura->titulo : null }}</strong>
+                        </div>
+
+                        <a href="{{ url(config('gabinete.path') . '/usuario/despersonificar') }}" class="btn btn-light btn-sm">Despersonificar</a>
+                    </div>
+                </div>
+            @endif
+
             @yield('content')
 
             <!-- Footer -->

@@ -1,7 +1,7 @@
 <?php
 
 Route::prefix(config('gabinete.path'))->middleware(['web', 'auth'])->group(function () {
-    
+
     // Mapa das ocorrências
     Route::get('/mapa', \ByusTechnology\Gabinete\Http\Controllers\MapaController::class)->name('mapa.index');
 
@@ -25,7 +25,7 @@ Route::prefix(config('gabinete.path'))->middleware(['web', 'auth'])->group(funct
     Route::delete('/pessoa/{pessoa}/imagem', [\ByusTechnology\Gabinete\Http\Controllers\PessoaImagemController::class, 'destroy'])->name('pessoa.imagem.destroy');
     Route::post('/pessoa/{pessoa}/imagem', [\ByusTechnology\Gabinete\Http\Controllers\PessoaImagemController::class, 'store'])->name('pessoa.imagem.store');
     Route::resource('/pessoa', \ByusTechnology\Gabinete\Http\Controllers\PessoaController::class);
-    
+
     Route::resource('/assunto', \ByusTechnology\Gabinete\Http\Controllers\AssuntoController::class);
     Route::resource('/orgao', \ByusTechnology\Gabinete\Http\Controllers\OrgaoResponsavelController::class);
     Route::resource('/etapa', \ByusTechnology\Gabinete\Http\Controllers\EtapaController::class);
@@ -33,17 +33,22 @@ Route::prefix(config('gabinete.path'))->middleware(['web', 'auth'])->group(funct
     // Agenda
     Route::get('/fullcalendar', \ByusTechnology\Gabinete\Http\Controllers\FullCalendarController::class)->name('fullcalendar');
     Route::resource('/agenda', \ByusTechnology\Gabinete\Http\Controllers\AgendaController::class);
-    
+
     // Configurações
     Route::resource('configuracao', \ByusTechnology\Gabinete\Http\Controllers\ConfiguracaoController::class);
 
     // Usuários
+    Route::get('usuario/despersonificar', 'ByusTechnology\Gabinete\Http\Controllers\UsuarioController@despersonificar');
+	Route::get('usuario/{usuario}/personificar', 'ByusTechnology\Gabinete\Http\Controllers\UsuarioController@personificar');
     Route::resource('/usuario', \ByusTechnology\Gabinete\Http\Controllers\UsuarioController::class);
 
     // Conta
     Route::patch('/conta', [\ByusTechnology\Gabinete\Http\Controllers\ContaController::class, 'update'])->name('conta.update');
     Route::get('/conta', [\ByusTechnology\Gabinete\Http\Controllers\ContaController::class, 'index'])->name('conta.index');
-    
+
+    // Prefeituras
+    Route::resource('/prefeitura', \ByusTechnology\Gabinete\Http\Controllers\PrefeituraController::class);
+
     Route::get('/', [\ByusTechnology\Gabinete\Http\Controllers\DashboardController::class, 'index'])->name('gabinete.dashboard');
 });
 

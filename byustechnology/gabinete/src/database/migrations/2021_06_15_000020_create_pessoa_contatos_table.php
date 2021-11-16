@@ -15,6 +15,7 @@ class CreatePessoaContatosTable extends Migration
     {
         Schema::create('pessoa_contatos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('prefeitura_id')->contrained()->onDelete('cascade');
             $table->foreignId('pessoa_id')->constrained()->onDelete('cascade');
             $table->string('titulo');
             $table->string('tipo');

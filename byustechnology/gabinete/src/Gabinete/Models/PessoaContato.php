@@ -2,18 +2,19 @@
 
 namespace ByusTechnology\Gabinete\Models;
 
+use ByusTechnology\Gabinete\Traits\BelongsToPrefeitura;
 use ByusTechnology\Gabinete\Traits\HasFactory;
 use ByusTechnology\Gabinete\Traits\HasFilters;
 use Illuminate\Database\Eloquent\Model;
 
 class PessoaContato extends Model
 {
-    use HasFactory, HasFilters;
+    use HasFactory, HasFilters, BelongsToPrefeitura;
 
     /**
-     * Define os tipos de contato 
+     * Define os tipos de contato
      * disponíveis para cadastro.
-     * 
+     *
      */
     const TIPOS = [
         'whats' => 'WhatsApp',
@@ -23,8 +24,8 @@ class PessoaContato extends Model
     ];
 
     /**
-     * Definindo que nenhum campo 
-     * será bloqueado para o método 
+     * Definindo que nenhum campo
+     * será bloqueado para o método
      * fill.
      *
      * @var array
@@ -32,9 +33,9 @@ class PessoaContato extends Model
     protected $guarded = [];
 
     /**
-     * Um contato está associado 
+     * Um contato está associado
      * a uma pessoa.
-     * 
+     *
      * @return \ByusTechnology\Gabinete\Models\Pessoa
      */
     public function pessoa()

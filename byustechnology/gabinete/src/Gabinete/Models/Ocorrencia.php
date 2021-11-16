@@ -2,6 +2,7 @@
 
 namespace ByusTechnology\Gabinete\Models;
 
+use ByusTechnology\Gabinete\Traits\BelongsToPrefeitura;
 use ByusTechnology\Gabinete\Traits\HasFactory;
 use ByusTechnology\Gabinete\Traits\HasFilters;
 use ByusTechnology\Gabinete\Traits\HasStatus;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ocorrencia extends Model
 {
-    use HasFactory, HasFilters, HasStatus;
+    use HasFactory, HasFilters, HasStatus, BelongsToPrefeitura;
 
     /**
      * Definindo que nenhum campo

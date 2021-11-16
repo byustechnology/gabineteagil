@@ -15,6 +15,7 @@ class CreateConfiguracoesTable extends Migration
     {
         Schema::create('configuracoes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('prefeitura_id')->contrained()->onDelete('cascade');
             $table->string('ocorrencia_template_cabecalho')->nullable();
             $table->string('ocorrencia_template_rodape')->nullable();
             $table->timestamps();

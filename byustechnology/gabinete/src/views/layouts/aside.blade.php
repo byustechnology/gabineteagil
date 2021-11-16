@@ -11,12 +11,19 @@
 
         <ul class="navbar-nav">
 
-            @if (auth()->user()->email == 'admin@admin.com')
-                <li class="divider">Administração</li>
+            @if (auth()->user()->type == 'root')
+                <li class="divider">Administração do App</li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('prefeitura.index') }}">Prefeituras</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('usuario.index') }}">Usuários</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('etapa.index') }}">Etapas</a></li>
+            @endif
+
+            @if (auth()->user()->type == 'admin')
+                <li class="divider">Administração</li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('usuario.index') }}">Usuários</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('configuracao.index') }}">Configurações</a></li>
             @endif
+
             <li class="divider">Ocorrências</li>
             <li class="nav-item"><a class="nav-link" href="{{ route('ocorrencia.create') }}">Nova ocorrência</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('ocorrencia.index', ['abertas' => 1]) }}">Todas as ocorrências</a></li>

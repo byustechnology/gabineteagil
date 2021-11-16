@@ -1,17 +1,17 @@
 @extends('gabinete::layouts.main')
-@section('title', 'Usuários')
+@section('title', 'Gestão de prefeituras')
 @section('content')
 
     @component('gabinete::layouts.title')
 
-        <h1 class="d-block mb-3 mt-4 h3">Usuários</h1>
+        <h1 class="d-block mb-3 mt-4 h3">Prefeituras e acessos</h1>
 
         @slot('actions')
-            <a href="{{ route('usuario.create') }}" class="btn btn-success"><i class="far fa-plus-square fa-fw mr-1"></i> Adicionar</a>
+            <a href="{{ route('prefeitura.create') }}" class="btn btn-success"><i class="far fa-plus-square fa-fw mr-1"></i> Adicionar</a>
         @endslot
 
         @slot('breadcrumbs')
-            @include('gabinete::layouts.breadcrumbs', ['b' => Breadcrumbs::render('g-usuario')])
+            @include('gabinete::layouts.breadcrumbs', ['b' => Breadcrumbs::render('g-prefeitura')])
         @endslot
     @endcomponent
 
@@ -21,31 +21,28 @@
         {!! request()->query() ? '<a href="' . url(request()->url()) . '" class="btn btn-outline-danger"><i class="far fa-times-circle mr-2"></i>Cancelar filtro</a>' : null !!}
 
         @component('ui::card')
-            @if($usuarios->count())
+            @if($prefeituras->count())
                 <div class="table-responsive">
                     <table class="table table-nowrap">
                         <thead>
                             <tr>
-                                <th>Nome</th>
-                                <th>Tipo</th>
-                                <th>E-mail</th>
+                                <th>Código</th>
                                 <th>Prefeitura</th>
+                                <th>Status</th>
                                 <th>Adicionado em</th>
                                 <th class="table-actions">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($usuarios as $usuario)
+                            @foreach($prefeituras as $prefeitura)
                                 <tr>
-                                    <td><a href="{{ url($usuario->path()) }}"><strong>{{ $usuario->name }}</strong></a></td>
-                                    <td>{{ \ByusTechnology\Gabinete\Models\Usuario::TYPES[$usuario->type] }}</td>
-                                    <td><a href="mailto:{{ $usuario->email }}">{{ $usuario->email }}</a></td>
-                                    <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
-                                    <td>{{ optional($usuario->prefeitura)->titulo ?? 'Não atrelado' }}</td>
+                                    <td>{{ $prefeitura->codigo }}</td>
+                                    <td><a href="{{ url($prefeitura->path()) }}"><strong>{{ $prefeitura->titulo }}</strong></a></td>
+                                    <td>Ativa</td>
+                                    <td>{{ $prefeitura->created_at->format('d/m/Y') }}</td>
                                     <td class="table-actions">
-                                        {!! Form::open(['url' => route('usuario.destroy', ['usuario' => $usuario]), 'method' => 'delete']) !!}
-                                            <a href="{{ url($usuario->path() . '/personificar') }}">Personificar</a>
-                                            <a data-toggle="tooltip" title="Editar" href="{{ route('usuario.edit', ['usuario' => $usuario]) }}" class="btn btn-table-actions btn-link"><i class="far fa-edit fa-fw"></i></a>
+                                        {!! Form::open(['url' => route('prefeitura.destroy', ['prefeitura' => $prefeitura]), 'method' => 'delete']) !!}
+                                            <a data-toggle="tooltip" title="Editar" href="{{ route('prefeitura.edit', ['prefeitura' => $prefeitura]) }}" class="btn btn-table-actions btn-link"><i class="far fa-edit fa-fw"></i></a>
                                             <button data-toggle="tooltip" title="Remover" type="sumbit" class="btn btn-table-actions text-danger btn-link confirm-delete"><i class="far fa-trash-alt fa-fw"></i></button>
                                         {!! Form::close() !!}
                                     </td>
@@ -55,7 +52,7 @@
                     </table>
                 </div>
 
-                {!! $usuarios->links() !!}
+                {!! $prefeituras->links() !!}
 
             @else
                 @include('ui::no-results')
@@ -63,5 +60,5 @@
         @endcomponent
     </div>
 
-    @include('gabinete::usuario.partials.search')
+    @include('gabinete::prefeitura.partials.search')
 @endsection

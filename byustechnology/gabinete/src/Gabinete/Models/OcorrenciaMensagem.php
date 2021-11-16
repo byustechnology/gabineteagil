@@ -3,30 +3,31 @@
 namespace ByusTechnology\Gabinete\Models;
 
 use App\Models\User;
+use ByusTechnology\Gabinete\Traits\BelongsToPrefeitura;
 use ByusTechnology\Gabinete\Traits\HasFactory;
 use ByusTechnology\Gabinete\Traits\HasFilters;
 use Illuminate\Database\Eloquent\Model;
 
 class OcorrenciaMensagem extends Model
 {
-    use HasFactory, HasFilters;
+    use HasFactory, HasFilters, BelongsToPrefeitura;
 
     const TIPOS = [
-        'user' => 'Usuário', 
+        'user' => 'Usuário',
         'sys' => 'Sistema'
     ];
 
     /**
      * Definindo um novo padrão de nome
      * para a tabela relacionada a este modelo.
-     * 
+     *
      * @var string
      */
     protected $table = 'ocorrencia_mensagens';
 
     /**
-     * Definindo que nenhum campo 
-     * será bloqueado para o método 
+     * Definindo que nenhum campo
+     * será bloqueado para o método
      * fill.
      *
      * @var array
@@ -34,21 +35,21 @@ class OcorrenciaMensagem extends Model
     protected $guarded = [];
 
     /**
-     * Define quais recursos devem 
-     * ser carregados juntos com 
+     * Define quais recursos devem
+     * ser carregados juntos com
      * a mensagem.
-     * 
+     *
      * @var array
      */
     protected $with = [
-        'user', 
-        'arquivos', 
+        'user',
+        'arquivos',
     ];
 
     /**
-     * Uma mensagem pertence a uma 
+     * Uma mensagem pertence a uma
      * determinada ocorrência.
-     * 
+     *
      * @return \ByusTechnology\Gabinete\Models\Ocorrencia
      */
     public function ocorrencia()
@@ -57,9 +58,9 @@ class OcorrenciaMensagem extends Model
     }
 
     /**
-     * Definindo o relacionamento entre 
+     * Definindo o relacionamento entre
      * os arquivos e a mensagem.
-     * 
+     *
      * @return \ByusTechnology\Gabinete\Models\OcorrenciaArquivo
      */
     public function arquivos()
@@ -68,9 +69,9 @@ class OcorrenciaMensagem extends Model
     }
 
     /**
-     * Uma mensagem poder pertencer a um 
+     * Uma mensagem poder pertencer a um
      * determinado usuário.
-     * 
+     *
      * @return \ByusTechnology\Gabinete\Models\OcorrenciaArquivo
      */
     public function user()
@@ -100,9 +101,9 @@ class OcorrenciaMensagem extends Model
     }
 
     /**
-     * Verifica se a mensagem foi 
+     * Verifica se a mensagem foi
      * enviada pelo usuário logado.
-     * 
+     *
      * @return boolean
      */
     public function foiEnviadaPorMim()

@@ -3,23 +3,24 @@
 namespace ByusTechnology\Gabinete\Models;
 
 use App\Models\User;
+use ByusTechnology\Gabinete\Traits\BelongsToPrefeitura;
 use ByusTechnology\Gabinete\Traits\HasFactory;
 use ByusTechnology\Gabinete\Traits\HasFilters;
 use Illuminate\Database\Eloquent\Model;
 
 class Agenda extends Model
 {
-    use HasFactory, HasFilters;
+    use HasFactory, HasFilters, BelongsToPrefeitura;
 
     /**
      * Define as cores disponíveis
      * para os agendamentos.
-     * 
+     *
      */
     const CORES = [
-        '#ffc107' => 'Padrão (amarelo)', 
-        '#007bff' => 'Azul', 
-        '#dc3545' => 'Vermelho', 
+        '#ffc107' => 'Padrão (amarelo)',
+        '#007bff' => 'Azul',
+        '#dc3545' => 'Vermelho',
         '#28a745' => 'Verde'
     ];
 
@@ -34,21 +35,21 @@ class Agenda extends Model
 
     /**
      * Define quais campos deverão
-     * ser tratados como sendo 
+     * ser tratados como sendo
      * um campo data.
-     * 
+     *
      * @var array
      */
     protected $dates = [
-        'inicio_em', 
+        'inicio_em',
         'termino_em'
     ];
 
     /**
-     * Define um relacionamento entre 
-     * a agenda e o usuário associado 
+     * Define um relacionamento entre
+     * a agenda e o usuário associado
      * a ela
-     * 
+     *
      * @return \App\Models\User
      */
     public function user()
@@ -59,14 +60,14 @@ class Agenda extends Model
     /**
      * Uma ocorrência pertence a um
      * determinado orgão.
-     * 
+     *
      * @return \ByusTechnology\Gabinete\Models\OrgaoResponsavel
      */
     public function orgaoResponsavel()
     {
         return $this->belongsTo(OrgaoResponsavel::class);
     }
-    
+
     /**
      * Define um caminho para o modelo.
      *
@@ -89,11 +90,11 @@ class Agenda extends Model
     }
 
     /**
-     * Retorna a cor referente 
-     * ao orgão responsável encontrado, 
+     * Retorna a cor referente
+     * ao orgão responsável encontrado,
      * ou se nenhum for encontrado, retorna a
      * cor preta.
-     * 
+     *
      * @return string
      */
     public function getCorAttribute()

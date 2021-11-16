@@ -11,7 +11,7 @@ trait NeedsAutocode
     protected static function bootNeedsAutocode()
     {
 
-        // Quando um novo recurso for criado, 
+        // Quando um novo recurso for criado,
         // devemos atribuir um novo código a ele.
         static::creating(function (Model $model) {
             $code = static::newCode($model);
@@ -22,16 +22,17 @@ trait NeedsAutocode
     /**
      * Define qual será o próximo código
      * gerado.
-     * 
+     *
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return string
      */
     protected static function newCode($model)
     {
         $codigo = app('db')->table($model->getTable())->max('codigo');
-        $codigo = ! empty($codigo) ? $codigo + 1 : 1;
+
+        $codigo = ! empty($codigo) ? (int) $codigo + 1 : 1;
 
         return $codigo;
-    } 
+    }
 
 }

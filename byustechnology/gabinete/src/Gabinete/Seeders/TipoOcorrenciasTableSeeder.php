@@ -10,39 +10,39 @@ class TipoOcorrenciasTableSeeder extends Seeder
 {
 
     /**
-     * Executa os seeders na base 
+     * Executa os seeders na base
      * de dados.
      *
      * @return void
      */
     public function run()
     {
+        foreach(Prefeitura::all() as $prefeitura) {
 
-        $prefeitura = Prefeitura::first();
+            TipoOcorrencia::firstOrCreate([
+                'prefeitura_id' => $prefeitura->id,
+                'titulo' => 'Requerimento'
+            ]);
 
-        TipoOcorrencia::firstOrCreate([
-            'prefeitura_id' => $prefeitura->id, 
-            'titulo' => 'Requerimento'
-        ]);
+            TipoOcorrencia::firstOrCreate([
+                'prefeitura_id' => $prefeitura->id,
+                'titulo' => 'Indicação'
+            ]);
 
-        TipoOcorrencia::firstOrCreate([
-            'prefeitura_id' => $prefeitura->id, 
-            'titulo' => 'Indicação'
-        ]);
+            TipoOcorrencia::firstOrCreate([
+                'prefeitura_id' => $prefeitura->id,
+                'titulo' => 'Ofício'
+            ]);
 
-        TipoOcorrencia::firstOrCreate([
-            'prefeitura_id' => $prefeitura->id, 
-            'titulo' => 'Ofício'
-        ]);
+            TipoOcorrencia::firstOrCreate([
+                'prefeitura_id' => $prefeitura->id,
+                'titulo' => 'Moção'
+            ]);
 
-        TipoOcorrencia::firstOrCreate([
-            'prefeitura_id' => $prefeitura->id, 
-            'titulo' => 'Moção'
-        ]);
-
-        TipoOcorrencia::firstOrCreate([
-            'prefeitura_id' => $prefeitura->id, 
-            'titulo' => 'Projeto'
-        ]);
+            TipoOcorrencia::firstOrCreate([
+                'prefeitura_id' => $prefeitura->id,
+                'titulo' => 'Projeto'
+            ]);
+        }
     }
 }
