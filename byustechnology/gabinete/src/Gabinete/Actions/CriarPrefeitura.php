@@ -29,6 +29,7 @@ class CriarPrefeitura {
         // $this->criarEtapas();
         $this->criarOrgaosResponsaveis();
         $this->criarAssuntos();
+        $this->criarTipoOcorrencias();
     }
 
     public function criarUsuarioRoot()
