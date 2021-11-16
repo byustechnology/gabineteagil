@@ -23,8 +23,15 @@ class UsersTableSeeder extends Seeder
         User::firstOrCreate([
             'name' => 'Root',
             'type' => 'root',
-            'email' => 'root@gabineteagil.app.br',
+            'email' => 'byus@byus.com.br',
             'password' => bcrypt('secret')
+        ]);
+
+        User::firstOrCreate([
+            'name' => 'Ponderar',
+            'type' => 'root',
+            'email' => 'ponderartab@gmail.com',
+            'password' => bcrypt('gabi212125')
         ]);
 
         // Adicionando usuários para as prefeituras
