@@ -44,7 +44,7 @@
                                     <td>{{ optional($usuario->prefeitura)->titulo ?? 'Não atrelado' }}</td>
                                     <td class="table-actions">
                                         {!! Form::open(['url' => route('usuario.destroy', ['usuario' => $usuario]), 'method' => 'delete']) !!}
-                                            <a href="{{ url($usuario->path() . '/personificar') }}">Personificar</a>
+                                        <a data-toggle="tooltip" title="Personificar" href="{{ url($usuario->path() . '/personificar') }}" class="btn btn-table-actions btn-link"><i class="far fa-address-card fa-fw"></i></a>
                                             <a data-toggle="tooltip" title="Editar" href="{{ route('usuario.edit', ['usuario' => $usuario]) }}" class="btn btn-table-actions btn-link"><i class="far fa-edit fa-fw"></i></a>
                                             <button data-toggle="tooltip" title="Remover" type="sumbit" class="btn btn-table-actions text-danger btn-link confirm-delete"><i class="far fa-trash-alt fa-fw"></i></button>
                                         {!! Form::close() !!}

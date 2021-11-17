@@ -14,6 +14,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->type == 'root') {
+            return view('gabinete::dashboard-admin');
+        }
+
         return view('gabinete::dashboard');
     }
 }
