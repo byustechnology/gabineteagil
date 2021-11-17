@@ -28,13 +28,14 @@ class OrgaoResponsavel extends Model
     * @var array
     */
     protected $fillable = [
+        'prefeitura_id',
         'codigo',
         'titulo',
         'descricao',
         'cor',
         'responsavel',
         'responsavel_telefone',
-        'responsavel_email'
+        'responsavel_email',
     ];
 
     /**

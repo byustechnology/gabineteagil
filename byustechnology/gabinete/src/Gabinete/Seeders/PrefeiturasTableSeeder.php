@@ -27,7 +27,7 @@ class PrefeiturasTableSeeder extends Seeder
         $processos = new CriarPrefeitura($rioClaro, [
             'user_name' => 'Administrador Rio Claro/SP',
             'user_email' => 'admin@rioclaro.gov.br',
-            'password' => bcrypt('secret')
+            'user_password' => bcrypt('secret')
         ]);
         $processos->handle();
 
@@ -40,7 +40,7 @@ class PrefeiturasTableSeeder extends Seeder
         $processos = new CriarPrefeitura($santaGertrudes, [
             'user_name' => 'Administrador Santa Gertrudes/SP',
             'user_email' => 'admin@santagertrudes.gov.br',
-            'password' => bcrypt('secret')
+            'user_password' => bcrypt('secret')
         ]);
         $processos->handle();
 
