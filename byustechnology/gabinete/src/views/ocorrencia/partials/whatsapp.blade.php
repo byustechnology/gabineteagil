@@ -9,10 +9,21 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            @php
+
+                $mensagemWhatsapp = 'Olá ' . optional($ocorrencia->pessoa)->titulo . PHP_EOL . 'Sua solicitação ' . optional($ocorrencia->assunto)->titulo . ' já está no(a) ' . optional($ocorrencia->orgaoResponsavel)->titulo . PHP_EOL . PHP_EOL . 'No momento a etapa é: ' . optional($ocorrencia->etapa)->titulo . PHP_EOL . PHP_EOL . 'Vamos nos falando, ' . PHP_EOL . 'Atenciosamente';
+
+                $chefeGabinete = \ByusTechnology\Gabinete\Models\Usuario::where('type', 'admin')->first();
+
+                if ( ! empty($chefeGabinete)) {
+                    $mensagemWhatsapp .= PHP_EOL . $chefeGabinete->name;
+                }
+
+            @endphp
             <div class="modal-body">
                 <div class="form-group">
                     {!! Form::label('mensagem', 'Mensagem da notificação') !!}
-                    {!! Form::textarea('mensagem', 'Olá ' . optional($ocorrencia->pessoa)->titulo . ', a sua ocorrência ' . $ocorrencia->id . ' foi atualizada e encontra-se na etapa: ' . $ocorrencia->etapa->titulo . '. Para maiores informações, entre em contato conosco.', ['class' => 'form-control']) !!}
+                    {!! Form::textarea('mensagem', $mensagemWhatsapp, ['class' => 'form-control']) !!}
                     <span class="form-text">Preencha a mensagem que será enviada para o WhatsApp.</span>
                 </div>
                 <div class="form-group">
