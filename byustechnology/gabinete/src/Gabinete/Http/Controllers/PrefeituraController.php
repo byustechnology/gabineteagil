@@ -40,9 +40,6 @@ class PrefeituraController extends Controller
      */
     public function store(PrefeituraRequest $request)
     {
-
-        app('db')->beginTransaction();
-
         $prefeitura = (new Prefeitura)->fill($request->except([
             'user_name',
             'user_email',
@@ -54,7 +51,6 @@ class PrefeituraController extends Controller
         $processos = new CriarPrefeitura($prefeitura, $request->all());
         $processos->handle();
 
-        app('db')->commit();
 
         if ($request->wantsJson()) {
             return response()->json([
