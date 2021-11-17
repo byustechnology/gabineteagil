@@ -46,9 +46,9 @@ class SeedDatabase extends Command
         $this->info('Adicionando usuário root');
         Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\UsersTableSeeder::class]);
 
-        $this->newLine();
-        $this->info('Adicionando etapas...');
-        Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\EtapasTableSeeder::class]);
+        // $this->newLine();
+        // $this->info('Adicionando etapas...');
+        // Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\EtapasTableSeeder::class]);
 
         // $this->newLine();
         // $this->info('Adicionando tipo de ocorrências');

@@ -15,7 +15,8 @@ class CreateEtapasTable extends Migration
     {
         Schema::create('etapas', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo')->unique();
+            $table->foreignId('prefeitura_id')->constrained()->onDelete('cascade');
+            $table->string('codigo');
             $table->string('titulo');
             $table->integer('ordem')->default(0);
             $table->string('cor', 8)->default('#000000');

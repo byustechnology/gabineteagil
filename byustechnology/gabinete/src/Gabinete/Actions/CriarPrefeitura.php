@@ -26,7 +26,7 @@ class CriarPrefeitura {
         $usuarioRoot->prefeitura_id = $this->prefeitura->id;
         $usuarioRoot->update();
 
-        // $this->criarEtapas();
+        $this->criarEtapas();
         $this->criarOrgaosResponsaveis();
         $this->criarAssuntos();
         $this->criarTipoOcorrencias();
@@ -58,6 +58,7 @@ class CriarPrefeitura {
 
         foreach($etapas as $ordem => $etapa) {
             Etapa::firstOrCreate([
+                'prefeitura_id' => $this->prefeitura->id,
                 'codigo' => 'ET-' . $ordem,
                 'titulo' => $etapa,
                 'ordem' => $ordem,
