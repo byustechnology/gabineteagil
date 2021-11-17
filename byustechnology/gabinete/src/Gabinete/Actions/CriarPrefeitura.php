@@ -38,7 +38,7 @@ class CriarPrefeitura {
             'name' => $this->parameters['user_name'],
             'email' => $this->parameters['user_email'],
             'type' => 'admin',
-            'password' => bcrypt($this->parameters['password']),
+            'password' => bcrypt($this->parameters['user_password']),
         ]);
     }
 
