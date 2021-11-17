@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use ByusTechnology\Gabinete\Models\Usuario;
 use ByusTechnology\Gabinete\Filters\UsuarioFilters;
 use ByusTechnology\Gabinete\Http\Requests\UsuarioRequest;
-use ByusTechnology\Onleads\Scopes\PrefeituraScope;
+use ByusTechnology\Gabinete\Scopes\PrefeituraScope;
 
 class UsuarioController extends Controller
 {
@@ -134,9 +134,11 @@ class UsuarioController extends Controller
      */
     public function despersonificar()
     {
+
         if ( ! session()->has('personificado')) {
             abort(403, 'Você não tem permissão para despersonificar um usuário');
         }
+
         auth()->login(Usuario::withoutGlobalScope(PrefeituraScope::class)->find(session()->get('personificado')));
         session()->forget('personificado');
 
