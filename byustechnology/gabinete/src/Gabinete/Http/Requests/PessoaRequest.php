@@ -25,21 +25,21 @@ class PessoaRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'codigo' => [
-            //     Rule::unique('pessoas', 'codigo')->ignore($this->pessoa)
-            // ], 
-            // 'documento' => [
-            //     'required', 
-            //     Rule::unique('pessoas', 'documento')->ignore($this->pessoa)
-            // ], 
+            'codigo' => [
+                Rule::unique('pessoas', 'codigo')->ignore($this->pessoa->codigo, 'codigo')
+            ],
+            'documento' => [
+                'required',
+                Rule::unique('pessoas', 'documento')->ignore($this->pessoa->documento, 'documento')
+            ],
             'titulo' => 'required',
-            'tipo' => 'required', 
-            // 'cep' => 'required', 
-            // 'logradouro' => 'required', 
-            // 'numero' => 'required', 
-            'bairro' => 'required', 
-            'cidade' => 'required', 
-            'estado' => 'required', 
+            'tipo' => 'required',
+            // 'cep' => 'required',
+            // 'logradouro' => 'required',
+            // 'numero' => 'required',
+            'bairro' => 'required',
+            'cidade' => 'required',
+            'estado' => 'required',
         ];
     }
 }

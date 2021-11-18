@@ -29,7 +29,12 @@ class Pessoa extends Model
     ];
 
     const ESCOLARIDADE = [
-        'Primeiro grau completo' => 'Primeiro grau completo',
+        'Ensino fundamental' => 'Ensino fundamental',
+        'Ensino médio' => 'Ensino médio',
+        'Ensino superior' => 'Ensino superior',
+        'Ensino fundamental incompleto' => 'Ensino fundamental incompleto',
+        'Ensino médio incompleto' => 'Ensino médio incompleto',
+        'Ensino superior incompleto' => 'Ensino superior completo',
     ];
 
     const RESIDENCIA_TIPO = [

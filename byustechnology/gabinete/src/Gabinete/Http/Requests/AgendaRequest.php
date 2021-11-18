@@ -26,12 +26,12 @@ class AgendaRequest extends FormRequest
     {
         return [
             'codigo' => [
-                Rule::unique('assuntos', 'codigo')->ignore($this->assunto)
-            ], 
+                Rule::unique('agendas', 'codigo')->ignore($this->agenda->codigo, 'codigo')
+            ],
             'titulo' => 'required',
-            'inicio_em' => 'required|date|after:yesterday', 
-            'inicio_em_horario' => 'required|date_format:H:i', 
-            'termino_em' => 'required|date|after:yesterday', 
+            'inicio_em' => 'required|date|after:yesterday',
+            'inicio_em_horario' => 'required|date_format:H:i',
+            'termino_em' => 'required|date|after:yesterday',
             'termino_em_horario' => 'required|date_format:H:i'
         ];
     }

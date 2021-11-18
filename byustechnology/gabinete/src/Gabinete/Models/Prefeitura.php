@@ -32,6 +32,18 @@ class Prefeitura extends Model
         return $this->hasMany(Usuario::class);
     }
 
+    /**
+     * Uma prefeitura possui
+     * várias ocorrências associados
+     * a ela.
+     *
+     * @return
+     */
+    public function ocorrencias()
+    {
+        return $this->hasMany(Ocorrencia::class);
+    }
+
 
     /**
      * Define um caminho para o modelo.

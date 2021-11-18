@@ -26,11 +26,11 @@ class EtapaRequest extends FormRequest
     {
         return [
             'codigo' => [
-                'required', 
-                Rule::unique('etapas', 'codigo')->ignore($this->etapa)
-            ], 
+                'required',
+                Rule::unique('etapas', 'codigo')->ignore($this->etapa->codigo, 'codigo')
+            ],
             'titulo' => 'required',
-            'ordem' => 'required|numeric', 
+            'ordem' => 'required|numeric',
         ];
     }
 }

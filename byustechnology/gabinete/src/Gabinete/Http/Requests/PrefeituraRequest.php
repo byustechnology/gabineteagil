@@ -26,7 +26,7 @@ class PrefeituraRequest extends FormRequest
     {
         return [
             'codigo' => [
-                Rule::unique('assuntos', 'codigo')->ignore($this->assunto)
+                Rule::unique('prefeituras', 'codigo')->ignore($this->prefeitura->codigo)
             ],
             'titulo' => 'required',
         ];
