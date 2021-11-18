@@ -40,7 +40,7 @@
             </div>
         </div>
     @endcomponent
-    
+
     @component('ui::form-footer')
         <button type="submit" class="btn btn-success btn-lg"><i class="far fa-save fa-fw mr-1"></i> Salvar</button>
     @endcomponent

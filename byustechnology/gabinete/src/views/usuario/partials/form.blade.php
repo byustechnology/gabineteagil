@@ -17,16 +17,23 @@
             <span class="form-text">Informe o e-mail de cadastro do usuário. <span class="text-success">Este e-mail será utilizado para realizar login no sistema</span>.</span>
         </div>
 
-        <div class="form-group">
-            {!! Form::label('type', 'Tipo do usuário') !!}
-            {!! Form::select('type', [
-                '' => 'Por favor, selecione...', 
-                'admin' => 'Administrador (acesso total)', 
-                'funcionario' => 'Funcionário',     
-                'vereador' => 'Vereador',     
-            ], null, ['class' => 'form-control']) !!}
-            <span class="form-text">Informe qual o tipo de acesso referente a este usuário. Dependendo do nível de acesso algumas permissões poderão ser dadas ou negadas.</span>
-        </div>
+        @if (auth()->user()->type == 'root')
+            <div class="form-group">
+                {!! Form::label('type', 'Tipo do usuário') !!}
+                {!! Form::select('type', [
+                    '' => 'Por favor, selecione...',
+                ] + \ByusTechnology\Gabinete\Models\Usuario::TYPES, null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe qual o tipo de acesso referente a este usuário. Dependendo do nível de acesso algumas permissões poderão ser dadas ou negadas.</span>
+            </div>
+        @else
+            <div class="form-group">
+                {!! Form::label('type', 'Tipo do usuário') !!}
+                {!! Form::select('type', [
+                    '' => 'Por favor, selecione...',
+                ] + \ByusTechnology\Gabinete\Models\Usuario::TYPES_AVALIABLE, null, ['class' => 'form-control']) !!}
+                <span class="form-text">Informe qual o tipo de acesso referente a este usuário. Dependendo do nível de acesso algumas permissões poderão ser dadas ou negadas.</span>
+            </div>
+        @endif
     @endcomponent
 
     @component('ui::card')
@@ -47,7 +54,7 @@
             </div>
         </div>
     @endcomponent
-    
+
     @component('ui::form-footer')
         <button type="submit" class="btn btn-success btn-lg"><i class="far fa-save fa-fw mr-1"></i> Salvar</button>
     @endcomponent

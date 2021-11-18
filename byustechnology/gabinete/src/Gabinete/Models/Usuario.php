@@ -20,6 +20,13 @@ class Usuario extends User
         'estagiario' => 'Estagiário',
     ];
 
+    const TYPES_AVALIABLE = [
+        'chefe' => 'Chefe de gabinete',
+        'assessor' => 'Assessor',
+        'vereador' => 'Vereador',
+        'estagiario' => 'Estagiário',
+    ];
+
     /**
      * Define qual o nome da tabela associada
      * a este recurso

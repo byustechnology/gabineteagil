@@ -38,7 +38,7 @@
                             @foreach($usuarios as $usuario)
                                 <tr>
                                     <td><a href="{{ url($usuario->path()) }}"><strong>{{ $usuario->name }}</strong></a></td>
-                                    <td>{{ \ByusTechnology\Gabinete\Models\Usuario::TYPES[$usuario->type] }}</td>
+                                    <td>{{ isset(\ByusTechnology\Gabinete\Models\Usuario::TYPES[$usuario->type]) ? \ByusTechnology\Gabinete\Models\Usuario::TYPES[$usuario->type] : 'Não informado' }}</td>
                                     <td><a href="mailto:{{ $usuario->email }}">{{ $usuario->email }}</a></td>
                                     <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
                                     <td>{{ optional($usuario->prefeitura)->titulo ?? 'Não atrelado' }}</td>
