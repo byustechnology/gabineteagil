@@ -25,12 +25,13 @@ class UsuarioRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required', 
+            'name' => 'required',
+            'type' => 'required',
             'email' => [
                 Rule::unique('users', 'email')->ignore($this->usuario)
             ]
         ];
-        
+
         if (request()->isMethod('post')) {
             $rules['password'] = 'required|confirmed|min:6';
         }
