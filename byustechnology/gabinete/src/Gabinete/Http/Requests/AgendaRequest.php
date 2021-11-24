@@ -26,7 +26,7 @@ class AgendaRequest extends FormRequest
     {
         return [
             'codigo' => [
-                Rule::unique('agendas', 'codigo')->ignore($this->agenda->codigo, 'codigo')
+                Rule::unique('agendas', 'codigo')->ignore(optional($this->agenda)->codigo, 'codigo')
             ],
             'titulo' => 'required',
             'inicio_em' => 'required|date|after:yesterday',

@@ -26,11 +26,11 @@ class PessoaRequest extends FormRequest
     {
         return [
             'codigo' => [
-                Rule::unique('pessoas', 'codigo')->ignore($this->pessoa->codigo, 'codigo')
+                Rule::unique('pessoas', 'codigo')->ignore(optional($this->pessoa)->codigo, 'codigo')
             ],
             'documento' => [
                 'required',
-                Rule::unique('pessoas', 'documento')->ignore($this->pessoa->documento, 'documento')
+                Rule::unique('pessoas', 'documento')->ignore(optional($this->pessoa)->documento, 'documento')
             ],
             'titulo' => 'required',
             'tipo' => 'required',

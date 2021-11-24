@@ -26,7 +26,7 @@ class AssuntoRequest extends FormRequest
     {
         return [
             'codigo' => [
-                Rule::unique('assuntos', 'codigo')->ignore($this->assunto->codigo, 'codigo')
+                Rule::unique('assuntos', 'codigo')->ignore(optional($this->assunto)->codigo, 'codigo')
             ],
             'titulo' => 'required',
         ];
