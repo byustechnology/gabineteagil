@@ -18,7 +18,7 @@
 <div class="container-fluid">
 
     <a href="#" data-toggle="modal" data-target="#m-search" class="btn btn-primary mr-2"><i class="fas fa-search fa-fw mr-2"></i> Buscar</a>
-    <a href="#" class="btn btn-outline-success mr-2"><i class="fas fa-file-csv fa-fw mr-2"></i> Exportar (CSV)</a>
+    <a href="{{ url(request()->url()) }}?excel=true" class="btn btn-outline-success mr-2"><i class="fas fa-file-csv fa-fw mr-2"></i> Exportar (CSV)</a>
     {!! request()->query() ? '<a href="' . url(request()->url()) . '" class="btn btn-outline-danger"><i class="far fa-times-circle mr-2"></i>Cancelar filtro</a>' : null !!}
 
     @component('ui::card')
@@ -38,7 +38,7 @@
         <hr>
 
         @if( ! $ocorrencias->isEmpty())
-            
+
             <div class="table-responsive mt-3">
                 <table class="table table-nowrap">
                     <thead>
@@ -55,10 +55,10 @@
                         @foreach($ocorrencias as $ocorrencia)
                         <tr>
                             <td>
-                                <a href="{{ url($ocorrencia->path()) }}"><strong>{{ $ocorrencia->tipoOcorrencia->titulo }}, {{ optional($ocorrencia->pessoa)->titulo ?? 'Sem pessoa atrelada' }}</strong></a><br>
+                                <a href="{{ url($ocorrencia->path()) }}"><strong>{{ optional($ocorrencia->tipoOcorrencia)->titulo }}, {{ optional($ocorrencia->pessoa)->titulo ?? 'Sem pessoa atrelada' }}</strong></a><br>
                                 <small class="text-muted">
                                     {{ $ocorrencia->bairro }} - {{ $ocorrencia->cidade }}/{{ $ocorrencia->estado }}<br>
-                                    
+
                                 </small>
                             </td>
                             <td class="text-center">
@@ -96,7 +96,7 @@
             </div>
 
             {!! $ocorrencias->links() !!}
-            
+
         @else
             @include('ui::no-results')
         @endif

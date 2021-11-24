@@ -9,12 +9,14 @@ use ByusTechnology\Gabinete\Models\Ocorrencia;
 use ByusTechnology\Gabinete\Models\OcorrenciaVereador;
 use ByusTechnology\Gabinete\Filters\OcorrenciaFilters;
 use ByusTechnology\Gabinete\Http\Requests\OcorrenciaRequest;
+use ByusTechnology\Gabinete\Sheets\Exports\OcorrenciasExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OcorrenciaController extends Controller
 {
     /**
      * Método construtor da classe
-     * 
+     *
      * @return void
      */
     public function __construct()
@@ -31,6 +33,10 @@ class OcorrenciaController extends Controller
      */
     public function index(OcorrenciaFilters $filters)
     {
+        if (request()->has('excel')) {
+            return Excel::download(new OcorrenciasExport($filters), 'ocorrencias-' . date('Y-m-d-H-i-s') . '.xlsx');
+        }
+
         $ocorrencias = Ocorrencia::filter($filters)->ordenado()->paginate();
         return view('gabinete::ocorrencia.index', compact('ocorrencias'));
     }
@@ -58,22 +64,22 @@ class OcorrenciaController extends Controller
         $ocorrencia->titulo = 'Ocorrência de teste'; // TODO: Implementar um título real para a ocorrência
         $ocorrencia->save();
 
-        
+
         if ($request->has('vereadores')) {
             $vereadores = User::whereIn('id', $request->vereadores)->get();
             foreach($request->vereadores as $vereador) {
                 $vereador = $vereadores->where('id', $vereador)->first();
                 OcorrenciaVereador::create([
-                    'ocorrencia_id' => $ocorrencia->id, 
-                    'user_id' => $vereador->id, 
+                    'ocorrencia_id' => $ocorrencia->id,
+                    'user_id' => $vereador->id,
                     'vereador' => $vereador->name
                 ]);
             }
         }
-        
+
         session()->flash('flash_modal_success', 'Ocorrência ' . $ocorrencia->titulo . ' cadastrada com sucesso!');
         session()->flash('flash_modal_success_action', '<a href="' . url($ocorrencia->path()) . '" class="btn btn-outline-primary m-auto btn-sm">Visualizar ocorrência</a>');
-        
+
         return back();
     }
 
@@ -113,7 +119,7 @@ class OcorrenciaController extends Controller
         $ocorrencia->fill($request->except(['mudar_endereco', 'vereador_compartilhado', 'vereadores']));
         $ocorrencia->update();
 
-        // Remove todos os vereadores para depois 
+        // Remove todos os vereadores para depois
         // sincroniza-los novamente.
         $ocorrencia->vereadores()->delete();
 
@@ -122,8 +128,8 @@ class OcorrenciaController extends Controller
             foreach($request->vereadores as $vereador) {
                 $vereador = $vereadores->where('id', $vereador)->first();
                 OcorrenciaVereador::create([
-                    'ocorrencia_id' => $ocorrencia->id, 
-                    'user_id' => $vereador->id, 
+                    'ocorrencia_id' => $ocorrencia->id,
+                    'user_id' => $vereador->id,
                     'vereador' => $vereador->name
                 ]);
             }

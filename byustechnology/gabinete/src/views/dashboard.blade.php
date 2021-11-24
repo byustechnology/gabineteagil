@@ -94,7 +94,7 @@
                             <tbody>
                                 @foreach(\ByusTechnology\Gabinete\Models\Ocorrencia::limit(10)->get() as $ocorrencia)
                                 <tr>
-                                    <td><a href="{{ url($ocorrencia->path()) }}"><strong>{{ $ocorrencia->tipoOcorrencia->titulo }}, {{ optional($ocorrencia->pessoa)->titulo ?? 'Sem pessoa atrelada' }}</strong></a><br></td>
+                                    <td><a href="{{ url($ocorrencia->path()) }}"><strong>{{ optional($ocorrencia->tipoOcorrencia)->titulo }}, {{ optional($ocorrencia->pessoa)->titulo ?? 'Sem pessoa atrelada' }}</strong></a><br></td>
                                 </tr>
                                 @endforeach
                             </tbody>
