@@ -62,17 +62,17 @@ class SeedDatabase extends Command
         // $this->info('Adicionando assuntos...');
         // Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\AssuntosTableSeeder::class]);
 
-        // $this->newLine();
-        // $this->info('Adicionando pessoas...');
-        // Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\PessoasTableSeeder::class]);
+        $this->newLine();
+        $this->info('Adicionando pessoas...');
+        Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\PessoasTableSeeder::class]);
 
-        // $this->newLine();
-        // $this->info('Adicionando contato para as pessoas...');
-        // Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\PessoaContatosTableSeeder::class]);
+        $this->newLine();
+        $this->info('Adicionando contato para as pessoas...');
+        Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\PessoaContatosTableSeeder::class]);
 
-        //  $this->newLine();
-        //  $this->info('Adicionando ocorrências...');
-        //  Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\OcorrenciasTableSeeder::class]);
+         $this->newLine();
+         $this->info('Adicionando ocorrências...');
+         Artisan::call('db:seed', ['--class' => \ByusTechnology\Gabinete\Seeders\OcorrenciasTableSeeder::class]);
 
         // $this->newLine();
         // $this->info('Adicionando mensagens nas ocorrências...');

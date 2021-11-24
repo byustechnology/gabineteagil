@@ -17,21 +17,37 @@ class OcorrenciaObserver
     public function creating(Ocorrencia $ocorrencia)
     {
 
-        // Caso não seja solicitada a mudança de 
-        // endereço no formulário, vamos pegar 
+        if ( app()->runningInConsole()) {
+
+            $pessoa = Pessoa::find($ocorrencia->pessoa_id);
+
+            $ocorrencia->fill($pessoa->only([
+                'cep',
+                'logradouro',
+                'numero',
+                'complemento',
+                'bairro',
+                'cidade',
+                'estado',
+            ]));
+
+        }
+
+        // Caso não seja solicitada a mudança de
+        // endereço no formulário, vamos pegar
         // o endereço da pessoa cadastrada
-        if ( ! request()->has('mudar_endereco')) {
+        if ( ! request()->has('mudar_endereco') and ! app()->runningInConsole()) {
 
             $pessoa = Pessoa::find(request('pessoa_id'));
-            
+
             $ocorrencia->fill($pessoa->only([
-                'cep', 
-                'logradouro', 
-                'numero', 
-                'complemento', 
-                'bairro', 
-                'cidade', 
-                'estado', 
+                'cep',
+                'logradouro',
+                'numero',
+                'complemento',
+                'bairro',
+                'cidade',
+                'estado',
             ]));
         }
     }
@@ -45,7 +61,8 @@ class OcorrenciaObserver
     public function created(Ocorrencia $ocorrencia)
     {
         $ocorrencia->mensagens()->save(new OcorrenciaMensagem([
-            'mensagem' => 'Ocorrência criada em ' . date('d/m/Y à\s H:i:s') . ' por ' . optional(auth()->user())->name ?? 'Sistema', 
+            'prefeitura_id' => $ocorrencia->prefeitura_id,
+            'mensagem' => 'Ocorrência criada em ' . date('d/m/Y à\s H:i:s') . ' por ' . optional(auth()->user())->name ?? 'Sistema',
             'tipo' => 'sys'
         ]));
     }
