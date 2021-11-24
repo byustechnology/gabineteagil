@@ -1,9 +1,9 @@
 @extends('gabinete::layouts.main')
-@section('title', 'Mapa')
+@section('title', 'Configurações')
 @section('content')
 
     @component('gabinete::layouts.title')
-        
+
         <h1 class="d-block mb-3 mt-4 h3">Configurações</h1>
 
         @slot('breadcrumbs')
@@ -13,7 +13,7 @@
 
     <div class="container-fluid">
         @component('ui::card')
-            
+
         @endcomponent
 
         @component('ui::card')
