@@ -35,7 +35,8 @@ Route::prefix(config('gabinete.path'))->middleware(['web', 'auth'])->group(funct
     Route::resource('/agenda', \ByusTechnology\Gabinete\Http\Controllers\AgendaController::class);
 
     // Configurações
-    Route::resource('configuracao', \ByusTechnology\Gabinete\Http\Controllers\ConfiguracaoController::class);
+    Route::post('configuracao', [\ByusTechnology\Gabinete\Http\Controllers\ConfiguracaoController::class, 'store'])->name('configuracao.store');
+    Route::get('configuracao', [\ByusTechnology\Gabinete\Http\Controllers\ConfiguracaoController::class, 'index'])->name('configuracao.index');
 
     // Usuários
     Route::get('usuario/despersonificar', 'ByusTechnology\Gabinete\Http\Controllers\UsuarioController@despersonificar');
