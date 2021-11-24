@@ -26,7 +26,7 @@
                     </div>
                     <div class="offset-lg-1 col-lg-6">
                         @if ( ! empty($configuracao->ocorrencia_template_cabecalho))
-                            <img class="img-fluid rounded shadow-lg" src="{{ asset('storage/' . $configuracao->ocorrencia_template_cabecalho) }}" alt="">
+                            <img class="img-fluid rounded shadow-lg" src="{{ asset('storage/' . $configuracao->ocorrencia_template_cabecalho) }}" alt="Cabeçalho da ocorrência">
                         @endif
                     </div>
                 </div>
