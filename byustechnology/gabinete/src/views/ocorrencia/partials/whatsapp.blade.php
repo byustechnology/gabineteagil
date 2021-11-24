@@ -13,10 +13,10 @@
 
                 $mensagemWhatsapp = 'Olá ' . optional($ocorrencia->pessoa)->titulo . PHP_EOL . 'Sua solicitação ' . optional($ocorrencia->assunto)->titulo . ' já está no(a) ' . optional($ocorrencia->orgaoResponsavel)->titulo . PHP_EOL . PHP_EOL . 'No momento a etapa é: ' . optional($ocorrencia->etapa)->titulo . PHP_EOL . PHP_EOL . 'Vamos nos falando, ' . PHP_EOL . 'Atenciosamente';
 
-                $chefeGabinete = \ByusTechnology\Gabinete\Models\Usuario::where('type', 'admin')->first();
+                $vereadorGabinete = \ByusTechnology\Gabinete\Models\Usuario::where('type', 'vereador')->first();
 
-                if ( ! empty($chefeGabinete)) {
-                    $mensagemWhatsapp .= PHP_EOL . $chefeGabinete->name;
+                if ( ! empty($vereadorGabinete)) {
+                    $mensagemWhatsapp .= PHP_EOL . $vereadorGabinete->name;
                 }
 
             @endphp
