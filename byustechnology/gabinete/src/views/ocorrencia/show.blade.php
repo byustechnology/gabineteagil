@@ -94,6 +94,14 @@
 
                 @component('ui::card')
                     @slot('title')
+                        Consideração
+                    @endslot
+
+                    {!! $ocorrencia->consideracao ?? '<span class="text-muted">Nenhuma consideração informada</span>' !!}
+                @endcomponent
+
+                @component('ui::card')
+                    @slot('title')
                         Observação
                     @endslot
 

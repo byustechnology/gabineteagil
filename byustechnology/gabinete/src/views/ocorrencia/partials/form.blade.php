@@ -17,7 +17,7 @@
             <div class="col-lg-4 form-group">
                 {!! Form::label('tipo_ocorrencia_id', 'Tipo da ocorrência') !!}
                 {!! Form::select('tipo_ocorrencia_id', [
-                    '' => 'Por favor, selecione...', 
+                    '' => 'Por favor, selecione...',
                 ] + \ByusTechnology\Gabinete\Models\TipoOcorrencia::ordenado()->pluck('titulo', 'id')->toArray(), null, ['class' => 'form-control']) !!}
                 <span class="form-text">Informe o tipo relacionado a esta ocorrência.</span>
             </div>
@@ -73,10 +73,10 @@
             </div>
         </div>
     @endcomponent
-    
+
     <div class="switch-vereadores">
 
-        
+
         @component('ui::card')
             @slot('title')
                 Vereadores envolvidos
@@ -121,7 +121,7 @@
                     <span class="form-text">Informe o número referente ao endereço.</span>
                 </div>
             </div>
-            
+
             <div class="form-group">
                 {!! Form::label('complemento', 'Complemento') !!}
                 {!! Form::text('complemento', null, ['class' => 'form-control']) !!}
@@ -142,7 +142,7 @@
                 <div class="col-lg-3 form-group">
                     {!! Form::label('estado', 'Estado') !!}
                     {!! Form::select('estado', [
-                        '' => 'Por favor, selecione...', 
+                        '' => 'Por favor, selecione...',
                     ] + \ByusTechnology\Gabinete\Models\Estado::LISTA, null, ['class' => 'form-control']) !!}
                     <span class="form-text">Informe o estado referente a cidade escolhida.</span>
                 </div>
@@ -163,6 +163,18 @@
             </div>
             {!! Form::hidden('descricao', null, ['id' => 'descricao', 'class' => 'd-none']) !!}
             <span class="form-text">Digite informações relevantes que descrevam a ocorrência.<br> Essas informações serão incluídas no documento da ocorrência.</span>
+        </div>
+    @endcomponent
+
+    @component('ui::card')
+        @slot('title')
+            Consideração da ocorrência
+        @endslot
+
+        <div class="form-group">
+            {!! Form::label('consideracao', 'Considerações da ocorrência') !!}
+            {!! Form::textarea('consideracao', null, ['class' => 'form-control', 'rows' => 3]) !!}
+            <span class="form-text">Informe este campo caso deseje que sua ocorrência possua uma consideração atrelada a ela.</span>
         </div>
     @endcomponent
 
@@ -244,7 +256,9 @@
                     const value = data[0].template
                     const delta = quillDescricao.clipboard.convert(value)
                     quillDescricao.setContents(delta, 'silent')
+                    $('#consideracao').text(data[0].consideracao)
                 }, 'json')
+
             }
         }
 

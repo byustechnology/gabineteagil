@@ -24,6 +24,7 @@ class CreateOcorrenciasTable extends Migration
             $table->string('titulo');
             $table->longText('descricao');
             $table->longText('observacao')->nullable();
+            $table->longText('consideracao')->nullable();
             $table->string('protocolo')->nullable();
 
             // Dados do endereço
