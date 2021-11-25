@@ -19,7 +19,9 @@
 </head>
 <body>
 
-    <img style="max-width: 100%; margin-bottom: 20px;" src="{{ public_path('storage/' . $configuracao->ocorrencia_template_cabecalho) }}" alt="">
+    @if ( ! empty($configuracao))
+        <img style="max-width: 100%; margin-bottom: 20px;" src="{{ public_path('storage/' . $configuracao->ocorrencia_template_cabecalho) }}" alt="">
+    @endif
 
     <div class="container">
         {!! $templateFormatado !!}
