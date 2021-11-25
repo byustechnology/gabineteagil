@@ -15,7 +15,8 @@ class FormatarTemplateOcorrencia {
         '!@orgaoResponsavelNome' => 'Nome do responsável pelo orgão associado',
         '!@orgaoResponsavelTelefone' => 'Telefone do responsável pelo orgão associado',
         '!@orgaoResponsavelEmail' => 'E-mail do responsável pelo orgão associado',
-        '!@consideracao' => 'Exibe o cadastro das considerações relacionadas ao tipo da ocorrência'
+        '!@consideracao' => 'Exibe o cadastro das considerações relacionadas ao tipo da ocorrência',
+        '!@endereco' => 'Exibe o endereço da ocorrência'
     ];
 
     public $ocorrencia;
@@ -36,7 +37,8 @@ class FormatarTemplateOcorrencia {
             '!@orgaoResponsavelNome' => optional($this->ocorrencia->orgao)->responsavel,
             '!@orgaoResponsavelTelefone' => optional($this->ocorrencia->orgao)->responsavel_telefone,
             '!@orgaoResponsavelEmail' => optional($this->ocorrencia->orgao)->responsavel_email,
-            '!@consideracao' => optional($this->ocorrencia->ocorrenciaTipo)->consideracao
+            '!@consideracao' => optional($this->ocorrencia->ocorrenciaTipo)->consideracao,
+            '!@endereco' => $this->ocorrencia->endereco_completo
         ];
 
         return str_replace(array_keys($replaces), array_values($replaces), $this->ocorrencia->descricao);
