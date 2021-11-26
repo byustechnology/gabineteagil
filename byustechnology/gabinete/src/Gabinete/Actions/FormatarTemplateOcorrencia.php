@@ -34,11 +34,12 @@ class FormatarTemplateOcorrencia {
             '!@protocolo' => $this->ocorrencia->protocolo,
             '!@observacao' => $this->ocorrencia->observacao,
             '!@cidadePrefeitura' => $this->ocorrencia->prefeitura->cidade,
+            '!@orgaoResponsavel' => $this->ocorrencia->orgaoResponsavel->titulo,
             '!@orgaoResponsavelNome' => optional($this->ocorrencia->orgao)->responsavel,
             '!@orgaoResponsavelTelefone' => optional($this->ocorrencia->orgao)->responsavel_telefone,
             '!@orgaoResponsavelEmail' => optional($this->ocorrencia->orgao)->responsavel_email,
             '!@consideracao' => optional($this->ocorrencia->ocorrenciaTipo)->consideracao,
-            '!@endereco' => $this->ocorrencia->endereco_completo
+            '!@endereco' => $this->ocorrencia->endereco_completo,
         ];
 
         return str_replace(array_keys($replaces), array_values($replaces), $this->ocorrencia->descricao);
