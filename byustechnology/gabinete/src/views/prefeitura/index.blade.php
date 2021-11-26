@@ -28,6 +28,8 @@
                             <tr>
                                 <th>Código</th>
                                 <th>Prefeitura</th>
+                                <th>Ocorrências</th>
+                                <th>Usuários</th>
                                 <th>Status</th>
                                 <th>Adicionado em</th>
                                 <th class="table-actions">Ações</th>
@@ -39,6 +41,8 @@
                                     <td>{{ $prefeitura->codigo }}</td>
                                     <td><a href="{{ url($prefeitura->path()) }}"><strong>{{ $prefeitura->titulo }}</strong></a></td>
                                     <td>Ativa</td>
+                                    <td>{{ $prefeitura->ocorrencias->count() }}</td>
+                                    <td>{{ $prefeitura->usuarios->count() }}</td>
                                     <td>{{ $prefeitura->created_at->format('d/m/Y') }}</td>
                                     <td class="table-actions">
                                         {!! Form::open(['url' => route('prefeitura.destroy', ['prefeitura' => $prefeitura]), 'method' => 'delete']) !!}
