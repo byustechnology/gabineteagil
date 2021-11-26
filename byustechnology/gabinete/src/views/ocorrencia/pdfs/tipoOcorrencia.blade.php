@@ -25,6 +25,7 @@
 
     <div class="container">
         {!! $templateFormatado !!}
+        {!! $ocorrencia->consideracao !!}
     </div>
 </body>
 </html>
