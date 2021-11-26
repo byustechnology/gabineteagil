@@ -8,24 +8,31 @@
 
     <style>
         * {
-            margin:0;
-            padding:0
+            margin: 0;
+            padding: 0;
         }
-
+        .page {
+            padding: 20px;
+            box-sizing: border-box;
+        }
         .container {
+            margin-top: 20px;
             padding: 20px 50px;
+            box-sizing: border-box;
         }
     </style>
 </head>
 <body>
 
-    @if ( ! empty($configuracao))
-        <img style="max-width: 100%; margin-bottom: 20px;" src="{{ public_path('storage/' . $configuracao->ocorrencia_template_cabecalho) }}" alt="">
-    @endif
+    <div class="page">
+        @if ( ! empty($configuracao))
+            <img style="max-width: 100%;" src="{{ public_path('storage/' . $configuracao->ocorrencia_template_cabecalho) }}" alt="">
+        @endif
 
-    <div class="container">
-        {!! $templateFormatado !!}
-        {!! $ocorrencia->consideracao !!}
+        <div class="container">
+            {!! $templateFormatado !!}
+            {!! $ocorrencia->consideracao !!}
+        </div>
     </div>
 </body>
 </html>
