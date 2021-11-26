@@ -5,21 +5,21 @@
 
 @php
 
-$chartOcorenciasPorBairroValues = [
-    '#5594C8' => 'Cidade Nova',
-    '#21252F' => 'Centro',
-    '#DDDDDD' => 'Jardim do bosque',
-    '#FFC107' => 'São Bento',
-    '#54C78B' => 'Jardins',
-    '#FF083D' => 'Hortências',
-]
+$faker = Faker\Factory::create();
+
+$ocorrencias = \ByusTechnology\Gabinete\Models\Ocorrencia::groupBy('bairro')
+    ->select('bairro', app('db')->raw('count(*) as total'))
+    ->get()
+    ->each(function($item) use ($faker) {
+        $item->cor = $faker->hexcolor();
+    });
 
 @endphp
 
-@foreach($chartOcorenciasPorBairroValues as $cor => $valor)
+@foreach($ocorrencias as $ocorrencia)
     <div class="d-flex align-items-center">
-        <div style="width: 12px; height: 12px; margin-right: 20px; background-color: {{ $cor }}; border-radius: 4px;"></div>
-        <small>{{ $valor }}</small>
+        <div style="width: 12px; height: 12px; margin-right: 20px; background-color: {{ $ocorrencia->cor }}; border-radius: 4px;"></div>
+        <small>{{ $ocorrencia->bairro }}</small>
     </div>
 @endforeach
 
@@ -29,25 +29,11 @@ var ctx = document.getElementById('charOcorrenciasPorBairro').getContext('2d');
 var charOcorrenciasPorBairro = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: [
-            'Cidade Nova',
-            'Centro',
-            'Jardim dos bosques',
-            'São bento',
-            'Jardins',
-            'Hortências'
-        ],
+        labels: <?php echo json_encode($ocorrencias->pluck('bairro')->toArray()); ?>,
         datasets: [{
             label: 'Ocorrências',
-            data: [{{ mt_rand(1, 20) }}, {{ mt_rand(1, 20) }}, {{ mt_rand(1, 20) }}, {{ mt_rand(1, 20) }}, {{ mt_rand(1, 20) }}, {{ mt_rand(1, 20) }}],
-            backgroundColor: [
-                '#5594C8',
-                '#21252F',
-                '#DDDDDD',
-                '#FFC107',
-                '#54C78B',
-                '#FF083D',
-            ],
+            data: <?php echo json_encode($ocorrencias->pluck('total')->toArray()); ?>,
+            backgroundColor: <?php echo json_encode($ocorrencias->pluck('cor')->toArray()); ?>,
             borderWidth: 1
         }]
     },
