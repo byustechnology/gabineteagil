@@ -256,7 +256,10 @@
                     const value = data[0].template
                     const delta = quillDescricao.clipboard.convert(value)
                     quillDescricao.setContents(delta, 'silent')
-                    $('#consideracao').text(data[0].consideracao)
+
+                    @if ( ! isset($ocorrencia))
+                        $('#consideracao').text(data[0].consideracao)
+                    @endif
                 }, 'json')
 
             }
