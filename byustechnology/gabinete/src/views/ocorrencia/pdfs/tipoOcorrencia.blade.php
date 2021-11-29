@@ -30,10 +30,6 @@
         @endif
 
         <div class="container">
-
-            {!! $ocorrencia->consideracao !!}
-            <br>
-
             {!! $templateFormatado !!}
         </div>
     </div>

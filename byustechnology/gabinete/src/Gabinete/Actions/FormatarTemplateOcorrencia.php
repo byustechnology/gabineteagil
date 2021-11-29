@@ -38,7 +38,7 @@ class FormatarTemplateOcorrencia {
             '!@orgaoResponsavelNome' => optional($this->ocorrencia->orgao)->responsavel,
             '!@orgaoResponsavelTelefone' => optional($this->ocorrencia->orgao)->responsavel_telefone,
             '!@orgaoResponsavelEmail' => optional($this->ocorrencia->orgao)->responsavel_email,
-            '!@consideracao' => optional($this->ocorrencia->ocorrenciaTipo)->consideracao,
+            '!@consideracao' => $this->ocorrencia->consideracao,
             '!@endereco' => $this->ocorrencia->endereco_completo,
         ];
 
