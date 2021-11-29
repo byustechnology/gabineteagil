@@ -18,6 +18,8 @@ class OcorrenciaPdfController extends Controller
         $configuracao = Configuracao::where('prefeitura_id', auth()->user()->prefeitura_id)->first();
         $templateFormatado = (new FormatarTemplateOcorrencia($ocorrencia))->handle();
 
+        dd($templateFormatado);
+
         $pdf = PDF::loadView('gabinete::ocorrencia.pdfs.tipoOcorrencia', compact('ocorrencia', 'templateFormatado', 'configuracao'));
         return $pdf->stream('ocorrencia-' . $ocorrencia->id . '.pdf');
     }
