@@ -30,7 +30,7 @@
         @endif
 
         <div class="container">
-            {!! $templateFormatado !!}
+            <?php echo $templateFormatado ?>
         </div>
     </div>
 </body>
