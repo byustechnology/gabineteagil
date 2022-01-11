@@ -3,7 +3,7 @@
 $faker = Faker\Factory::create();
 
 $ocorrencias = \ByusTechnology\Gabinete\Models\Ocorrencia::groupBy('dias')
-    ->select(app('db')->raw('DATE(created_at) AS dias'), app('db')->raw('count(*) as total'))
+    ->select(app('db')->raw('DATE(concluida_em) AS dias'), app('db')->raw('count(*) as total'))
     ->concluidas()
     ->limit(15)
     ->get()
